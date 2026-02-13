@@ -155,7 +155,7 @@ function App() {
     <div key={index} className="message bot">
       <div className="contact-cards">
 
-        <a href="mailto:pratek.agengg1110@gmail.com" className="contact-card">
+        <a href="https://mail.google.com/mail/?view=cm&to=pratek.agengg1110@gmail.com" className="contact-card">
           <MdEmail size={22} />
         </a>
 
