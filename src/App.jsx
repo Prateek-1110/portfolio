@@ -608,8 +608,9 @@ else if (command === "education") {
             maxLength="100"
           />
           <button onClick={handleSend} className="send-btn">
-              ➤
-          </button>
+  <img src="/send.png" alt="send" />
+</button>
+
         </div>
       </div>
     </div>

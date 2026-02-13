@@ -165,9 +165,8 @@ body {
 
 .input-wrapper {
   flex-shrink: 0;
-  background-color: #202c33;
-  padding: 8px 8px;
-  border-top: 1px solid #2a3942;
+  padding: 8px;
+  border-top: 1px solid;
   z-index: 50;
 }
 
@@ -176,9 +175,7 @@ body {
   align-items: center;
   gap: 8px;
   padding: 10px;
-  background-color: #202c33;
 }
-
 
 input {
   flex: 1;
@@ -186,9 +183,42 @@ input {
   border-radius: 25px;
   border: none;
   outline: none;
+}
+.dark .input-wrapper {
+  background-color: #202c33;
+  border-top-color: #2a3942;
+}
+
+.dark .input-area {
+  background-color: #202c33;
+}
+
+.dark input {
   background-color: #3a4a54;
   color: white;
 }
+
+.dark input::placeholder {
+  color: #8696a0;
+}
+.light .input-wrapper {
+  background-color: #f0f0f0;
+  border-top-color: #dcdcdc;
+}
+
+.light .input-area {
+  background-color: #f0f0f0;
+}
+
+.light input {
+  background-color: white;
+  color: #222;
+}
+
+.light input::placeholder {
+  color: #999;
+}
+
 
 
 input::placeholder {
@@ -330,14 +360,6 @@ input::-webkit-inner-spin-button {
   color: #000;
 }
 
-.light .input-wrapper {
-  background-color: #f0f0f0;
-  border-top-color: #d0d0d0;
-}
-
-.light .input-area {
-  background-color: #d0d0d0;
-}
 
 .light input {
   color: #000;
@@ -593,4 +615,20 @@ input::-webkit-inner-spin-button {
 
 .more-github-link:hover {
   transform: scale(1.15);
+}
+.send-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background-color: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.send-btn img {
+  width: 18px;
+  height: 18px;
 }
