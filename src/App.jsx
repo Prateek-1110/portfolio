@@ -475,6 +475,18 @@ else if (command === "education") {
       <FiExternalLink size={18} />
     </a>
   </div>
+  <div className="more-projects">
+  <strong>View more projects on</strong>
+  <a
+    href="https://github.com/Prateek-1110"
+    target="_blank"
+    rel="noreferrer"
+    className="more-github-link"
+  >
+    <FaGithub size={18} />
+  </a>
+</div>
+
 </div>
 
 

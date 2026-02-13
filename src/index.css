@@ -576,3 +576,21 @@ input::-webkit-inner-spin-button {
   border: 1px solid #25d366;
   color: #25d366;
 }
+.more-projects {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.more-github-link {
+  color: #25d366;
+  display: flex;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.more-github-link:hover {
+  transform: scale(1.15);
+}
