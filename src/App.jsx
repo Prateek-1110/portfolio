@@ -19,6 +19,16 @@ function App() {
   const chatEndRef = useRef(null);
   const inputRef = useRef(null);
 
+
+const handleCommandClick = (command) => {
+  const userMessage = { text: command, type: "user" };
+
+  setMessages((prev) => [...prev, userMessage]);
+
+  processCommand(command);
+};
+
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
@@ -131,10 +141,6 @@ else if (command === "education") {
 }
 
 
-    // else if (command === "resume") {
-    //   botReply =
-    //     "📄 Resume: https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/view?usp=sharing";
-    // }
     else if (command === "resume") {
   setIsTyping(true);
 
@@ -535,7 +541,7 @@ else if (command === "education") {
     <button
       key={cmd.value}                 
       className="cmd-btn"
-      onClick={() => processCommand(cmd.value)} 
+      onClick={() => handleCommandClick(cmd.value)}
     >
       {cmd.label}                     
     </button>
