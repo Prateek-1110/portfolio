@@ -79,13 +79,77 @@ else if (command === "projects") {
 }
 
     else if (command === "stats") {
-      botReply =
-        "📊 LeetCode: https://leetcode.com/prateekagr-1110\n📊 Codeforces: https://codeforces.com/profile/prateek_1110\n📊 GeeksforGeeks: https://www.geeksforgeeks.org/user/prateekagr1110/";
-    }
+  setIsTyping(true);
+
+  setTimeout(() => {
+    setMessages((prev) => [
+      ...prev,
+      { text: "__STATS__", type: "bot" },
+      { text: "__SHOW_BUTTONS__", type: "bot" }
+    ]);
+    setIsTyping(false);
+  }, 600);
+
+  return;
+}
+else if (command === "education") {
+  botReply = `
+  
+  <div class="edu-block">
+    <div class="edu-header">
+      <span class="edu-title">🎓 Bachelor of Technology</span>
+      <span class="edu-date">2023 – 2027</span>
+    </div>
+    <strong>Indian Institute of Technology (IIT) Jodhpur</strong><br/>
+    Bioengineering<br/>
+    CGPA: <span class="edu-highlight">7.63</span>
+  </div>
+
+  <br/><br/>
+
+  <div class="edu-block">
+    <div class="edu-header">
+      <span class="edu-title">🏫 Senior Secondary (Class XII)</span>
+      <span class="edu-date">2021 – 2022</span>
+    </div>
+    CBSE Board<br/>
+    Percentage: <span class="edu-highlight">93%</span>
+  </div>
+
+  <br/><br/>
+
+  <div class="edu-block">
+    <div class="edu-header">
+      <span class="edu-title">🏫 Secondary (Class X)</span>
+      <span class="edu-date">2019 – 2020</span>
+    </div>
+    CBSE Board<br/>
+    Percentage: <span class="edu-highlight">95%</span>
+  </div>
+
+  `;
+}
+
+
+    // else if (command === "resume") {
+    //   botReply =
+    //     "📄 Resume: https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/view?usp=sharing";
+    // }
     else if (command === "resume") {
-      botReply =
-        "📄 Resume: https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/view?usp=sharing";
-    }
+  setIsTyping(true);
+
+  setTimeout(() => {
+    setMessages((prev) => [
+      ...prev,
+      { text: "__RESUME_CARD__", type: "bot" },
+      { text: "__SHOW_BUTTONS__", type: "bot" }
+    ]);
+    setIsTyping(false);
+  }, 600);
+
+  return;
+}
+
    else if (command === "contact") {
   setIsTyping(true);
 
@@ -177,6 +241,114 @@ else if (command === "projects") {
 
       <div className="chat-area">
         {messages.map((msg, index) => {
+          if (msg.text === "__RESUME_CARD__") {
+  return (
+    <div key={index} className="message bot">
+      <div className="resume-card">
+
+        <div className="resume-info">
+          <span className="resume-icon">📄</span>
+          <div>
+            <div className="resume-name">Prateek-Resume.pdf</div>
+            <div className="resume-meta">PDF • Updated 2026</div>
+          </div>
+        </div>
+
+        <div className="resume-actions">
+          <a
+            href="https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/preview"
+            target="_blank"
+            rel="noreferrer"
+            className="resume-btn"
+          >
+            View
+          </a>
+
+          <a
+            href="https://drive.google.com/uc?export=download&id=1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk"
+            download
+            className="resume-btn outline"
+          >
+            Download
+          </a>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+          if (msg.text === "__STATS__") {
+  return (
+    <div key={index} className="message bot">
+
+      {/* LeetCode */}
+      <div className="stats-block">
+        <div className="stats-header">
+          <a
+            href="https://leetcode.com/prateekagr-1110"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/leetcode/leetcode-original.svg"
+              alt="LeetCode"
+              className="platform-icon"
+            />
+          </a>
+          <span>LeetCode – 300+ Problems</span>
+        </div>
+        <div className="progress-bar">
+          <div className="progress-fill animate" style={{ width: "75%" }}></div>
+        </div>
+      </div>
+
+      {/* Codeforces */}
+      <div className="stats-block">
+        <div className="stats-header">
+          <a
+            href="https://codeforces.com/profile/prateek_1110"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://cdn.iconscout.com/icon/free/png-512/free-code-forces-logo-icon-svg-download-png-2944796.png?f=webp&w=512"
+              alt="Codeforces"
+              className="platform-icon"
+            />
+          </a>
+          <span>Codeforces – 200+ Problems</span>
+        </div>
+        <div className="progress-bar">
+          <div className="progress-fill animate" style={{ width: "60%" }}></div>
+        </div>
+      </div>
+
+      {/* GFG */}
+      <div className="stats-block">
+        <div className="stats-header">
+          <a
+            href="https://www.geeksforgeeks.org/user/prateekagr1110/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/4/43/GeeksforGeeks.svg"
+              alt="GFG"
+              className="platform-icon"
+            />
+          </a>
+          <span>GeeksforGeeks – 400+ Problems</span>
+        </div>
+        <div className="progress-bar">
+          <div className="progress-fill animate" style={{ width: "85%" }}></div>
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
           if (msg.text === "__PROJECTS__") {
   return (
     <div key={index} className="message bot">
@@ -340,6 +512,7 @@ else if (command === "projects") {
               <div key={index} className="message bot">
                <div className="command-buttons">
   {[
+    {label : "Education",value:"education"},
     { label: "Skills", value: "skills" },
     { label: "Projects", value: "projects" },
     { label: "Stats", value: "stats" },
