@@ -44,9 +44,24 @@ function App() {
   const processCommand = (command) => {
     let botReply = "";
      if (command === "skills") {
-      botReply =
-        "C++, JavaScript, React, DSA, Django, Data Cleaning & Preprocessing.";
-    }
+  botReply = `
+  <span class="section-title">Languages I Work With:</span><br/><br/>
+  • JavaScript<br/>
+  • Python<br/>
+  • C++<br/>
+  • ...etc<br/><br/>
+
+  <span class="section-title">Technologies & Tools:</span><br/><br/>
+  • Node.js<br/>
+  • React.js<br/>
+  • Django<br/>
+  • Pandas<br/>
+  • MongoDB<br/>
+  • NumPy<br/>
+  • ...etc
+  `;
+}
+
     else if (command === "projects") {
       botReply =
         "1️⃣ Chat Portfolio Website\n2️⃣ DSA Tracker\n3️⃣ Replace with your real projects.";
@@ -88,7 +103,7 @@ function App() {
   setTimeout(() => {
     setMessages((prev) => [
       ...prev,
-      { text: "Type 'help' to know more about me.", type: "bot" },
+      { text: "Command not found!\n Type 'help' to know more about me.", type: "bot" },
       { text: "__SHOW_BUTTONS__", type: "bot" }
     ]);
     setIsTyping(false);

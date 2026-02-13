@@ -389,3 +389,11 @@ input::-webkit-inner-spin-button {
 .contact-card:hover {
   transform: scale(1.05);
 }
+.section-title {
+  font-weight: bold;
+  font-size: 15px;
+  color: #25d366; /* WhatsApp green for dark mode */
+}
+.light .section-title {
+  color: #075e54;
+}
