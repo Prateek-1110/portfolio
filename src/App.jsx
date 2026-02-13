@@ -389,7 +389,7 @@ else if (command === "education") {
         <div className="project-icons">
           <span>GitHub:</span>
           <a
-            href="https://github.com/YOUR_GITHUB/banking-ui"
+            href="https://github.com/Prateek-1110/bank_frontend"
             target="_blank"
             rel="noreferrer"
           >
@@ -398,7 +398,7 @@ else if (command === "education") {
 
           <span>Live:</span>
           <a
-            href="https://your-banking-live-demo.com"
+            href="https://banking-ui-b23.vercel.app/"
             target="_blank"
             rel="noreferrer"
           >
@@ -424,7 +424,7 @@ else if (command === "education") {
 
     <span>Live:</span>
     <a
-      href="https://your-urbanluxe-live-demo.com"
+      href="https://ecommerce-lilac-eight-92.vercel.app/"
       target="_blank"
       rel="noreferrer"
     >
