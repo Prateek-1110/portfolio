@@ -1,9 +1,14 @@
 import { useState, useRef, useEffect } from "react";
+import { FaGithub, FaInstagram, FaMobile } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 function App() {
   const [messages, setMessages] = useState([
-    { text: "Hello 👋 I'm Prateek Agrahari", type: "bot" },
-    { text: "Type 'help' to see available commands.", type: "bot" },
+   {
+  text: "Hello there 👋🏻\n\nMy name is <span class='my-name'>Prateek Agrahari</span>.\n\nI am a Full Stack Developer and an enthusiastic Machine Learning learner 👨🏻‍💻📚\n\nI enjoy building scalable applications and experimenting with emerging technologies.\n\nType 'help' to know more about me.",
+  type: "bot"
+},
+
   ]);
   const [theme, setTheme] = useState("dark");
   const [input, setInput] = useState("");
@@ -38,12 +43,7 @@ function App() {
 
   const processCommand = (command) => {
     let botReply = "";
-
-    if (command === "about") {
-      botReply =
-        "I am Prateek Agrahari, ML enthusiastic, passionate about DSA and Web Development. 🚀";
-    }
-    else if (command === "skills") {
+     if (command === "skills") {
       botReply =
         "C++, JavaScript, React, DSA, Django, Data Cleaning & Preprocessing.";
     }
@@ -55,27 +55,47 @@ function App() {
       botReply =
         "📊 LeetCode: https://leetcode.com/prateekagr-1110\n📊 Codeforces: https://codeforces.com/profile/prateek_1110\n📊 GeeksforGeeks: https://www.geeksforgeeks.org/user/prateekagr1110/";
     }
-    else if (command === "github") {
-      botReply = "🐙 GitHub: https://github.com/prateek-1110";
-    }
     else if (command === "resume") {
       botReply =
         "📄 Resume: https://drive.google.com/file/d/1gUa1wCpdPrKUb4yO34kDtdylXlWnWGA7/view?usp=sharing";
     }
-    else if (command === "contact") {
-      botReply =
-        "📧 Email: mailto:pratek.agengg1110@gmail.com\n📱 WhatsApp: https://wa.me/917355928437\n🔗 LinkedIn: https://linkedin.com/in/prateek1110";
-    }
-    else if (command === "clear") {
+   else if (command === "contact") {
+  setIsTyping(true);
+
+  setTimeout(() => {
+    setMessages((prev) => [
+      ...prev,
+      { text: "__CONTACT_CARDS__", type: "bot" },
+      { text: "__SHOW_BUTTONS__", type: "bot" }
+    ]);
+    setIsTyping(false);
+  }, 600);
+
+  return;
+}
+    else if (command === "Clear Window") {
       setMessages([
-        { text: "Hello 👋 I'm Prateek Agrahari", type: "bot" },
-        { text: "Type 'help' or use buttons below.", type: "bot" },
+        {
+  text: "Hello there 👋🏻\n\nMy name is <span class='my-name'>Prateek Agrahari</span>.\n\nI am a Full Stack Developer and an enthusiastic Machine Learning learner 👨🏻‍💻📚\n\nI enjoy building scalable applications and experimenting with emerging technologies.\n\nType 'help' to know more about me.",
+  type: "bot"
+},
       ]);
       return;
     }
-    else {
-      botReply = "Unknown command.";
-    }
+   else {
+  setIsTyping(true);
+
+  setTimeout(() => {
+    setMessages((prev) => [
+      ...prev,
+      { text: "Type 'help' to know more about me.", type: "bot" },
+      { text: "__SHOW_BUTTONS__", type: "bot" }
+    ]);
+    setIsTyping(false);
+  }, 600);
+
+  return;
+}
 
     setIsTyping(true);
 
@@ -92,7 +112,7 @@ function App() {
   const handleSend = () => {
     if (input.trim() === "") return;
 
-    const command = input.toLowerCase();
+    const command = input.trim().toLowerCase();
 
     setMessages((prev) => [
       ...prev,
@@ -108,7 +128,6 @@ function App() {
       ]);
       return;
     }
-
     processCommand(command);
   };
 
@@ -131,21 +150,50 @@ function App() {
 
       <div className="chat-area">
         {messages.map((msg, index) => {
+          if (msg.text === "__CONTACT_CARDS__") {
+  return (
+    <div key={index} className="message bot">
+      <div className="contact-cards">
+
+        <a href="mailto:pratek.agengg1110@gmail.com" className="contact-card">
+          <MdEmail size={22} />
+        </a>
+
+        <a href="https://github.com/prateek-1110" target="_blank" rel="noreferrer" className="contact-card">
+          <FaGithub size={22} />
+        </a>
+
+        <a href="https://instagram.com/neural_mystic" target="_blank" rel="noreferrer" className="contact-card">
+          <FaInstagram size={22} />
+        </a>
+
+
+      </div>
+    </div>
+  );
+}
           if (msg.text === "__SHOW_BUTTONS__") {
             return (
               <div key={index} className="message bot">
-                <div className="command-buttons">
-                  {["about","skills","projects","stats","github","resume","contact","clear"]
-                    .map((cmd) => (
-                      <button
-                        key={cmd}
-                        className="cmd-btn"
-                        onClick={() => processCommand(cmd)}
-                      >
-                        {cmd}
-                      </button>
-                    ))}
-                </div>
+               <div className="command-buttons">
+  {[
+    { label: "Skills", value: "skills" },
+    { label: "Projects", value: "projects" },
+    { label: "Stats", value: "stats" },
+    { label: "Resume", value: "resume" },
+    { label: "Contact", value: "contact" },
+    { label: "Clear Window", value: "clear window" }
+  ].map((cmd) => (
+    <button
+      key={cmd.value}                 
+      className="cmd-btn"
+      onClick={() => processCommand(cmd.value)} 
+    >
+      {cmd.label}                     
+    </button>
+  ))}
+</div>
+
               </div>
             );
           }
@@ -178,7 +226,13 @@ function App() {
                   );
                 }
 
-                return <div key={i}>{line}</div>;
+               return (
+  <div
+    key={i}
+    dangerouslySetInnerHTML={{ __html: line }}
+  />
+);
+
               })}
             </div>
           );
