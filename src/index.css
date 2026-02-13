@@ -221,8 +221,8 @@ input::-webkit-inner-spin-button {
   background-color: #1f2937;
 }
 
-a {
-  color: #53bdeb;
+.dark a {
+  color: #3c94b9;
   text-decoration: underline;
   word-break: break-all;
 }
