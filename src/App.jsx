@@ -263,7 +263,7 @@ function App() {
             maxLength="100"
           />
           <button onClick={handleSend} className="send-btn">
-            📤
+              ➤
           </button>
         </div>
       </div>
