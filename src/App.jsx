@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { FaGithub, FaInstagram, FaMobile } from "react-icons/fa";
+import { FaGithub, FaInstagram, FaLinkedin, FaMobile } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 function App() {
@@ -165,6 +165,9 @@ function App() {
 
         <a href="https://instagram.com/neural_mystic" target="_blank" rel="noreferrer" className="contact-card">
           <FaInstagram size={22} />
+        </a>
+        <a href="https://www.linkedin.com/in/prateek1110/" target="_blank" rel="noreferrer" className="contact-card">
+          <FaLinkedin size={22} />
         </a>
 
 
