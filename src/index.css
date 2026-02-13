@@ -397,3 +397,37 @@ input::-webkit-inner-spin-button {
 .light .section-title {
   color: #075e54;
 }
+.project-block {
+  margin-bottom: 25px;
+}
+
+.project-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #25d366;
+}
+
+.light .project-title {
+  color: #075e54;
+}
+
+.project-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.project-icons span {
+  font-size: 13px;
+  color: #8696a0;
+}
+
+.project-icons a {
+  color: #25d366;
+  transition: 0.2s ease;
+}
+
+.project-icons a:hover {
+  transform: scale(1.15);
+}

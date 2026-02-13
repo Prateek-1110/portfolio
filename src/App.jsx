@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { FaGithub, FaInstagram, FaLinkedin, FaMobile } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { FiExternalLink } from "react-icons/fi";
 
 function App() {
   const [messages, setMessages] = useState([
@@ -62,17 +63,28 @@ function App() {
   `;
 }
 
-    else if (command === "projects") {
-      botReply =
-        "1️⃣ Chat Portfolio Website\n2️⃣ DSA Tracker\n3️⃣ Replace with your real projects.";
-    }
+else if (command === "projects") {
+  setIsTyping(true);
+
+  setTimeout(() => {
+    setMessages((prev) => [
+      ...prev,
+      { text: "__PROJECTS__", type: "bot" },
+      { text: "__SHOW_BUTTONS__", type: "bot" }
+    ]);
+    setIsTyping(false);
+  }, 600);
+
+  return;
+}
+
     else if (command === "stats") {
       botReply =
         "📊 LeetCode: https://leetcode.com/prateekagr-1110\n📊 Codeforces: https://codeforces.com/profile/prateek_1110\n📊 GeeksforGeeks: https://www.geeksforgeeks.org/user/prateekagr1110/";
     }
     else if (command === "resume") {
       botReply =
-        "📄 Resume: https://drive.google.com/file/d/1gUa1wCpdPrKUb4yO34kDtdylXlWnWGA7/view?usp=sharing";
+        "📄 Resume: https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/view?usp=sharing";
     }
    else if (command === "contact") {
   setIsTyping(true);
@@ -165,6 +177,139 @@ function App() {
 
       <div className="chat-area">
         {messages.map((msg, index) => {
+          if (msg.text === "__PROJECTS__") {
+  return (
+    <div key={index} className="message bot">
+
+      <div className="project-block">
+        <span className="project-title">Uber Clone</span>
+        <p>
+         A full-stack real-time ride booking application built with Next.js and Firebase, featuring live location search using Mapbox API. Implemented secure authentication and persistent ride data with Firestore, optimized for seamless cross-device experience.
+        </p>
+
+        <div className="project-icons">
+          <span>GitHub:</span>
+          <a
+            href="https://github.com/Prateek-1110/Uber_clone"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaGithub size={18} />
+          </a>
+
+          <span>Live:</span>
+          <a
+            href="https://your-uber-live-demo.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FiExternalLink size={18} />
+          </a>
+        </div>
+      </div>
+
+      <div className="project-block">
+        <span className="project-title">Banking UI</span>
+        <p>
+         A modern and responsive banking dashboard built with React, simulating account management and transaction flows. Focused on reusable components, dynamic validation, and scalable UI/UX architecture.
+        </p>
+
+        <div className="project-icons">
+          <span>GitHub:</span>
+          <a
+            href="https://github.com/YOUR_GITHUB/banking-ui"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaGithub size={18} />
+          </a>
+
+          <span>Live:</span>
+          <a
+            href="https://your-banking-live-demo.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FiExternalLink size={18} />
+          </a>
+        </div>
+      </div>
+      <div className="project-block">
+  <span className="project-title">Urban Luxe</span>
+  <p>
+   A scalable MERN-based fashion e-commerce platform with product catalog, cart, and order management workflows. Designed RESTful APIs and optimized frontend state management using Redux for performance and scalability.
+  </p>
+
+  <div className="project-icons">
+    <span>GitHub:</span>
+    <a
+      href="https://github.com/Prateek-1110/Urban-Luxe"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <FaGithub size={18} />
+    </a>
+
+    <span>Live:</span>
+    <a
+      href="https://your-urbanluxe-live-demo.com"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <FiExternalLink size={18} />
+    </a>
+  </div>
+</div>
+<div className="project-block">
+  <span className="project-title">Movie Recommendation System</span>
+  <p>
+    A CLI-based personalized movie recommendation engine built in C++, leveraging Treap data structures and Levenshtein Distance for typo-tolerant search and efficient filtering on IMDB datasets.
+  </p>
+
+  <div className="project-icons">
+    <span>GitHub:</span>
+    <a
+      href="https://github.com/Prateek-1110/dsa_project"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <FaGithub size={18} />
+    </a>
+  </div>
+</div>
+<div className="project-block">
+  <span className="project-title">Chat Portfolio Website</span>
+  <p>
+    An interactive WhatsApp-style portfolio built using React,
+    featuring dynamic command handling, theme toggle, and responsive design(which you are seeing right now !)
+  </p>
+
+  <div className="project-icons">
+    <span>GitHub:</span>
+    <a
+      href="https://github.com/Prateek-1110/portfolio"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <FaGithub size={18} />
+    </a>
+
+    <span>Live:</span>
+    <a
+      href="https://portfolio-portfolio-b23.vercel.app/"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <FiExternalLink size={18} />
+    </a>
+  </div>
+</div>
+
+
+    </div>
+  );
+}
+
           if (msg.text === "__CONTACT_CARDS__") {
   return (
     <div key={index} className="message bot">
