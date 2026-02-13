@@ -73,7 +73,7 @@ function App() {
 
   return;
 }
-    else if (command === "Clear Window") {
+    else if (command === "clear window") {
       setMessages([
         {
   text: "Hello there 👋🏻\n\nMy name is <span class='my-name'>Prateek Agrahari</span>.\n\nI am a Full Stack Developer and an enthusiastic Machine Learning learner 👨🏻‍💻📚\n\nI enjoy building scalable applications and experimenting with emerging technologies.\n\nType 'help' to know more about me.",
