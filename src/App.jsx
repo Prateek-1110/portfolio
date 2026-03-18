@@ -15,6 +15,7 @@ function App() {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   const chatEndRef = useRef(null);
   const inputRef = useRef(null);
@@ -54,22 +55,38 @@ const handleCommandClick = (command) => {
 
   const processCommand = (command) => {
     let botReply = "";
-     if (command === "skills") {
+   if (command === "skills") {
   botReply = `
-  <span class="section-title">Languages I Work With:</span><br/><br/>
-  • JavaScript<br/>
-  • Python<br/>
+  <span class="section-title">Languages:</span><br/><br/>
   • C++<br/>
-  • ...etc<br/><br/>
+  • Python<br/>
+  • JavaScript / TypeScript<br/>
+  • Go<br/>
+  • Java<br/><br/>
 
-  <span class="section-title">Technologies & Tools:</span><br/><br/>
-  • Node.js<br/>
+  <span class="section-title">Frontend:</span><br/><br/>
+  • HTML5 & CSS3<br/>
   • React.js<br/>
+  • Next.js<br/>
+  • Tailwind CSS<br/><br/>
+
+  <span class="section-title">Backend:</span><br/><br/>
+  • Node.js & Express.js<br/>
   • Django<br/>
-  • Pandas<br/>
+  • FastAPI<br/>
+  • Spring Boot<br/><br/>
+
+  <span class="section-title">Databases:</span><br/><br/>
+  • PostgreSQL / MySQL<br/>
   • MongoDB<br/>
-  • NumPy<br/>
-  • ...etc
+  • Redis<br/><br/>
+
+  <span class="section-title">Tools & Environment:</span><br/><br/>
+  • Git & GitHub<br/>
+  • Docker<br/>
+  • VS Code<br/>
+  • Postman<br/>
+  • Linux
   `;
 }
 
@@ -355,147 +372,113 @@ else if (command === "education") {
   );
 }
 
-          if (msg.text === "__PROJECTS__") {
+  if (msg.text === "__PROJECTS__") {
+  const allProjects = [
+    {
+      title: "Uber Clone",
+      desc: "A full-stack real-time ride booking application built with Next.js and Firebase, featuring live location search using Mapbox API. Implemented secure authentication and persistent ride data with Firestore, optimized for seamless cross-device experience.",
+      github: "https://github.com/Prateek-1110/Uber_clone",
+      live: "https://uber-clone-zeta-neon.vercel.app/",
+    },
+     {
+  title: "Traffic Accident Hotspot Analyzer",
+  desc: "End-to-end data analytics pipeline on 3M+ US road accident records. Uses DBSCAN clustering to identify geospatial hotspots, Folium for interactive heatmaps, and a Random Forest classifier to predict High/Medium/Low accident risk from location, time, and weather inputs. Served via a Django dashboard with a Leaflet.js map, Chart.js insight charts, and a live risk prediction API.",
+  github: "https://github.com/Prateek-1110/traffic-hotspot-analyzer", 
+  live: "https://traffic-analyser.onrender.com/",
+},
+    {
+      title: "Urban Luxe",
+      desc: "A scalable MERN-based fashion e-commerce platform with product catalog, cart, and order management workflows. Designed RESTful APIs and optimized frontend state management using Redux for performance and scalability.",
+      github: "https://github.com/Prateek-1110/Urban-Luxe",
+      live: "https://ecommerce-lilac-eight-92.vercel.app/",
+    },
+    {
+  title: "Garbage AI – Deep Learning Waste Classifier",
+  desc: "Developed an end-to-end AI web application for waste classification using EfficientNet (PyTorch), achieving real-time predictions with top-3 confidence scores. Integrated Django REST backend with a React + Tailwind frontend, implemented Google OAuth authentication, and built a user-specific prediction history dashboard. Designed for practical environmental impact with smart disposal recommendations.",
+  github: "https://github.com/Prateek-1110/garbage-ai",
+  live: "https://garbage-classifier-three.vercel.app/",
+},
+ {
+  title: "Go Web Scraper — Concurrent CLI Tool",
+  desc: "A concurrent web scraper built in Go that processes 1000+ URLs in parallel using goroutines and a configurable worker pool. Features exponential backoff retry logic, rate limiting, graceful Ctrl+C shutdown with progress saving, and a resume flag to skip already-scraped URLs. Extracts page title, meta description, status code, link count and image count — outputs to both JSON and CSV. Built to learn Go's concurrency model: goroutines, channels, WaitGroups, and context cancellation.",
+  github: "https://github.com/Prateek-1110/web_scrapper",
+  live: null,
+},
+    {
+      title: "Movie Recommendation System",
+      desc: "A CLI-based personalized movie recommendation engine built in C++, leveraging Treap data structures and Levenshtein Distance for typo-tolerant search and efficient filtering on IMDB datasets.",
+      github: "https://github.com/Prateek-1110/dsa_project",
+      live: null,
+    },
+    {
+      title: "Chat Portfolio Website",
+      desc: "An interactive WhatsApp-style portfolio built using React, featuring dynamic command handling, theme toggle, and responsive design (which you are seeing right now!).",
+      github: "https://github.com/Prateek-1110/portfolio",
+      live: "https://prateek-b23.vercel.app/",
+    },
+ {
+      title: "Banking UI",
+      desc: "A modern and responsive banking dashboard built with React, simulating account management and transaction flows. Focused on reusable components, dynamic validation, and scalable UI/UX architecture.",
+      github: "https://github.com/Prateek-1110/bank_frontend",
+      live: "https://banking-ui-b23.vercel.app/",
+    },
+  ];
+
+  const visibleProjects = showAllProjects ? allProjects : allProjects.slice(0, 5);
+
   return (
     <div key={index} className="message bot">
-
-      <div className="project-block">
-        <span className="project-title">Uber Clone</span>
-        <p>
-         A full-stack real-time ride booking application built with Next.js and Firebase, featuring live location search using Mapbox API. Implemented secure authentication and persistent ride data with Firestore, optimized for seamless cross-device experience.
-        </p>
-
-        <div className="project-icons">
-          <span>GitHub:</span>
-          <a
-            href="https://github.com/Prateek-1110/Uber_clone"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaGithub size={18} />
-          </a>
-
-          <span>Live:</span>
-          <a
-            href="https://your-uber-live-demo.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FiExternalLink size={18} />
-          </a>
+      {visibleProjects.map((project, i) => (
+        <div className="project-block" key={i}>
+          <span className="project-title">{project.title}</span>
+          <p>{project.desc}</p>
+          <div className="project-icons">
+            <span>GitHub:</span>
+            <a href={project.github} target="_blank" rel="noreferrer">
+              <FaGithub size={18} />
+            </a>
+            {project.live && (
+              <>
+                <span>Live:</span>
+                <a href={project.live} target="_blank" rel="noreferrer">
+                  <FiExternalLink size={18} />
+                </a>
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      ))}
 
-      <div className="project-block">
-        <span className="project-title">Banking UI</span>
-        <p>
-         A modern and responsive banking dashboard built with React, simulating account management and transaction flows. Focused on reusable components, dynamic validation, and scalable UI/UX architecture.
-        </p>
+      {!showAllProjects && (
+        <button
+          className="read-more-btn"
+          onClick={() => setShowAllProjects(true)}
+        >
+          Read More ▼
+        </button>
+      )}
 
-        <div className="project-icons">
-          <span>GitHub:</span>
-          <a
-            href="https://github.com/Prateek-1110/bank_frontend"
-            target="_blank"
-            rel="noreferrer"
+      {showAllProjects && (
+        <>
+          <div className="more-projects">
+            <strong>View more projects on</strong>
+            <a
+              href="https://github.com/Prateek-1110"
+              target="_blank"
+              rel="noreferrer"
+              className="more-github-link"
+            >
+              <FaGithub size={18} />
+            </a>
+          </div>
+          <button
+            className="read-more-btn"
+            onClick={() => setShowAllProjects(false)}
           >
-            <FaGithub size={18} />
-          </a>
-
-          <span>Live:</span>
-          <a
-            href="https://banking-ui-b23.vercel.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FiExternalLink size={18} />
-          </a>
-        </div>
-      </div>
-      <div className="project-block">
-  <span className="project-title">Urban Luxe</span>
-  <p>
-   A scalable MERN-based fashion e-commerce platform with product catalog, cart, and order management workflows. Designed RESTful APIs and optimized frontend state management using Redux for performance and scalability.
-  </p>
-
-  <div className="project-icons">
-    <span>GitHub:</span>
-    <a
-      href="https://github.com/Prateek-1110/Urban-Luxe"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <FaGithub size={18} />
-    </a>
-
-    <span>Live:</span>
-    <a
-      href="https://ecommerce-lilac-eight-92.vercel.app/"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <FiExternalLink size={18} />
-    </a>
-  </div>
-</div>
-<div className="project-block">
-  <span className="project-title">Movie Recommendation System</span>
-  <p>
-    A CLI-based personalized movie recommendation engine built in C++, leveraging Treap data structures and Levenshtein Distance for typo-tolerant search and efficient filtering on IMDB datasets.
-  </p>
-
-  <div className="project-icons">
-    <span>GitHub:</span>
-    <a
-      href="https://github.com/Prateek-1110/dsa_project"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <FaGithub size={18} />
-    </a>
-  </div>
-</div>
-<div className="project-block">
-  <span className="project-title">Chat Portfolio Website</span>
-  <p>
-    An interactive WhatsApp-style portfolio built using React,
-    featuring dynamic command handling, theme toggle, and responsive design(which you are seeing right now !)
-  </p>
-
-  <div className="project-icons">
-    <span>GitHub:</span>
-    <a
-      href="https://github.com/Prateek-1110/portfolio"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <FaGithub size={18} />
-    </a>
-
-    <span>Live:</span>
-    <a
-      href="https://portfolio-portfolio-b23.vercel.app/"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <FiExternalLink size={18} />
-    </a>
-  </div>
-  <div className="more-projects">
-  <strong>View more projects on</strong>
-  <a
-    href="https://github.com/Prateek-1110"
-    target="_blank"
-    rel="noreferrer"
-    className="more-github-link"
-  >
-    <FaGithub size={18} />
-  </a>
-</div>
-
-</div>
-
-
+            Show Less ▲
+          </button>
+        </>
+      )}
     </div>
   );
 }
