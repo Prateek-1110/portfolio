@@ -384,7 +384,7 @@ else if (command === "education") {
   title: "Traffic Accident Hotspot Analyzer",
   desc: "End-to-end data analytics pipeline on 3M+ US road accident records. Uses DBSCAN clustering to identify geospatial hotspots, Folium for interactive heatmaps, and a Random Forest classifier to predict High/Medium/Low accident risk from location, time, and weather inputs. Served via a Django dashboard with a Leaflet.js map, Chart.js insight charts, and a live risk prediction API.",
   github: "https://github.com/Prateek-1110/traffic-hotspot-analyzer", 
-  live: "https://traffic-analyser.onrender.com/",
+  live: "https://traffic-hotspots-analyser.streamlit.app/",
 },
     {
       title: "Urban Luxe",
