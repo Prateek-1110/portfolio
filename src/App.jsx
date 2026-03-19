@@ -383,8 +383,8 @@ else if (command === "education") {
      {
   title: "Traffic Accident Hotspot Analyzer",
   desc: "End-to-end data analytics pipeline on 3M+ US road accident records. Uses DBSCAN clustering to identify geospatial hotspots, Folium for interactive heatmaps, and a Random Forest classifier to predict High/Medium/Low accident risk from location, time, and weather inputs. Served via a Django dashboard with a Leaflet.js map, Chart.js insight charts, and a live risk prediction API.",
-  github: "https://github.com/Prateek-1110/traffic-hotspot-analyzer", 
-  live: "https://traffic-hotspots-analyser.streamlit.app/",
+  github: "https://github.com/Prateek-1110/traffic_analyser", 
+  live: "https://traffic-analyser.streamlit.app/",
 },
     {
       title: "Urban Luxe",
@@ -395,7 +395,7 @@ else if (command === "education") {
     {
   title: "Garbage AI – Deep Learning Waste Classifier",
   desc: "Developed an end-to-end AI web application for waste classification using EfficientNet (PyTorch), achieving real-time predictions with top-3 confidence scores. Integrated Django REST backend with a React + Tailwind frontend, implemented Google OAuth authentication, and built a user-specific prediction history dashboard. Designed for practical environmental impact with smart disposal recommendations.",
-  github: "https://github.com/Prateek-1110/garbage-ai",
+  github: "https://github.com/Prateek-1110/garbage_classifier",
   live: "https://garbage-classifier-three.vercel.app/",
 },
  {
