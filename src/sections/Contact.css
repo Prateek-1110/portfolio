@@ -1,0 +1,248 @@
+.contact {
+  position: relative;
+  padding: 8rem 4rem 6rem;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+/* ── Title ── */
+.contact__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+}
+
+.contact__title em {
+  font-style: normal;
+  -webkit-text-stroke: 1.5px var(--text);
+  color: transparent;
+}
+
+/* ── Body copy ── */
+.contact__body {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  max-width: 440px;
+}
+
+/* ── Socials row ── */
+.contact__socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.contact__social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem 0.45rem 0.7rem;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.contact__social-pill:hover {
+  color: var(--text);
+  border-color: var(--text);
+  background: transparent;
+}
+
+.contact__social-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* divider dot between pills and email */
+.contact__socials::after {
+  content: none;
+}
+
+.contact__email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  border-bottom: 1.5px solid var(--text);
+  padding-bottom: 0.15rem;
+  transition: color 0.2s, border-color 0.2s;
+  margin-left: 0.5rem;
+}
+
+.contact__email-link:hover {
+  color: #b08060;
+  border-color: #b08060;
+}
+
+.contact__email-arrow {
+  font-size: 0.9rem;
+  transition: transform 0.2s;
+}
+
+.contact__email-link:hover .contact__email-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ── Form ── */
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.contact__label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact__input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 300;
+  padding: 0.6rem 0;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  resize: none;
+}
+
+.contact__input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.contact__input:focus {
+  border-bottom-color: var(--text);
+}
+
+.contact__textarea {
+  line-height: 1.7;
+}
+
+/* ── Submit button ── */
+.contact__submit {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  border: 1.5px solid var(--text);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.contact__submit:hover:not(:disabled) {
+  background: var(--text);
+  color: var(--bg, #fff);
+}
+
+.contact__submit:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.contact__submit--sent {
+  border-color: #6a9e72;
+  color: #6a9e72;
+}
+
+.contact__submit-arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.contact__submit:hover:not(:disabled) .contact__submit-arrow {
+  transform: translateX(4px);
+}
+
+/* ── Big bg text ── */
+.contact__big-text {
+  position: absolute;
+  bottom: -1rem;
+  right: -1rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(5rem, 12vw, 11rem);
+  letter-spacing: -0.05em;
+  color: var(--border);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .contact {
+    padding: 5rem 1.5rem 4rem;
+  }
+
+  .contact__form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__big-text {
+    display: none;
+  }
+
+  .contact__email-link {
+    margin-left: 0;
+    margin-top: 0.25rem;
+  }
+}
