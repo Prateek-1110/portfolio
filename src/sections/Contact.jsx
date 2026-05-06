@@ -9,19 +9,18 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = () => {
-    const { name, email, project, message } = form;
-    const subject = encodeURIComponent(`[Portfolio] ${project || 'Hello'} — ${name}`);
-    const body = encodeURIComponent(
-      `Hi Prateek,\n\nName: ${name}\nEmail: ${email}\nProject: ${project}\n\n${message}`
-    );
-    window.open(
-      `https://mail.google.com/mail/?view=cm&fs=1&to=b23bb1033@iitj.ac.in&su=${subject}&body=${body}`,
-      '_blank'
-    );
-    setStatus('sent');
-    setTimeout(() => setStatus('idle'), 4000);
-  };
+const handleSubmit = () => {
+  const { name, email, project, message } = form;
+  const subject = encodeURIComponent(`[Portfolio] ${project || 'Hello'} — ${name}`);
+  const body = encodeURIComponent(
+    `Hi Prateek,\n\nName: ${name}\nEmail: ${email}\nProject: ${project}\n\n${message}`
+  );
+  window.open(
+    `mailto:b23bb1033@iitj.ac.in?subject=${subject}&body=${body}`
+  );
+  setStatus('sent');
+  setTimeout(() => setStatus('idle'), 4000);
+};
 
   return (
     <section className="contact" id="contact">
@@ -134,14 +133,14 @@ export default function Contact() {
             onClick={handleSubmit}
             disabled={status === 'sending' || !form.name || !form.email}
           >
-            {status === 'sent' ? (
-              <>Opening Gmail ✓</>
-            ) : (
-              <>
-                Send Message
-                <span className="contact__submit-arrow">→</span>
-              </>
-            )}
+          {status === 'sent' ? (
+  <>Opening Mail ✓</>
+) : (
+  <>
+    Send Message
+    <span className="contact__submit-arrow">→</span>
+  </>
+)}
           </button>
         </div>
       </div>
