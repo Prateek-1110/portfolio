@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import "./Resume.css";
 
 const resumes = [
-  {
-    role: "Web Developer",
-    description:
-      "Highlights full-stack projects, React, Django, REST APIs, and software engineering internship experience.",
-    tags: ["React", "Django", "REST APIs", "DSA", "Full Stack"],
-    viewUrl: "https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/view?usp=sharing", // replace
-    downloadUrl:
-      "https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/view?usp=sharing", // replace
-    icon: "W",
-    label: "SWE / Full Stack",
-  },
+  // {
+  //   role: "Web Developer",
+  //   description:
+  //     "Highlights full-stack projects, React, Django, REST APIs, and software engineering internship experience.",
+  //   tags: ["React", "Django", "REST APIs", "DSA", "Full Stack"],
+  //   viewUrl: "https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/view?usp=sharing", // replace
+  //   downloadUrl:
+  //     "https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/view?usp=sharing", // replace
+  //   icon: "W",
+  //   label: "SWE / Full Stack",
+  // },
   {
     role: "ML / AI Engineer",
     description:
@@ -33,9 +33,9 @@ const Resume = () => {
     <section className="resume-section" id="resume">
       <div className="resume-header">
         <div className="section-label">06 - Resume</div>
-        <h2 className="resume-title">Resume versions</h2>
+        <h2 className="resume-title">My Resume </h2>
         <p className="resume-subtitle">
-          Two tailored versions. Pick what best matches your role.
+          {/* Two tailored versions. Pick what best matches your role. */}
         </p>
       </div>
 

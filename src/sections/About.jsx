@@ -15,7 +15,7 @@ export default function About() {
           />
         </div>
 
-        <h2 className="about__name">Prateek </h2>
+        <h2 className="about__name">Prateek Agrahari</h2>
         <p className="about__role">Full Stack Developer and ML Enthusiast</p>
       </div>
 

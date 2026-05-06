@@ -8,8 +8,7 @@ const educationData = [
     duration: "2023 - 2027(expected)",
     grade: "CGPA: 7.63 / 10",
     highlights: [
-      "Specializing in Machine Learning , Deep learning",
-      "Coursework: Deep Learning , Machine Learning , Probability & Statistics , Data Structures and Algorithms",
+      "Relevant Coursework: Deep Learning , Machine Learning , Probability & Statistics , Data Structures and Algorithms",
     ],
     logo: "01",
     tag: "Current",

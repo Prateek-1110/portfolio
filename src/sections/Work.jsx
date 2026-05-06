@@ -48,17 +48,26 @@ const ArrowIcon = () => (
 );
 
 const projects = [
-  {
+    {
     num: '01',
+    title: 'AI-Powered Autonomous News Agent',
+    desc: 'Built an autonomous news scraping and NLP pipeline processing 5000+ articles/day from 20+ sources with deduplication, AI summarization, classification, SEO optimization, automated publishing, and AI-generated media delivery under 2-minute latency.',
+    tags: ['Python', 'Django', 'Web Scrapping', 'NLP'],
+    year: '2026',
+    live: 'https://prateektech.vercel.app/',
+    github: 'https://github.com/Prateek-1110/News_Automation/',
+  },
+   {
+    num: '02',
     title: 'Uber Clone',
     desc: 'Full-stack real-time ride booking app built with Next.js and Firebase. Integrated Mapbox for live location search, secure authentication, and persistent ride tracking across devices.',
     tags: ['Next.js', 'Firebase', 'Mapbox', 'Firestore'],
-    year: '2024',
+    year: '2025',
     live: 'https://uber-clone-zeta-neon.vercel.app/',
     github: 'https://github.com/Prateek-1110/Uber_clone',
   },
   {
-    num: '02',
+    num: '03',
     title: 'Traffic Accident Hotspot Analyzer',
     desc: 'Analyzed 3M+ US accident records using DBSCAN clustering for hotspot detection. Built a Django dashboard with Leaflet maps, Chart.js visualizations, and a Random Forest model for risk prediction.',
     tags: ['Python', 'Django', 'DBSCAN', 'Random Forest', 'Folium'],
@@ -67,7 +76,7 @@ const projects = [
     github: 'https://github.com/Prateek-1110/traffic_analyser',
   },
   {
-    num: '03',
+    num: '04',
     title: 'Urban Luxe',
     desc: 'Scalable MERN e-commerce platform with product catalog, cart, and order workflows. Designed REST APIs and optimized state management using Redux.',
     tags: ['MongoDB', 'Express', 'React', 'Node.js', 'Redux'],
@@ -76,22 +85,13 @@ const projects = [
     github: 'https://github.com/Prateek-1110/Urban-Luxe',
   },
   {
-    num: '04',
-    title: 'Garbage AI',
-    desc: 'Deep learning waste classifier using EfficientNet (PyTorch) with real-time predictions and top-3 confidence scores. Includes Django REST backend, Google OAuth, and user prediction history.',
-    tags: ['PyTorch', 'Django', 'React', 'Tailwind', 'OAuth'],
-    year: '2025',
-    live: 'https://garbage-classifier-three.vercel.app/',
-    github: 'https://github.com/Prateek-1110/garbage_classifier',
-  },
-  {
     num: '05',
-    title: 'Go Web Scraper',
-    desc: 'Concurrent CLI scraper processing 1000+ URLs using goroutines and worker pools. Features retry logic, rate limiting, graceful shutdown, and JSON/CSV export.',
-    tags: ['Go', 'Concurrency', 'CLI', 'Goroutines'],
-    year: '2026',
-    live: 'https://github.com/Prateek-1110/web_scrapper',
-    github: 'https://github.com/Prateek-1110/web_scrapper',
+    title: ' AI-Powered Oil Spill Detection System',
+    desc: 'Developed an AI-powered maritime monitoring system combining AIS anomaly detection, DeepLabV3 semantic segmentation, and SAR-AIS data fusion to detect oil spills with 92% accuracy, reduced false positives by 25%, and enabled scalable real-time monitoring across 1000+ km regions.',
+    tags: ['DeeplabV3', 'SAR Imaging', 'AIS Data'],
+    year: '2024',
+    live: 'https://prateektech.vercel.app/',
+    github: 'https://github.com/Prateek-1110/SIH_2024-Oil-Spill-Detection/',
   },
 ];
 
@@ -102,8 +102,7 @@ export default function Work() {
         <div className="section-label">03 — Work</div>
         <h2 className="section-title">Selected projects</h2>
         <p className="work__subtitle">
-          A curated set of things I've built — ranging from creative experiments to
-          production systems.
+          A curated set of things I've built , ranging from creative experiments to production systems.
         </p>
       </div>
 
