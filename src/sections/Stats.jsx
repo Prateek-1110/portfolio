@@ -8,7 +8,7 @@ const statsData = [
     profileUrl: "https://leetcode.com/prateekagr-1110/", // replace
     stats: [
       { label: "Problems Solved", value: "400+" },
-      { label: "Max Rating", value: "1752" },
+      { label: "Max Rating", value: "1899 (Knight" },
       // { label: "Global Rank", value: "Top --%" },
     ],
     icon: (
