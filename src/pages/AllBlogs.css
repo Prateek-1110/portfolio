@@ -1,0 +1,289 @@
+/* src/pages/AllBlogs.css */
+/* ─────────────────────────────────────────────────────
+   All Blogs Page — /blogs
+   Same neumorphic palette as BlogDetail (cool lavender-gray)
+   ───────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Outfit:wght@400;500;600&display=swap');
+
+.ab {
+  --ab-bg:     #eaebf5;
+  --ab-dark:   #c3c4d5;
+  --ab-light:  #ffffff;
+  --ab-ink:    #1c1f3a;
+  --ab-muted:  #7a7f9e;
+  --ab-faint:  #a8adca;
+  --ab-accent: #b84c6e;
+
+  min-height: 100vh;
+  background: var(--ab-bg);
+  font-family: 'Outfit', sans-serif;
+  color: var(--ab-ink);
+
+  animation: abFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes abFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Top bar ── */
+.ab__topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 56px;
+  background: var(--ab-bg);
+  box-shadow: 0 4px 20px rgba(195, 196, 213, 0.45);
+}
+
+.ab__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--ab-muted);
+  background: var(--ab-bg);
+  border: none;
+  padding: 10px 22px;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow:
+    5px 5px 12px var(--ab-dark),
+    -5px -5px 12px var(--ab-light);
+  transition: box-shadow 0.2s ease, color 0.2s ease, transform 0.18s ease;
+}
+
+.ab__back-btn:hover {
+  color: var(--ab-ink);
+  box-shadow:
+    7px 7px 16px var(--ab-dark),
+    -7px -7px 16px var(--ab-light);
+  transform: translateX(-2px);
+}
+
+.ab__back-btn:active {
+  box-shadow:
+    inset 3px 3px 8px var(--ab-dark),
+    inset -3px -3px 8px var(--ab-light);
+  transform: translateX(0);
+}
+
+.ab__back-arrow {
+  display: inline-block;
+  transition: transform 0.18s ease;
+}
+
+.ab__back-btn:hover .ab__back-arrow {
+  transform: translateX(-3px);
+}
+
+.ab__post-count {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--ab-faint);
+  text-transform: uppercase;
+}
+
+/* ── Main content ── */
+.ab__main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 64px 56px 100px;
+}
+
+/* ── Page header ── */
+.ab__header {
+  margin-bottom: 60px;
+}
+
+.ab__label {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ab-muted);
+  margin-bottom: 14px;
+}
+
+.ab__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--ab-ink);
+  letter-spacing: -0.015em;
+  margin: 0 0 14px;
+}
+
+.ab__subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.93rem;
+  color: var(--ab-muted);
+  line-height: 1.6;
+}
+
+/* ── Cards grid ── */
+.ab__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* ── Card ── */
+.ab__card {
+  background: var(--ab-bg);
+  border-radius: 22px;
+  padding: 34px 32px 28px;
+  box-shadow:
+    9px 9px 20px var(--ab-dark),
+    -9px -9px 20px var(--ab-light);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: box-shadow 0.25s ease, transform 0.22s ease;
+  outline: none;
+}
+
+.ab__card:hover {
+  box-shadow:
+    13px 13px 28px var(--ab-dark),
+    -13px -13px 28px var(--ab-light);
+  transform: translateY(-3px);
+}
+
+.ab__card:focus-visible {
+  box-shadow:
+    9px 9px 20px var(--ab-dark),
+    -9px -9px 20px var(--ab-light),
+    0 0 0 3px var(--ab-accent);
+}
+
+.ab__card:active {
+  box-shadow:
+    inset 5px 5px 12px var(--ab-dark),
+    inset -5px -5px 12px var(--ab-light);
+  transform: translateY(0);
+}
+
+.ab__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ab__card-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--ab-faint);
+}
+
+.ab__card-badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ab__card-tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ab-accent);
+  background: var(--ab-bg);
+  padding: 4px 12px;
+  border-radius: 30px;
+  box-shadow:
+    3px 3px 6px var(--ab-dark),
+    -3px -3px 6px var(--ab-light);
+}
+
+.ab__card-date {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.68rem;
+  color: var(--ab-faint);
+}
+
+.ab__card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.32rem;
+  font-weight: 700;
+  line-height: 1.32;
+  color: var(--ab-ink);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.ab__card-preview {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--ab-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.ab__card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid rgba(30, 35, 65, 0.07);
+  margin-top: auto;
+}
+
+.ab__card-readtime {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.68rem;
+  color: var(--ab-faint);
+  letter-spacing: 0.04em;
+}
+
+.ab__card-cta {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ab-accent);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.ab__card-arrow {
+  display: inline-block;
+  transition: transform 0.22s ease;
+}
+
+.ab__card:hover .ab__card-arrow {
+  transform: translateX(4px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .ab__topbar { padding: 16px 28px; }
+  .ab__main   { padding: 48px 28px 80px; }
+}
+
+@media (max-width: 640px) {
+  .ab__topbar { padding: 14px 20px; }
+  .ab__main   { padding: 40px 20px 72px; }
+  .ab__grid   { grid-template-columns: 1fr; gap: 20px; }
+  .ab__title  { font-size: 2.2rem; }
+}

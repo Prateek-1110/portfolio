@@ -14,7 +14,7 @@ import Stats from "./sections/Stats";
 import Resume from "./sections/Resume";
 import Blogs from "./sections/Blogs";          // ← new
 import BlogDetail from "./pages/BlogDetail";    // ← new
-
+import AllBlogs from "./pages/AllBlogs";
 import "./styles/global.css";
 
 // ── Main portfolio page ─────────────────────────────────────
@@ -57,6 +57,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/"          element={<MainPage />} />
+        <Route path="/blogs"     element={<AllBlogs />} />
         <Route path="/blog/:id"  element={<BlogDetail />} />
       </Routes>
     </BrowserRouter>

@@ -1,57 +1,62 @@
 /* src/sections/Blogs.css */
-/* ─────────────────────────────────────────────────────
-   Fonts: Cormorant Garamond (editorial serif) + Outfit (clean grotesque)
-   Color scheme: cool lavender-gray neumorphism
-   ───────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Outfit:wght@400;500;600&display=swap');
 
-/* ── Neumorphic tokens for this section ── */
+/* ── Neumorphic tokens ── */
 :root {
   --neu-bg:     #e9eaf0;
   --neu-dark:   #c8c9d4;
   --neu-light:  #ffffff;
   --neu-text:   #1e2035;
   --neu-muted:  #797fa0;
-  --neu-accent: #b84c6e;   /* rose — editorial, distinctive */
+  --neu-accent: #b84c6e;
   --neu-faint:  #a0a3b8;
 }
 
-/* ── Section wrapper ── */
+/* ── Section ── */
 .blogs {
   background: var(--neu-bg);
   padding: 120px 0 100px;
 }
 
 .blogs__inner {
-  max-width: 1120px;
+  max-width: 860px; /* narrower — single card layout */
   margin: 0 auto;
   padding: 0 56px;
 }
 
 /* ── Header ── */
 .blogs__header {
-  margin-bottom: 64px;
+  margin-bottom: 48px;
+}
+
+/* Title row — label+title on left, "View all" button on right */
+.blogs__title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
 }
 
 .blogs__label {
-  display: inline-block;
+  display: block;
   font-family: 'Outfit', sans-serif;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--neu-muted);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .blogs__title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
   font-weight: 700;
   line-height: 1.08;
   color: var(--neu-text);
-  margin-bottom: 16px;
   letter-spacing: -0.01em;
+  margin: 0;
 }
 
 .blogs__title em {
@@ -62,20 +67,60 @@
 
 .blogs__subtitle {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   color: var(--neu-muted);
   line-height: 1.6;
-  max-width: 420px;
 }
 
-/* ── Grid ── */
-.blogs__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+/* ── View all button ── */
+.blogs__view-all {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--neu-accent);
+  background: var(--neu-bg);
+  border: none;
+  padding: 11px 24px;
+  border-radius: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-bottom: 4px; /* align baseline with title bottom */
+  box-shadow:
+    5px 5px 12px var(--neu-dark),
+    -5px -5px 12px var(--neu-light);
+  transition: box-shadow 0.2s ease, transform 0.18s ease;
 }
 
-/* ── Blog Card — raised neumorphism ── */
+.blogs__view-all:hover {
+  box-shadow:
+    7px 7px 16px var(--neu-dark),
+    -7px -7px 16px var(--neu-light);
+  transform: translateY(-2px);
+}
+
+.blogs__view-all:active {
+  box-shadow:
+    inset 3px 3px 8px var(--neu-dark),
+    inset -3px -3px 8px var(--neu-light);
+  transform: translateY(0);
+}
+
+.blogs__view-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.blogs__view-all:hover .blogs__view-arrow {
+  transform: translateX(4px);
+}
+
+/* ─────────────────────────────────────────────────────
+   BLOG CARD — used here (featured) and on AllBlogs page
+   ───────────────────────────────────────────────────── */
 .blog-card {
   background: var(--neu-bg);
   border-radius: 22px;
@@ -87,9 +132,7 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  transition:
-    box-shadow 0.25s ease,
-    transform 0.22s ease;
+  transition: box-shadow 0.25s ease, transform 0.22s ease;
   outline: none;
 }
 
@@ -114,7 +157,12 @@
   transform: translateY(0);
 }
 
-/* ── Card top row ── */
+/* Featured card — slightly more padding */
+.blog-card--featured {
+  padding: 40px 38px 34px;
+}
+
+/* Top row */
 .blog-card__top {
   display: flex;
   align-items: center;
@@ -129,13 +177,26 @@
   color: var(--neu-faint);
 }
 
+/* "Latest" badge instead of 01, 02... */
+.blog-card__number--latest {
+  font-size: 0.65rem;
+  color: var(--neu-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--neu-bg);
+  padding: 3px 10px;
+  border-radius: 30px;
+  box-shadow:
+    3px 3px 6px var(--neu-dark),
+    -3px -3px 6px var(--neu-light);
+}
+
 .blog-card__badges {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* Tag pill — inset neumorphic */
 .blog-card__tag {
   font-family: 'Outfit', sans-serif;
   font-size: 0.62rem;
@@ -158,21 +219,24 @@
   color: var(--neu-faint);
 }
 
-/* ── Title ── */
 .blog-card__title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.32rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  line-height: 1.32;
+  line-height: 1.3;
   color: var(--neu-text);
   letter-spacing: -0.01em;
 }
 
-/* ── Preview — 4-line clamp ── */
+/* Featured card — bigger title */
+.blog-card--featured .blog-card__title {
+  font-size: 1.8rem;
+}
+
 .blog-card__preview {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.72;
   color: var(--neu-muted);
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -181,7 +245,6 @@
   flex: 1;
 }
 
-/* ── Footer ── */
 .blog-card__footer {
   display: flex;
   align-items: center;
@@ -207,12 +270,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: gap 0.22s ease;
-  pointer-events: none; /* card handles click */
-}
-
-.blog-card:hover .blog-card__arrow {
-  transform: translateX(4px);
+  pointer-events: none;
 }
 
 .blog-card__arrow {
@@ -220,28 +278,27 @@
   transition: transform 0.22s ease;
 }
 
-/* ── Responsive ── */
-@media (max-width: 900px) {
-  .blogs__inner {
-    padding: 0 32px;
-  }
+.blog-card:hover .blog-card__arrow {
+  transform: translateX(4px);
 }
 
-@media (max-width: 720px) {
-  .blogs {
-    padding: 80px 0 72px;
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .blogs__inner { padding: 0 32px; }
+}
+
+@media (max-width: 600px) {
+  .blogs { padding: 80px 0 72px; }
+  .blogs__inner { padding: 0 24px; }
+
+  .blogs__title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 
-  .blogs__inner {
-    padding: 0 24px;
-  }
+  .blogs__title { font-size: 2.2rem; }
 
-  .blogs__grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .blogs__title {
-    font-size: 2.4rem;
-  }
+  .blog-card--featured { padding: 28px 24px 24px; }
+  .blog-card--featured .blog-card__title { font-size: 1.45rem; }
 }
