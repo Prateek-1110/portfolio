@@ -1,3 +1,5 @@
+// src/sections/Contact.jsx
+// Change from original: Medium social pill added after LinkedIn
 import { useState } from 'react';
 import './Contact.css';
 
@@ -9,18 +11,18 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-const handleSubmit = () => {
-  const { name, email, project, message } = form;
-  const subject = encodeURIComponent(`[Portfolio] ${project || 'Hello'} — ${name}`);
-  const body = encodeURIComponent(
-    `Hi Prateek,\n\nName: ${name}\nEmail: ${email}\nProject: ${project}\n\n${message}`
-  );
-  window.open(
-    `mailto:b23bb1033@iitj.ac.in?subject=${subject}&body=${body}`
-  );
-  setStatus('sent');
-  setTimeout(() => setStatus('idle'), 4000);
-};
+  const handleSubmit = () => {
+    const { name, email, project, message } = form;
+    const subject = encodeURIComponent(`[Portfolio] ${project || 'Hello'} — ${name}`);
+    const body = encodeURIComponent(
+      `Hi Prateek,\n\nName: ${name}\nEmail: ${email}\nProject: ${project}\n\n${message}`
+    );
+    window.open(
+      `mailto:b23bb1033@iitj.ac.in?subject=${subject}&body=${body}`
+    );
+    setStatus('sent');
+    setTimeout(() => setStatus('idle'), 4000);
+  };
 
   return (
     <section className="contact" id="contact">
@@ -40,6 +42,8 @@ const handleSubmit = () => {
 
         {/* Social links with icons */}
         <div className="contact__socials">
+
+          {/* GitHub */}
           <a
             href="https://github.com/prateek-1110"
             target="_blank"
@@ -53,6 +57,7 @@ const handleSubmit = () => {
             <span>GitHub</span>
           </a>
 
+          {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/prateek1110/"
             target="_blank"
@@ -66,6 +71,21 @@ const handleSubmit = () => {
             <span>LinkedIn</span>
           </a>
 
+          {/* ── Medium — replace href with your actual Medium profile URL ── */}
+          <a
+            href="https://medium.com/@prateek-1110"
+            target="_blank"
+            rel="noreferrer"
+            className="contact__social-pill"
+            aria-label="Medium"
+          >
+            <svg className="contact__social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+            </svg>
+            <span>Medium</span>
+          </a>
+
+          {/* Email */}
           <a
             className="contact__email-link"
             href="https://mail.google.com/mail/?view=cm&fs=1&to=b23bb1033@iitj.ac.in"
@@ -75,6 +95,7 @@ const handleSubmit = () => {
             b23bb1033@iitj.ac.in
             <span className="contact__email-arrow">↗</span>
           </a>
+
         </div>
 
         {/* Contact Form */}
@@ -133,14 +154,14 @@ const handleSubmit = () => {
             onClick={handleSubmit}
             disabled={status === 'sending' || !form.name || !form.email}
           >
-          {status === 'sent' ? (
-  <>Opening Mail ✓</>
-) : (
-  <>
-    Send Message
-    <span className="contact__submit-arrow">→</span>
-  </>
-)}
+            {status === 'sent' ? (
+              <>Opening Mail ✓</>
+            ) : (
+              <>
+                Send Message
+                <span className="contact__submit-arrow">→</span>
+              </>
+            )}
           </button>
         </div>
       </div>

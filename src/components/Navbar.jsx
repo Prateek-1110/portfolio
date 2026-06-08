@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -13,26 +16,24 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
-
-    return () => {
-      document.body.style.overflow = '';
-    };
+    return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
   useEffect(() => {
-    const onResize = () => {
-      if (window.innerWidth > 768) {
-        setMenuOpen(false);
-      }
-    };
-
+    const onResize = () => { if (window.innerWidth > 768) setMenuOpen(false); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
+    if (location.pathname === '/') {
+      // Already on main page — scroll directly to section
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // On a blog detail page — go home first, then scroll
+      navigate({ pathname: '/', hash: id });
+    }
   };
 
   return (
@@ -42,7 +43,7 @@ export default function Navbar() {
       </div>
 
       <ul className={`navbar__links ${menuOpen ? 'open' : ''}`}>
-        {['about', 'work', 'skills', 'education', 'stats', 'resume', 'contact'].map((id) => (
+        {['about', 'work', 'skills', 'education', 'stats', 'resume', 'blogs', 'contact'].map((id) => (
           <li key={id}>
             <button onClick={() => scrollTo(id)} className="navbar__link">
               {id}
