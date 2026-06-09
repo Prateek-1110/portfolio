@@ -4,7 +4,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { blogs } from '../data/blogs';
 import './BlogDetail.css';
 
-// Medium logo SVG as a component for reuse
 function MediumIcon({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -22,17 +21,14 @@ export default function BlogDetail() {
   const prevBlog = currentIndex > 0 ? blogs[currentIndex - 1] : null;
   const nextBlog = currentIndex < blogs.length - 1 ? blogs[currentIndex + 1] : null;
 
-  // Scroll to top whenever the blog changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [id]);
 
-  // Handle back — returns to portfolio and scrolls to #blogs
   const handleBack = () => {
     navigate({ pathname: '/', hash: '#blogs' });
   };
 
-  // Not found state
   if (!blog) {
     return (
       <div className="bd">
@@ -51,24 +47,6 @@ export default function BlogDetail() {
     );
   }
 
-  // Render a single content block
-  const renderBlock = (block, i) => {
-    switch (block.type) {
-      case 'h2':
-        return <h2 key={i} className="bd__h2">{block.text}</h2>;
-      case 'quote':
-        return (
-          <blockquote key={i} className="bd__quote">
-            <span className="bd__quote-mark">"</span>
-            {block.text}
-          </blockquote>
-        );
-      case 'p':
-      default:
-        return <p key={i} className="bd__p">{block.text}</p>;
-    }
-  };
-
   return (
     <div className="bd">
 
@@ -78,34 +56,11 @@ export default function BlogDetail() {
           <span className="bd__back-arrow">←</span>
           Back to Portfolio
         </button>
-
-        {blog.mediumUrl && (
-          <a
-            className="bd__medium-btn"
-            href={blog.mediumUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Read this post on Medium"
-          >
-            <MediumIcon size={16} />
-            <span>Read on Medium</span>
-            <span className="bd__medium-arrow">↗</span>
-          </a>
-        )}
       </header>
 
-      {/* ── Main article ── */}
+      {/* ── Main content ── */}
       <main className="bd__main">
         <article className="bd__article">
-
-          {/* Meta row */}
-          <div className="bd__meta">
-            <span className="bd__tag">{blog.tag}</span>
-            <span className="bd__dot" aria-hidden>·</span>
-            <span className="bd__date">{blog.date}</span>
-            <span className="bd__dot" aria-hidden>·</span>
-            <span className="bd__readtime">{blog.readTime}</span>
-          </div>
 
           {/* Title */}
           <h1 className="bd__title">{blog.title}</h1>
@@ -113,10 +68,23 @@ export default function BlogDetail() {
           {/* Divider */}
           <div className="bd__rule" aria-hidden />
 
-          {/* Body content */}
-          <div className="bd__body">
-            {blog.content.map(renderBlock)}
-          </div>
+          {/* Description */}
+          <p className="bd__description">{blog.description}</p>
+
+          {/* Read on Medium button */}
+          {blog.mediumUrl && (
+            <a
+              className="bd__medium-btn"
+              href={blog.mediumUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Read this post on Medium"
+            >
+              <MediumIcon size={16} />
+              <span>Read on Medium</span>
+              <span className="bd__medium-arrow">↗</span>
+            </a>
+          )}
 
           {/* Bottom divider */}
           <div className="bd__rule" aria-hidden />
@@ -149,8 +117,8 @@ export default function BlogDetail() {
             )}
           </div>
         </nav>
-      </main>
 
+      </main>
     </div>
   );
 }
