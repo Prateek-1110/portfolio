@@ -21,14 +21,8 @@ export const blogs = [
   },
    {
     id: 2,
-    title: "[placeholder 2]Understanding the Bias-Variance Tradeoff in Machine Learning",
-    description: "Every ML model walks a tightrope between memorizing training data and generalizing to new inputs. This post breaks down the bias-variance tradeoff — what it means, why it matters, and how to use it to make better modeling decisions.",
-    mediumUrl: "https://medium.com/@prateek-1110/understanding-the-bias-variance-tradeoff-in-machine-learning-d46441f27b4a",
-  },
-    {
-    id: 3,
-    title: " [placeholder 3]Understanding the Bias-Variance Tradeoff in Machine Learning",
-    description: "Every ML model walks a tightrope between memorizing training data and generalizing to new inputs. This post breaks down the bias-variance tradeoff — what it means, why it matters, and how to use it to make better modeling decisions.",
-    mediumUrl: "https://medium.com/@prateek-1110/understanding-the-bias-variance-tradeoff-in-machine-learning-d46441f27b4a",
+    title: "Loss Functions in Machine Learning",
+    description: "Loss functions are the compass that guide machine learning models toward better predictions. This post explores the intuition behind loss functions, why different tasks require different losses, and how the choice of loss impacts training, convergence, and model behavior.",
+    mediumUrl: "https://medium.com/@prateek-1110/loss-functions-in-machine-learning-5cf5972661fc",
   },
 ];
