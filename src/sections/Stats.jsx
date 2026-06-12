@@ -23,7 +23,7 @@ platform: "CodeChef (2⭐)",
   profileUrl: "https://www.codechef.com/users/prateek11_10",
   stats: [
     { label: "Problems Solved", value: "70+" },
-    { label: "Max. Rating", value: "1489" },
+    { label: "Max. Rating", value: "1553" },
   ],
 icon: (
   <img

@@ -24,5 +24,10 @@ export const blogs = [
     title: "Loss Functions in Machine Learning",
     description: "Loss functions are the compass that guide machine learning models toward better predictions. This post explores the intuition behind loss functions, why different tasks require different losses, and how the choice of loss impacts training, convergence, and model behavior.",
     mediumUrl: "https://medium.com/@prateek-1110/loss-functions-in-machine-learning-5cf5972661fc",
+  }, {
+    id: 3,
+    title: "Gradient Descent & Optimizers Explained: From Vanilla SGD to Adam",
+    description: "Training a machine learning model is fundamentally an optimization problem, and gradient descent is the engine that drives it. This post breaks down the intuition behind gradient descent, explores how models learn by minimizing error, and compares popular optimization algorithms—from Vanilla SGD and Momentum to RMSProp and Adam. Learn how different optimizers influence convergence speed, stability, and overall model performance in real-world deep learning applications.",
+    mediumUrl: "https://medium.com/@prateek-1110/gradient-descent-optimizers-explained-from-vanilla-sgd-to-adam-8c3e5f8697e8",
   },
 ];
