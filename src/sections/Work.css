@@ -39,7 +39,7 @@
 }
 
 .project-row:hover {
-  background: rgba(17, 17, 16, 0.03);
+  background: var(--hover-bg);
 }
 
 .project-row:hover .project-row__title {

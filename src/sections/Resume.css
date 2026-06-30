@@ -50,8 +50,8 @@
 
 .resume-card.hovered {
   transform: translateY(-2px);
-  border-color: rgba(17, 17, 16, 0.2);
-  background: rgba(255, 255, 255, 0.78);
+  border-color: var(--btn-outline-border-hover);
+  background: var(--card-hover-bg);
 }
 
 .resume-card-top {
@@ -145,9 +145,9 @@
 }
 
 .resume-btn-view:hover {
-  background: rgba(17, 17, 16, 0.03);
+  background: var(--hover-bg);
   color: var(--text);
-  border-color: rgba(17, 17, 16, 0.2);
+  border-color: var(--btn-outline-border-hover);
 }
 
 .resume-btn-download {

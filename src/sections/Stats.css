@@ -43,7 +43,7 @@
 
 .stats-card:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--card-hover-bg);
 }
 
 .stats-card-header {
@@ -99,8 +99,8 @@
 
 .stats-visit-btn:hover {
   color: var(--text);
-  border-color: rgba(17, 17, 16, 0.22);
-  background: rgba(17, 17, 16, 0.03);
+  border-color: var(--btn-outline-border-hover);
+  background: var(--hover-bg);
 }
 
 .stats-numbers {

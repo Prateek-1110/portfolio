@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+  
+  // Theme state
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'light';
+  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -25,15 +27,19 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  // Update theme on document
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
+
   const scrollTo = (id) => {
     setMenuOpen(false);
-    if (location.pathname === '/') {
-      // Already on main page — scroll directly to section
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // On a blog detail page — go home first, then scroll
-      navigate({ pathname: '/', hash: id });
-    }
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -42,24 +48,50 @@ export default function Navbar() {
         PA<span>.</span>
       </div>
 
-      <ul className={`navbar__links ${menuOpen ? 'open' : ''}`}>
-        {['about', 'work', 'skills', 'education', 'stats', 'resume', 'blogs', 'contact'].map((id) => (
-          <li key={id}>
-            <button onClick={() => scrollTo(id)} className="navbar__link">
-              {id}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="navbar__right-container">
+        <ul className={`navbar__links ${menuOpen ? 'open' : ''}`}>
+          {['about', 'work', 'skills', 'education', 'stats', 'resume', 'contact'].map((id) => (
+            <li key={id}>
+              <button onClick={() => scrollTo(id)} className="navbar__link">
+                {id}
+              </button>
+            </li>
+          ))}
+        </ul>
 
-      <button
-        className={`navbar__burger ${menuOpen ? 'open' : ''}`}
-        onClick={() => setMenuOpen(v => !v)}
-        aria-label="Toggle menu"
-      >
-        <span />
-        <span />
-      </button>
+        <button
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-label="Toggle dark theme"
+        >
+          {theme === 'light' ? (
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="theme-icon sun">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="theme-icon moon">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          )}
+        </button>
+
+        <button
+          className={`navbar__burger ${menuOpen ? 'open' : ''}`}
+          onClick={() => setMenuOpen(v => !v)}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+        </button>
+      </div>
     </nav>
   );
-}
+}
