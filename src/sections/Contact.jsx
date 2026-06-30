@@ -52,9 +52,7 @@ export default function Contact() {
         <div className="section-label">05 — Contact</div>
 
         <h2 className="contact__title">
-          Let's build<br />
-          something<br />
-          <em>together</em>
+          Let's build something <em>together</em>
         </h2>
 
         <p className="contact__body">
