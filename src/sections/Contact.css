@@ -202,6 +202,11 @@
   color: #6a9e72;
 }
 
+.contact__submit--error {
+  border-color: #e55c5c;
+  color: #e55c5c;
+}
+
 .contact__submit-arrow {
   display: inline-block;
   transition: transform 0.2s;

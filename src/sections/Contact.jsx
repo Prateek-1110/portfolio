@@ -11,16 +11,38 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = () => {
-    const { name, email, project, message } = form;
-    const subject = encodeURIComponent(`[Portfolio] ${project || 'Hello'} — ${name}`);
-    const body = encodeURIComponent(
-      `Hi Prateek,\n\nName: ${name}\nEmail: ${email}\nProject: ${project}\n\n${message}`
-    );
-    window.open(
-      `mailto:b23bb1033@iitj.ac.in?subject=${subject}&body=${body}`
-    );
-    setStatus('sent');
+  const handleSubmit = async () => {
+    // Web3Forms Access Key maps submissions directly to your email
+    const ACCESS_KEY = "d889e3a5-9dc2-4554-9e04-2b1b70aee75b";
+
+    setStatus('sending');
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          name: form.name,
+          email: form.email,
+          subject: `Portfolio Contact from ${form.name}`,
+          message: `Topic/Project: ${form.project}\n\nMessage:\n${form.message}`
+        })
+      });
+      
+      const result = await response.json();
+      if (result.success) {
+        setStatus('sent');
+        setForm({ name: '', email: '', project: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      setStatus('error');
+    }
     setTimeout(() => setStatus('idle'), 4000);
   };
 
@@ -71,19 +93,7 @@ export default function Contact() {
             <span>LinkedIn</span>
           </a>
 
-          {/* ── Medium — replace href with your actual Medium profile URL ── */}
-          <a
-            href="https://medium.com/@prateek-1110"
-            target="_blank"
-            rel="noreferrer"
-            className="contact__social-pill"
-            aria-label="Medium"
-          >
-            <svg className="contact__social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
-            </svg>
-            <span>Medium</span>
-          </a>
+
 
           {/* Email */}
           <a
@@ -150,12 +160,16 @@ export default function Contact() {
           </div>
 
           <button
-            className={`contact__submit ${status === 'sent' ? 'contact__submit--sent' : ''}`}
+            className={`contact__submit ${status === 'sent' ? 'contact__submit--sent' : ''} ${status === 'error' ? 'contact__submit--error' : ''}`}
             onClick={handleSubmit}
             disabled={status === 'sending' || !form.name || !form.email}
           >
-            {status === 'sent' ? (
-              <>Opening Mail ✓</>
+            {status === 'sending' ? (
+              <>Sending... ✉</>
+            ) : status === 'sent' ? (
+              <>Message Sent! ✓</>
+            ) : status === 'error' ? (
+              <>Failed to send! ✗</>
             ) : (
               <>
                 Send Message
