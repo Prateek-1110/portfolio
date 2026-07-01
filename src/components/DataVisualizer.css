@@ -365,3 +365,20 @@
     min-height: auto;
   }
 }
+
+.radar-poly {
+  transition: fill 0.3s ease, stroke 0.3s ease, filter 0.3s ease;
+}
+
+.radar-label {
+  transition: fill 0.3s ease, font-weight 0.3s ease;
+}
+
+.legend-item__desc--bold {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.legend-item__desc--bold strong {
+  color: var(--text-color);
+}
