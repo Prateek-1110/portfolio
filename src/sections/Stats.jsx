@@ -7,7 +7,7 @@ const statsData = [
     handle: "prateekagr_1110", // replace with your handle
     profileUrl: "https://leetcode.com/prateekagr-1110/", // replace
     stats: [
-      { label: "Problems Solved", value: "400+" },
+      { label: "Problems Solved", value: "500+" },
       { label: "Max. Rating", value: "1962 " },
       // { label: "Global Rank", value: "Top --%" },
     ],

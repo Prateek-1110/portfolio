@@ -4,31 +4,31 @@ import "./DataVisualizer.css";
 const workloadData = [
   {
     label: "Retrieval & RAG Systems",
-    percentage: 35,
+    percentage: 95,
     color: "#8a2be2", // Purple
     tools: ["Qdrant", "PostgreSQL", "AST Parsing", "Sentence-Transformers"],
-    description: "Multi-stage retrieval fusing BM25 lexical search with dense vector embeddings and cross-encoder re-ranking."
+    description: "Expert-level design of multi-stage retrieval fusing BM25 lexical search with dense vector embeddings and cross-encoder re-ranking."
   },
   {
     label: "Agentic AI Workflows",
-    percentage: 25,
+    percentage: 90,
     color: "#00ffff", // Cyan
     tools: ["LangGraph", "LangChain", "LLM Intent Classifier", "Tool-Calling Loops"],
-    description: "Stateful multi-agent architectures using cyclic graphs and deterministic router reasoning."
+    description: "Production-grade stateful multi-agent architectures using cyclic graphs and deterministic router reasoning."
   },
   {
     label: "ETL & Data Pipelines",
-    percentage: 25,
+    percentage: 85,
     color: "#10b981", // Emerald
     tools: ["FastAPI", "PostgreSQL", "DBSCAN Clustering", "Django Background Tasks"],
-    description: "High-throughput ingestion pipelines handling millions of geospatial and textual records."
+    description: "Robust high-throughput ingestion pipelines handling millions of geospatial and textual records."
   },
   {
     label: "Deep Learning & Vision",
-    percentage: 15,
+    percentage: 75,
     color: "#f97316", // Orange
     tools: ["PyTorch", "DeepLabV3", "SAR AIS Data Fusion", "Semantic Segmentation"],
-    description: "Computer vision segmentation models and data fusion algorithms for maritime anomaly detection."
+    description: "Deep understanding of computer vision segmentation models and data fusion algorithms."
   }
 ];
 
@@ -90,7 +90,7 @@ export default function DataVisualizer() {
             setHoveredItem(null);
           }}
         >
-          ML Workload Distribution
+          ML / AI Competencies
         </button>
         <button
           className={`visualizer__tab ${activeTab === "pipeline" ? "active" : ""}`}
@@ -167,13 +167,13 @@ export default function DataVisualizer() {
                   textAnchor="middle"
                   className="radial-chart__center-sub"
                 >
-                  {hoveredItem !== null ? "Distribution" : "Core Systems"}
+                  {hoveredItem !== null ? "Expertise" : "Proficiency"}
                 </text>
               </svg>
             </div>
 
             <div className="visualizer__legend">
-              <h4 className="visualizer__subtitle">Interactive Agentic &amp; ML Architecture</h4>
+              <h4 className="visualizer__subtitle">Interactive Competencies &amp; ML Architecture</h4>
               <div className="legend-items">
                 {workloadData.map((item, idx) => (
                   <div

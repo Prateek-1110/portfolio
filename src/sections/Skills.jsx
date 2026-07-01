@@ -7,14 +7,14 @@ const categories = [
   },
   {
     label: 'Machine Learning & Agentic AI',
-    skills: ['PyTorch', 'scikit-learn', 'Transformers', 'LangChain', 'LangGraph', 'MCP', 'RAG', 'NLP', 'Computer Vision'],
+    skills: ['PyTorch', 'scikit-learn', 'Transformers', 'LangChain / LangGraph', 'MCP', 'NLP'],
   },
   {
     label: 'Data Engineering',
     skills: ['PostgreSQL', 'Qdrant', 'Redis', 'MongoDB', 'Docker', 'Kubernetes'],
   },
   {
-    label: 'Software Engineering (Unified Stack)',
+    label: 'Software Engineering',
     skills: ['FastAPI', 'Django', 'Node.js', 'React', 'Next.js', 'Tailwind CSS'],
   },
 ];

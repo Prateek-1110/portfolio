@@ -1,4 +1,5 @@
 .visualizer {
+  grid-column: 1 / -1;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 16px;
@@ -74,7 +75,7 @@
 
 .radial-chart {
   width: 100%;
-  max-width: 240px;
+  max-width: 280px;
   height: auto;
 }
 
