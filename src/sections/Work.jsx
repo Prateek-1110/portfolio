@@ -69,6 +69,15 @@ const projects = [
   },
   {
     num: '03',
+    title: 'Agentic ArXiv Research Assistant',
+    desc: 'Developed a stateful multi-agent system utilizing LangGraph to search, retrieve, categorize, and summarize ArXiv research papers. Implements state conditional routing to dynamically refine search terms, filter relevance, and compile clean Markdown reports.',
+    tags: ['LangGraph', 'LangChain', 'Python', 'ArXiv API', 'LLMs'],
+    year: '2026',
+    live: 'https://github.com/Prateek-1110/agentic_arxiv',
+    github: 'https://github.com/Prateek-1110/agentic_arxiv',
+  },
+  {
+    num: '04',
     title: 'AI-Powered Autonomous News Agent',
     desc: 'Designed a scalable data ingestion and NLP pipeline processing 5000+ articles/day. Engineered deduplication, LLM-based summary extraction, classification, and automated media publishing under a 2-minute latency.',
     tags: ['Python', 'Django', 'Data Pipeline', 'NLP', 'LLMs'],
@@ -77,7 +86,7 @@ const projects = [
     github: 'https://github.com/Prateek-1110/News_Automation/',
   },
   {
-    num: '04',
+    num: '05',
     title: 'Oil Spill Detection System using AIS Fusion',
     desc: 'Developed an AI maritime monitoring system combining AIS anomaly detection, DeepLabV3 semantic segmentation, and SAR-AIS data fusion to segment oil spills with 92% accuracy across 1000+ km regions.',
     tags: ['DeepLabV3', 'PyTorch', 'SAR Imaging', 'Computer Vision'],
@@ -100,32 +109,44 @@ const renderArchitectureSVG = (index) => {
     return (
       <svg viewBox="0 0 440 90" className="project-arch-svg">
         {arrowDef}
-        <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
-        <text x="35" y="47" textAnchor="middle" className="arch-text">Codebase</text>
+        <g className="arch-group arch-group--0">
+          <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
+          <text x="35" y="47" textAnchor="middle" className="arch-text">Codebase</text>
+        </g>
         <path d="M 65,42.5 L 85,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="85" y="25" width="65" height="35" rx="6" className="arch-node" />
-        <text x="117.5" y="42" textAnchor="middle" className="arch-text">Tree-sitter</text>
-        <text x="117.5" y="52" textAnchor="middle" className="arch-subtext">AST Parser</text>
+        <g className="arch-group arch-group--1">
+          <rect x="85" y="25" width="65" height="35" rx="6" className="arch-node" />
+          <text x="117.5" y="42" textAnchor="middle" className="arch-text">Tree-sitter</text>
+          <text x="117.5" y="52" textAnchor="middle" className="arch-subtext">AST Parser</text>
+        </g>
         <path d="M 150,42.5 L 170,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="170" y="25" width="70" height="35" rx="6" className="arch-node arch-node--db" />
-        <text x="205" y="42" textAnchor="middle" className="arch-text">Qdrant / PG</text>
-        <text x="205" y="52" textAnchor="middle" className="arch-subtext">Vector+Graph</text>
+        <g className="arch-group arch-group--2">
+          <rect x="170" y="25" width="70" height="35" rx="6" className="arch-node arch-node--db" />
+          <text x="205" y="42" textAnchor="middle" className="arch-text">Qdrant / PG</text>
+          <text x="205" y="52" textAnchor="middle" className="arch-subtext">Vector+Graph</text>
+        </g>
         <path d="M 240,42.5 L 260,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="260" y="25" width="65" height="35" rx="6" className="arch-node" />
-        <text x="292.5" y="42" textAnchor="middle" className="arch-text">BM25+Dense</text>
-        <text x="292.5" y="52" textAnchor="middle" className="arch-subtext">RRF Hybrid</text>
+        <g className="arch-group arch-group--3">
+          <rect x="260" y="25" width="65" height="35" rx="6" className="arch-node" />
+          <text x="292.5" y="42" textAnchor="middle" className="arch-text">BM25+Dense</text>
+          <text x="292.5" y="52" textAnchor="middle" className="arch-subtext">RRF Hybrid</text>
+        </g>
         <path d="M 325,42.5 L 345,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="345" y="25" width="55" height="35" rx="6" className="arch-node" />
-        <text x="372.5" y="42" textAnchor="middle" className="arch-text">Cross-Encoder</text>
-        <text x="372.5" y="52" textAnchor="middle" className="arch-subtext">Re-ranking</text>
+        <g className="arch-group arch-group--4">
+          <rect x="345" y="25" width="55" height="35" rx="6" className="arch-node" />
+          <text x="372.5" y="42" textAnchor="middle" className="arch-text">Cross-Encoder</text>
+          <text x="372.5" y="52" textAnchor="middle" className="arch-subtext">Re-ranking</text>
+        </g>
         <path d="M 400,42.5 L 412,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="412" y="25" width="23" height="35" rx="4" className="arch-node arch-node--llm" />
-        <text x="423.5" y="46" textAnchor="middle" className="arch-text">LLM</text>
+        <g className="arch-group arch-group--4">
+          <rect x="412" y="25" width="23" height="35" rx="4" className="arch-node arch-node--llm" />
+          <text x="423.5" y="46" textAnchor="middle" className="arch-text">LLM</text>
+        </g>
       </svg>
     );
   }
@@ -133,29 +154,39 @@ const renderArchitectureSVG = (index) => {
     return (
       <svg viewBox="0 0 440 90" className="project-arch-svg">
         {arrowDef}
-        <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
-        <text x="35" y="42" textAnchor="middle" className="arch-text">3M+ US</text>
-        <text x="35" y="52" textAnchor="middle" className="arch-subtext">Accident CSV</text>
+        <g className="arch-group arch-group--0">
+          <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
+          <text x="35" y="42" textAnchor="middle" className="arch-text">3M+ US</text>
+          <text x="35" y="52" textAnchor="middle" className="arch-subtext">Accident CSV</text>
+        </g>
         <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
-        <text x="125" y="42" textAnchor="middle" className="arch-text">ETL Clean</text>
-        <text x="125" y="52" textAnchor="middle" className="arch-subtext">Processing</text>
+        <g className="arch-group arch-group--1">
+          <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
+          <text x="125" y="42" textAnchor="middle" className="arch-text">ETL Clean</text>
+          <text x="125" y="52" textAnchor="middle" className="arch-subtext">Processing</text>
+        </g>
         <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
-        <text x="222.5" y="42" textAnchor="middle" className="arch-text">DBSCAN</text>
-        <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Geospatial Cluster</text>
+        <g className="arch-group arch-group--2">
+          <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
+          <text x="222.5" y="42" textAnchor="middle" className="arch-text">DBSCAN</text>
+          <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Geospatial Cluster</text>
+        </g>
         <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
-        <text x="320" y="42" textAnchor="middle" className="arch-text">Random Forest</text>
-        <text x="320" y="52" textAnchor="middle" className="arch-subtext">Risk Prediction</text>
+        <g className="arch-group arch-group--3">
+          <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
+          <text x="320" y="42" textAnchor="middle" className="arch-text">Random Forest</text>
+          <text x="320" y="52" textAnchor="middle" className="arch-subtext">Risk Prediction</text>
+        </g>
         <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
-        <text x="407.5" y="42" textAnchor="middle" className="arch-text">Django</text>
-        <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Leaflet Map</text>
+        <g className="arch-group arch-group--4">
+          <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
+          <text x="407.5" y="42" textAnchor="middle" className="arch-text">Django</text>
+          <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Leaflet Map</text>
+        </g>
       </svg>
     );
   }
@@ -163,29 +194,39 @@ const renderArchitectureSVG = (index) => {
     return (
       <svg viewBox="0 0 440 90" className="project-arch-svg">
         {arrowDef}
-        <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
-        <text x="35" y="42" textAnchor="middle" className="arch-text">20+ RSS</text>
-        <text x="35" y="52" textAnchor="middle" className="arch-subtext">News Feeds</text>
+        <g className="arch-group arch-group--0">
+          <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
+          <text x="35" y="42" textAnchor="middle" className="arch-text">User query</text>
+          <text x="35" y="52" textAnchor="middle" className="arch-subtext">Topic Search</text>
+        </g>
         <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
-        <text x="125" y="42" textAnchor="middle" className="arch-text">Python Ingest</text>
-        <text x="125" y="52" textAnchor="middle" className="arch-subtext">Request Streams</text>
+        <g className="arch-group arch-group--1">
+          <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
+          <text x="125" y="42" textAnchor="middle" className="arch-text">Query Parser</text>
+          <text x="125" y="52" textAnchor="middle" className="arch-subtext">Intent Agent</text>
+        </g>
         <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
-        <text x="222.5" y="42" textAnchor="middle" className="arch-text">Cosine Similarity</text>
-        <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Deduplication</text>
+        <g className="arch-group arch-group--2">
+          <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
+          <text x="222.5" y="42" textAnchor="middle" className="arch-text">ArXiv API</text>
+          <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Paper Fetcher</text>
+        </g>
         <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
-        <text x="320" y="42" textAnchor="middle" className="arch-text">LLM Engine</text>
-        <text x="320" y="52" textAnchor="middle" className="arch-subtext">Summary/Tags</text>
+        <g className="arch-group arch-group--3">
+          <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
+          <text x="320" y="42" textAnchor="middle" className="arch-text">Filter Agent</text>
+          <text x="320" y="52" textAnchor="middle" className="arch-subtext">Relevance Match</text>
+        </g>
         <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
-        <text x="407.5" y="42" textAnchor="middle" className="arch-text">Automated</text>
-        <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Publishing</text>
+        <g className="arch-group arch-group--4">
+          <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
+          <text x="407.5" y="42" textAnchor="middle" className="arch-text">LLM Gen</text>
+          <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Summary Report</text>
+        </g>
       </svg>
     );
   }
@@ -193,29 +234,79 @@ const renderArchitectureSVG = (index) => {
     return (
       <svg viewBox="0 0 440 90" className="project-arch-svg">
         {arrowDef}
-        <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
-        <text x="35" y="42" textAnchor="middle" className="arch-text">Satellite SAR</text>
-        <text x="35" y="52" textAnchor="middle" className="arch-subtext">+ AIS Data</text>
+        <g className="arch-group arch-group--0">
+          <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
+          <text x="35" y="42" textAnchor="middle" className="arch-text">20+ RSS</text>
+          <text x="35" y="52" textAnchor="middle" className="arch-subtext">News Feeds</text>
+        </g>
         <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
-        <text x="125" y="42" textAnchor="middle" className="arch-text">SAR Filter</text>
-        <text x="125" y="52" textAnchor="middle" className="arch-subtext">Preprocessing</text>
+        <g className="arch-group arch-group--1">
+          <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
+          <text x="125" y="42" textAnchor="middle" className="arch-text">Python Ingest</text>
+          <text x="125" y="52" textAnchor="middle" className="arch-subtext">Request Streams</text>
+        </g>
         <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
-        <text x="222.5" y="42" textAnchor="middle" className="arch-text">DeepLabV3</text>
-        <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Segmentation</text>
+        <g className="arch-group arch-group--2">
+          <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
+          <text x="222.5" y="42" textAnchor="middle" className="arch-text">Cosine Similarity</text>
+          <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Deduplication</text>
+        </g>
         <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
-        <text x="320" y="42" textAnchor="middle" className="arch-text">SAR-AIS</text>
-        <text x="320" y="52" textAnchor="middle" className="arch-subtext">Fusion</text>
+        <g className="arch-group arch-group--3">
+          <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
+          <text x="320" y="42" textAnchor="middle" className="arch-text">LLM Engine</text>
+          <text x="320" y="52" textAnchor="middle" className="arch-subtext">Summary/Tags</text>
+        </g>
         <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
         
-        <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
-        <text x="407.5" y="42" textAnchor="middle" className="arch-text">Anomaly</text>
-        <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Alert Output</text>
+        <g className="arch-group arch-group--4">
+          <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
+          <text x="407.5" y="42" textAnchor="middle" className="arch-text">Automated</text>
+          <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Publishing</text>
+        </g>
+      </svg>
+    );
+  }
+  if (index === 4) {
+    return (
+      <svg viewBox="0 0 440 90" className="project-arch-svg">
+        {arrowDef}
+        <g className="arch-group arch-group--0">
+          <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
+          <text x="35" y="42" textAnchor="middle" className="arch-text">Satellite SAR</text>
+          <text x="35" y="52" textAnchor="middle" className="arch-subtext">+ AIS Data</text>
+        </g>
+        <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <g className="arch-group arch-group--1">
+          <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
+          <text x="125" y="42" textAnchor="middle" className="arch-text">SAR Filter</text>
+          <text x="125" y="52" textAnchor="middle" className="arch-subtext">Preprocessing</text>
+        </g>
+        <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <g className="arch-group arch-group--2">
+          <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
+          <text x="222.5" y="42" textAnchor="middle" className="arch-text">DeepLabV3</text>
+          <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Segmentation</text>
+        </g>
+        <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <g className="arch-group arch-group--3">
+          <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
+          <text x="320" y="42" textAnchor="middle" className="arch-text">SAR-AIS</text>
+          <text x="320" y="52" textAnchor="middle" className="arch-subtext">Fusion</text>
+        </g>
+        <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <g className="arch-group arch-group--4">
+          <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
+          <text x="407.5" y="42" textAnchor="middle" className="arch-text">Anomaly</text>
+          <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Alert Output</text>
+        </g>
       </svg>
     );
   }
@@ -223,10 +314,8 @@ const renderArchitectureSVG = (index) => {
 };
 
 export default function Work() {
-  const [expandedIndex, setExpandedIndex] = useState(null);
-
-  const toggleExpand = (index) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+  const handleClick = (url) => {
+    window.open(url, '_blank');
   };
 
   return (
@@ -235,78 +324,72 @@ export default function Work() {
         <div className="section-label">03 — Work</div>
         <h2 className="section-title">Selected projects</h2>
         <p className="work__subtitle">
-          A curated set of things I've built, ranging from creative experiments to production systems. Click a project to explore its architecture.
+          A curated set of systems engineering and machine learning architectures I've built. Click any card to inspect the repository.
         </p>
       </div>
 
       <div className="work__list">
         {projects.map((p, i) => {
-          const isExpanded = expandedIndex === i;
           return (
             <div
-              className={`project-row ${isExpanded ? 'project-row--expanded' : ''}`}
+              className="project-row project-row--expanded"
               key={i}
-              onClick={() => toggleExpand(i)}
+              onClick={() => handleClick(p.github)}
               style={{ cursor: 'pointer' }}
             >
               <div className="project-row__summary">
                 <div className="project-row__num">{p.num}</div>
                 <div className="project-row__title-wrap">
-                  <h3 className="project-row__title">{p.title}</h3>
+                  <h3 className="project-row__title">{p.title} ↗</h3>
                   <span className="project-row__year">{p.year}</span>
-                </div>
-                <div className={`project-row__arrow ${isExpanded ? 'project-row__arrow--expanded' : ''}`}>
-                  ↓
                 </div>
               </div>
 
-              <div className={`project-row__drawer ${isExpanded ? 'project-row__drawer--active' : ''}`}>
-                {isExpanded && (
-                  <div className="project-row__drawer-content" onClick={(e) => e.stopPropagation()}>
-                    <p className="project-row__desc">{p.desc}</p>
-                    
-                    <div className="project-row__arch-section">
-                      <h4 className="project-row__arch-title">Data Ingest &amp; Systems Architecture</h4>
-                      <div className="project-row__arch-svg-container">
-                        {renderArchitectureSVG(i)}
-                      </div>
-                    </div>
+              <div className="project-row__drawer-content" style={{ marginTop: '1rem' }}>
+                <p className="project-row__desc">{p.desc}</p>
+                
+                <div className="project-row__arch-section">
+                  <h4 className="project-row__arch-title">Data Ingest &amp; Systems Architecture</h4>
+                  <div className="project-row__arch-svg-container" onClick={(e) => e.stopPropagation()}>
+                    {renderArchitectureSVG(i)}
+                  </div>
+                </div>
 
-                    <div className="project-row__footer-meta">
-                      <div className="project-row__tags">
-                        {p.tags.map((t, j) => (
-                          <span className="project-tag" key={j}>{t}</span>
-                        ))}
-                      </div>
+                <div className="project-row__footer-meta" onClick={(e) => e.stopPropagation()}>
+                  <div className="project-row__tags">
+                    {p.tags.map((t, j) => (
+                      <span className="project-tag" key={j}>{t}</span>
+                    ))}
+                  </div>
 
-                      <div className="project-row__links">
-                        {p.live && p.live !== p.github && (
-                          <>
-                            <a
-                              href={p.live}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="project-link"
-                            >
-                              <ExternalIcon />
-                              Live Demo
-                            </a>
-                            <span className="link-divider" />
-                          </>
-                        )}
+                  <div className="project-row__links">
+                    {p.live && p.live !== p.github && (
+                      <>
                         <a
-                          href={p.github}
+                          href={p.live}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="project-link"
+                          onClick={(e) => e.stopPropagation()}
                         >
-                          <GitHubIcon />
-                          Source Code
+                          <ExternalIcon />
+                          Live Demo
                         </a>
-                      </div>
-                    </div>
+                        <span className="link-divider" />
+                      </>
+                    )}
+                    <a
+                      href={p.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-link"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <GitHubIcon />
+                      Source Code
+                    </a>
                   </div>
-                )}
+                </div>
               </div>
             </div>
           );

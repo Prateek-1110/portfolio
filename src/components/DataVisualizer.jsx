@@ -123,6 +123,7 @@ const pipelineStackData = [
 export default function DataVisualizer() {
   const [activeTab, setActiveTab] = useState("language");
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [activePipelineIdx, setActivePipelineIdx] = useState(0);
 
   // Math constants for SVG rendering
   const center = 100;
@@ -378,7 +379,7 @@ export default function DataVisualizer() {
         )}
 
         {activeTab === "pipeline" && (
-          <div className="visualizer__grid">
+          <div className="visualizer__grid visualizer__grid--vertical">
             <div className="visualizer__chart-wrap flex-column">
               <h4 className="visualizer__subtitle self-align-start w-100">Interactive Pipeline Topology</h4>
               
@@ -393,7 +394,7 @@ export default function DataVisualizer() {
                 {[0, 1, 2, 3].map((i) => {
                   const x1 = 40 + i * 95 + 16;
                   const x2 = 40 + (i + 1) * 95 - 16;
-                  const isConnectingHover = hoveredItem === i || hoveredItem === i + 1;
+                  const isConnectingActive = activePipelineIdx === i || activePipelineIdx === i + 1;
                   return (
                     <line
                       key={i}
@@ -401,9 +402,9 @@ export default function DataVisualizer() {
                       y1={55}
                       x2={x2}
                       y2={55}
-                      stroke={isConnectingHover ? "var(--text)" : "var(--border)"}
-                      strokeWidth={isConnectingHover ? "1.5" : "1"}
-                      strokeDasharray={isConnectingHover ? "4,4" : "2,2"}
+                      stroke={isConnectingActive ? "var(--text)" : "var(--border)"}
+                      strokeWidth={isConnectingActive ? "1.5" : "1"}
+                      strokeDasharray={isConnectingActive ? "4,4" : "2,2"}
                       markerEnd="url(#arrow-pipeline)"
                       style={{
                         transition: "stroke 0.3s ease, stroke-width 0.3s ease",
@@ -416,13 +417,13 @@ export default function DataVisualizer() {
                 {pipelineStackData.map((node, idx) => {
                   const cx = 40 + idx * 95;
                   const cy = 55;
-                  const isHovered = hoveredItem === idx;
+                  const isActive = activePipelineIdx === idx;
 
                   return (
                     <g
                       key={idx}
-                      onMouseEnter={() => setHoveredItem(idx)}
-                      onMouseLeave={() => setHoveredItem(null)}
+                      onMouseEnter={() => setActivePipelineIdx(idx)}
+                      onTouchStart={() => setActivePipelineIdx(idx)}
                       style={{ cursor: "pointer" }}
                     >
                       {/* Outer Ring */}
@@ -431,11 +432,11 @@ export default function DataVisualizer() {
                         cy={cy}
                         r={20}
                         fill="var(--bg-alt)"
-                        stroke={isHovered ? node.color : "var(--border)"}
-                        strokeWidth={isHovered ? "2.5" : "1.2"}
+                        stroke={isActive ? node.color : "var(--border)"}
+                        strokeWidth={isActive ? "2.5" : "1.2"}
                         style={{
                           transition: "stroke 0.3s ease, stroke-width 0.3s ease, filter 0.3s ease",
-                          filter: isHovered ? `drop-shadow(0 0 8px ${node.color})` : "none"
+                          filter: isActive ? `drop-shadow(0 0 8px ${node.color})` : "none"
                         }}
                       />
                       {/* Inner Core */}
@@ -450,11 +451,11 @@ export default function DataVisualizer() {
                         x={cx}
                         y={25}
                         textAnchor="middle"
-                        fill={isHovered ? "var(--text)" : "var(--text-muted)"}
+                        fill={isActive ? "var(--text)" : "var(--text-muted)"}
                         style={{
                           fontFamily: "var(--font-display)",
                           fontSize: "8.5px",
-                          fontWeight: isHovered ? "700" : "500",
+                          fontWeight: isActive ? "700" : "500",
                           transition: "fill 0.3s ease"
                         }}
                       >
@@ -481,30 +482,23 @@ export default function DataVisualizer() {
             </div>
 
             <div className="visualizer__details">
-              {hoveredItem !== null ? (
-                <div className="details-card active" style={{ borderColor: pipelineStackData[hoveredItem].color }}>
-                  <div className="details-card__header">
-                    <span className="details-card__title">{pipelineStackData[hoveredItem].label} ({pipelineStackData[hoveredItem].stage})</span>
-                    <span className="details-card__badge" style={{ backgroundColor: `${pipelineStackData[hoveredItem].color}22`, color: pipelineStackData[hoveredItem].color }}>
-                      Active Node
-                    </span>
-                  </div>
-                  <div className="details-card__row">
-                    <span className="details-card__label">Tech Tools:</span>
-                    <span className="details-card__val">{pipelineStackData[hoveredItem].tools}</span>
-                  </div>
-                  <div className="details-card__row">
-                    <span className="details-card__label">Role Process:</span>
-                    <span className="details-card__val">{pipelineStackData[hoveredItem].desc}</span>
-                  </div>
-                  <p className="details-card__desc">{pipelineStackData[hoveredItem].details}</p>
+              <div className="details-card active" style={{ borderColor: pipelineStackData[activePipelineIdx].color }}>
+                <div className="details-card__header">
+                  <span className="details-card__title">{pipelineStackData[activePipelineIdx].label} ({pipelineStackData[activePipelineIdx].stage})</span>
+                  <span className="details-card__badge" style={{ backgroundColor: `${pipelineStackData[activePipelineIdx].color}22`, color: pipelineStackData[activePipelineIdx].color }}>
+                    Active Stage
+                  </span>
                 </div>
-              ) : (
-                <div className="details-card details-card--placeholder">
-                  <div className="placeholder-pulsar"></div>
-                  <p>Hover over pipeline stages (Source → Ingest → Store → Query → Serve) in the topology stack map to explore concrete ingestion tools and querying strategies.</p>
+                <div className="details-card__row">
+                  <span className="details-card__label">Tech Tools:</span>
+                  <span className="details-card__val">{pipelineStackData[activePipelineIdx].tools}</span>
                 </div>
-              )}
+                <div className="details-card__row">
+                  <span className="details-card__label">Role Process:</span>
+                  <span className="details-card__val">{pipelineStackData[activePipelineIdx].desc}</span>
+                </div>
+                <p className="details-card__desc">{pipelineStackData[activePipelineIdx].details}</p>
+              </div>
             </div>
           </div>
         )}

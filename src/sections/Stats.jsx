@@ -209,7 +209,7 @@ export default function Stats() {
                     className="stats-detail-link"
                     style={{ color: item.color }}
                   >
-                    Verify Profile ↗
+                    Profile ↗
                   </a>
                 </div>
                 <div className="stats-detail-row">

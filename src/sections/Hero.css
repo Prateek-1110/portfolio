@@ -96,7 +96,7 @@
 }
 .btn--dark {
   background: var(--text);
-  color: var(--bg);
+  color: var(--bg-solid);
   border: 1.5px solid var(--text);
 }
 .btn--dark:hover {

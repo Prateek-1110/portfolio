@@ -322,4 +322,108 @@
     align-items: flex-start;
     gap: 1.25rem;
   }
+
+  .project-row__arch-section {
+    display: none;
+  }
+}
+
+/* ── Assembling / Snapping Node Animations on Card Hover ── */
+@keyframes flyInTL {
+  0% {
+    transform: translate(-90px, -45px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes flyInBL {
+  0% {
+    transform: translate(-80px, 50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes flyInTR {
+  0% {
+    transform: translate(90px, -50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes flyInBR {
+  0% {
+    transform: translate(80px, 45px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes flyInR {
+  0% {
+    transform: translate(110px, 0px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes drawLine {
+  0% {
+    stroke-dashoffset: 15;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Apply animations only when parent card is hovered */
+.project-row:hover .arch-group--0 {
+  animation: flyInTL 0.55s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.project-row:hover .arch-group--1 {
+  animation: flyInBL 0.55s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.project-row:hover .arch-group--2 {
+  animation: flyInTR 0.55s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.project-row:hover .arch-group--3 {
+  animation: flyInBR 0.55s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.project-row:hover .arch-group--4 {
+  animation: flyInR 0.55s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.project-row:hover .project-arch-svg path {
+  stroke-dasharray: 4,3;
+  animation: drawLine 0.5s ease-out forwards;
+  animation-delay: 0.25s;
+}
+
+.project-row:hover .project-arch-svg line {
+  stroke-dasharray: 4,3;
+  animation: drawLine 0.5s ease-out forwards;
+  animation-delay: 0.25s;
 }

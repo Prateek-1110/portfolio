@@ -5,20 +5,21 @@
 }
 
 :root {
-  --bg: #f5f4f0;
-  --bg-alt: #eeede8;
+  --bg: linear-gradient(135deg, #fdfcf7 0%, #e2dfd5 100%);
+  --bg-solid: #f5f4f0;
+  --bg-alt: #dfdacd;
   --text: #111110;
   --text-muted: #6b6b68;
   --text-faint: #a8a8a4;
   --accent: #1a1a1a;
   --border: rgba(17, 17, 16, 0.1);
-  --card-bg: rgba(255, 255, 255, 0.6);
-  --card-hover-bg: rgba(255, 255, 255, 0.78);
+  --card-bg: rgba(255, 255, 255, 0.78);
+  --card-hover-bg: rgba(255, 255, 255, 0.9);
   --hover-bg: rgba(17, 17, 16, 0.03);
   --btn-outline-border: rgba(17, 17, 16, 0.3);
   --btn-outline-border-hover: rgba(17, 17, 16, 0.5);
-  --navbar-bg: rgba(245, 244, 240, 0.85);
-  --mobile-menu-bg: linear-gradient(160deg, #f5f4f0 0%, #e6e4de 100%);
+  --navbar-bg: rgba(253, 252, 247, 0.85);
+  --mobile-menu-bg: linear-gradient(160deg, #fdfcf7 0%, #dfdacd 100%);
   --mobile-menu-text: #111110;
   --mobile-menu-link-hover: #b08060;
 
@@ -28,6 +29,7 @@
 
 [data-theme='dark'] {
   --bg: #0b0b0a;
+  --bg-solid: #0b0b0a;
   --bg-alt: #131211;
   --text: #f5f4f0;
   --text-muted: #a3a29d;
@@ -57,7 +59,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg);
+  background: var(--bg);
+  background-attachment: fixed;
   color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;

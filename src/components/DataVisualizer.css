@@ -67,6 +67,12 @@
   align-items: center;
 }
 
+.visualizer__grid--vertical {
+  grid-template-columns: 1fr !important;
+  gap: 2rem;
+  align-items: stretch;
+}
+
 .visualizer__chart-wrap {
   display: flex;
   justify-content: center;
