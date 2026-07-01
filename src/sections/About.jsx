@@ -34,10 +34,6 @@ export default function About() {
 
         <div className="about__stats">
           <div className="about__stat">
-            <span className="stat-num">500+</span>
-            <span className="stat-label">Questions solved</span>
-          </div>
-          <div className="about__stat">
             <span className="stat-num">3M+</span>
             <span className="stat-label">Records processed</span>
           </div>

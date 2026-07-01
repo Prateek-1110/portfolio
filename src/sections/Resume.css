@@ -184,4 +184,8 @@
   .resume-actions {
     flex-direction: column;
   }
+
+  .resume-desc {
+    display: none;
+  }
 }

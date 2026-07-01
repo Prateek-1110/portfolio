@@ -33,7 +33,7 @@ const languageData = [
   {
     subject: "TypeScript",
     score: 75,
-    color: "#a855f7", // Light Purple
+    color: "#ec4899", // Glowing Pink
     description: "Type-safe systems architectures, Next.js routing, database migrations, and modular API service layers.",
     usecase: "Building robust, self-documenting service modules and web apps."
   }

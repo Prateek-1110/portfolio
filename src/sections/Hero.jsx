@@ -30,7 +30,7 @@ export default function Hero() {
         </p>
 
         <p className="hero__sub">
-          Building high-performance retrieval systems, scalable data pipelines, and applied ML models &mdash; with a strong focus on software architecture and systems engineering.
+          Building high-performance retrieval systems, scalable data pipelines, and applied ML models<span className="hero__sub-desktop"> &mdash; with a strong focus on software architecture and systems engineering.</span>
         </p>
 
         <div className="hero__cta">

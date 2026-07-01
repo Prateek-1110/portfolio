@@ -172,4 +172,7 @@
     right: 1.5rem;
     bottom: 2rem;
   }
+  .hero__sub-desktop {
+    display: none;
+  }
 }
