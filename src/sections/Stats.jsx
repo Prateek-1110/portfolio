@@ -22,7 +22,7 @@ platform: "CodeChef (2⭐)",
   handle: "prateek11_10",
   profileUrl: "https://www.codechef.com/users/prateek11_10",
   stats: [
-    { label: "Problems Solved", value: "70+" },
+    { label: "Problems Solved", value: "170+" },
     { label: "Max. Rating", value: "1553" },
   ],
 icon: (
@@ -34,24 +34,24 @@ icon: (
   />
 ),
 },
-  {
-    platform: "Codeforces",
-    handle: "prateek_1110", // replace
-    profileUrl: "https://codeforces.com/profile/prateek_1110", // replace
-    stats: [
-      // { label: "Rating", value: "--" },
-      // { label: "Rank", value: "--" },
-      { label: "Problems Solved", value: "175+" },
-    ],
-   icon: (
-  <img
-    src="https://www.svgrepo.com/show/330186/codeforces.svg"
-    alt="Codeforces"
-    width="20"
-    height="20"
-  />
-),
-  },
+//   {
+//     platform: "Codeforces",
+//     handle: "prateek_1110", // replace
+//     profileUrl: "https://codeforces.com/profile/prateek_1110", // replace
+//     stats: [
+//       // { label: "Rating", value: "--" },
+//       // { label: "Rank", value: "--" },
+//       { label: "Problems Solved", value: "175+" },
+//     ],
+//    icon: (
+//   <img
+//     src="https://www.svgrepo.com/show/330186/codeforces.svg"
+//     alt="Codeforces"
+//     width="20"
+//     height="20"
+//   />
+// ),
+//   },
   {
     platform: "GeeksforGeeks",
     handle: "prateekagr1110", // replace
