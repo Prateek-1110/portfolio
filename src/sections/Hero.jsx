@@ -26,13 +26,11 @@ export default function Hero() {
         </h1>
 
         <p className="hero__role">
-          Full Stack Developer &mdash; delving into Data Science
+          Data &amp; ML Engineer
         </p>
 
         <p className="hero__sub">
-          Building scalable systems and obsessing over clean architecture.
-          Specializing in full-stack development, systems design, and
-          algorithm optimization &mdash; now pushing into ML and beyond.
+          Building high-performance retrieval systems, scalable data pipelines, and applied ML models &mdash; with a strong focus on software architecture and systems engineering.
         </p>
 
         <div className="hero__cta">

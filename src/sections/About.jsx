@@ -16,38 +16,33 @@ export default function About() {
         </div>
 
         <h2 className="about__name">Prateek Agrahari</h2>
-        <p className="about__role">Full Stack Developer and ML Enthusiast</p>
+        <p className="about__role">Data &amp; ML Engineer</p>
       </div>
 
       <div className="about__right">
         <h3 className="about__title">About</h3>
         <p className="about__body">
-          I am a <strong>Full Stack Developer</strong> and an enthusiastic
-          Machine Learning learner. I enjoy building scalable applications
-          and experimenting with emerging technologies.
+          I am a <strong>Data &amp; ML Engineer</strong> specializing in computational logic, scalable data architecture, and applied machine learning. I design systems that ingest, transform, and retrieve complex datasets at scale.
         </p>
         <p className="about__body">
-          Currently pursuing my passion at the intersection of creative
-          technology and engineering. I enjoy working on problems that require
-          both analytical thinking and design sensibility.
+          Currently pursuing my B.Tech at IIT Jodhpur, I focus on the intersection of data engineering, systems development, and deep learning. I enjoy bridging the gap between raw data pipelines and intelligent LLM-driven reasoning.
         </p>
         <p className="about__body">
-          When I'm not coding, I play chess, read books, and enjoy quiet time
-          exploring new interests.
+          When I'm not coding, I play chess, read books, and enjoy quiet time exploring new computational concepts.
         </p>
 
         <div className="about__stats">
           <div className="about__stat">
-            <span className="stat-num">10+</span>
-            <span className="stat-label">Projects shipped</span>
+            <span className="stat-num">400+</span>
+            <span className="stat-label">Problems solved</span>
           </div>
           <div className="about__stat">
-            <span className="stat-num">2+</span>
-            <span className="stat-label">Years building</span>
+            <span className="stat-num">3M+</span>
+            <span className="stat-label">Records processed</span>
           </div>
           <div className="about__stat">
-            <span className="stat-num">∞</span>
-            <span className="stat-label">Coffees consumed</span>
+            <span className="stat-num">5+</span>
+            <span className="stat-label">ML Pipelines built</span>
           </div>
         </div>
       </div>

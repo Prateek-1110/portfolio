@@ -8,7 +8,8 @@ const educationData = [
     duration: "2023 - 2027(expected)",
     grade: "CGPA: 7.63 / 10",
     highlights: [
-      "Relevant Coursework: Deep Learning , Machine Learning , Probability & Statistics , Data Structures and Algorithms",
+      "Integrating computational systems biology with engineering; designing ML frameworks to analyze multi-omics datasets and biological networks.",
+      "Relevant Coursework: Deep Learning, Machine Learning, Probability & Statistics, Data Structures and Algorithms",
     ],
     logo: "01",
     tag: "Current",

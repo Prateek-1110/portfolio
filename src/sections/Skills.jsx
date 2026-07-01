@@ -1,23 +1,26 @@
 import './Skills.css';
 
 const categories = [
-   {
+  {
     label: 'Languages',
-    skills: ['C++', 'Python','Javascript'],
+    skills: ['C++', 'Python', 'SQL', 'JavaScript'],
   },
   {
-    label: 'Frontend',
-    skills: ['React', 'Next.js', 'TypeScript', 'Framer Motion', 'Tailwind CSS'],
+    label: 'Machine Learning / AI',
+    skills: ['PyTorch', 'scikit-learn', 'Transformers', 'NLP', 'RAG', 'Computer Vision'],
+  },
+  {
+    label: 'Data Engineering',
+    skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Qdrant', 'Docker', 'Kubernetes'],
   },
   {
     label: 'Backend',
-    skills: ['Node.js', 'Python', 'FastAPI', 'Django'],
+    skills: ['FastAPI', 'Django', 'Node.js'],
   },
   {
-    label: 'Data & Cloud',
-    skills: ['PostgreSQL', 'MongoDB', 'Redis'],
+    label: 'Frontend (Supporting)',
+    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
   },
-
 ];
 
 export default function Skills() {

@@ -2,27 +2,27 @@ import React, { useState } from "react";
 import "./Resume.css";
 
 const resumes = [
-  // {
-  //   role: "Web Developer",
-  //   description:
-  //     "Highlights full-stack projects, React, Django, REST APIs, and software engineering internship experience.",
-  //   tags: ["React", "Django", "REST APIs", "DSA", "Full Stack"],
-  //   viewUrl: "https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/view?usp=sharing", // replace
-  //   downloadUrl:
-  //     "https://drive.google.com/file/d/1L9oN4Ubhe8gqiZl6UDqEcWb0zSgrCxvk/view?usp=sharing", // replace
-  //   icon: "W",
-  //   label: "SWE / Full Stack",
-  // },
   {
     role: "ML / AI Engineer",
     description:
-      "Focuses on PyTorch, TensorFlow, NLP, RAG systems, transfer learning, and deep learning research projects.",
-    tags: ["PyTorch", "TensorFlow", "NLP", "RAG", "Deep Learning"],
-    viewUrl: "https://drive.google.com/file/d/1BbKTVsQgwGILnEgUbazcPGd4VBw1xIRl/view?usp=sharing", // replace
+      "Focuses on PyTorch, Transformers, NLP, RAG architecture, vector search, and deep learning model training.",
+    tags: ["PyTorch", "NLP", "RAG", "LLMs", "Transformers"],
+    viewUrl: "https://drive.google.com/file/d/1BbKTVsQgwGILnEgUbazcPGd4VBw1xIRl/view?usp=sharing",
     downloadUrl:
-      "https://drive.google.com/file/d/1BbKTVsQgwGILnEgUbazcPGd4VBw1xIRl/view?usp=sharing", // replace
-    icon: "AI",
-    label: "MLE / AI / Data Science",
+      "https://drive.google.com/file/d/1BbKTVsQgwGILnEgUbazcPGd4VBw1xIRl/view?usp=sharing",
+    icon: "ML",
+    label: "MLE / AI / Deep Learning",
+  },
+  {
+    role: "Data Engineer",
+    description:
+      "Highlights SQL database schema designs, ETL pipeline orchestration, geospatial data structures, and vector indexing.",
+    tags: ["SQL", "ETL Pipelines", "PostgreSQL", "Qdrant", "Docker"],
+    viewUrl: "https://drive.google.com/file/d/1BbKTVsQgwGILnEgUbazcPGd4VBw1xIRl/view?usp=sharing",
+    downloadUrl:
+      "https://drive.google.com/file/d/1BbKTVsQgwGILnEgUbazcPGd4VBw1xIRl/view?usp=sharing",
+    icon: "DE",
+    label: "DE / Systems / Database",
   },
 ];
 
