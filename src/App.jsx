@@ -18,6 +18,12 @@ function MainPage() {
   return (
     <>
       <Navbar />
+      <div className="ambient-background">
+        <div className="ambient-blob ambient-blob--1" />
+        <div className="ambient-blob ambient-blob--2" />
+        <div className="ambient-blob ambient-blob--3" />
+        <div className="grid-overlay" />
+      </div>
       <main>
         <Hero />
         <About />
