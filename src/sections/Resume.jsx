@@ -18,9 +18,9 @@ const resumes = [
     description:
       "Highlights SQL database schema designs, ETL pipeline orchestration, geospatial data structures, and vector indexing.",
     tags: ["SQL", "ETL Pipelines", "PostgreSQL", "Qdrant", "Docker"],
-    viewUrl: "https://drive.google.com/file/d/1BbKTVsQgwGILnEgUbazcPGd4VBw1xIRl/view?usp=sharing",
+    viewUrl: "https://drive.google.com/file/d/1qU5S9AB01A3N2Aqh0z1TpuRnrLhGxcjW/view?usp=sharing",
     downloadUrl:
-      "https://drive.google.com/file/d/1BbKTVsQgwGILnEgUbazcPGd4VBw1xIRl/view?usp=sharing",
+      "https://drive.google.com/file/d/1qU5S9AB01A3N2Aqh0z1TpuRnrLhGxcjW/view?usp=sharing",
     icon: "DE",
     label: "DE / Systems / Database",
   },

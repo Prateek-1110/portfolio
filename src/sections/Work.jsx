@@ -77,7 +77,7 @@ const projects = [
   },
   {
     num: '04',
-    title: 'AI-Powered Oil Spill Detection System',
+    title: 'Oil Spill Detection System using AIS Fusion',
     desc: 'Developed an AI maritime monitoring system combining AIS anomaly detection, DeepLabV3 semantic segmentation, and SAR-AIS data fusion to segment oil spills with 92% accuracy across 1000+ km regions.',
     tags: ['DeepLabV3', 'PyTorch', 'SAR Imaging', 'Computer Vision'],
     year: '2024',
