@@ -1,6 +1,53 @@
+import React, { useState, useEffect, useRef } from 'react';
 import './About.css';
 import photo from './WhatsApp Image 2026-04-11 at 15.53.26.jpeg';
 import DataVisualizer from '../components/DataVisualizer';
+
+function Counter({ max, suffix }) {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+    let start = 0;
+    const duration = 1200; // ms
+    const stepTime = Math.max(Math.floor(duration / max), 30);
+    const timer = setInterval(() => {
+      start += 1;
+      if (start >= max) {
+        setCount(max);
+        clearInterval(timer);
+      } else {
+        setCount(start);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [hasStarted, max]);
+
+  return (
+    <span ref={elementRef}>
+      {count}{suffix}
+    </span>
+  );
+}
 
 export default function About() {
   return (
@@ -34,11 +81,15 @@ export default function About() {
 
         <div className="about__stats">
           <div className="about__stat">
-            <span className="stat-num">3M+</span>
+            <span className="stat-num">
+              <Counter max={3} suffix="M+" />
+            </span>
             <span className="stat-label">Records processed</span>
           </div>
           <div className="about__stat">
-            <span className="stat-num">5+</span>
+            <span className="stat-num">
+              <Counter max={5} suffix="+" />
+            </span>
             <span className="stat-label">ML Pipelines built</span>
           </div>
         </div>

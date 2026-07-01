@@ -212,6 +212,11 @@
 
 .bar-group {
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.bar-group:hover {
+  transform: translateX(4px);
 }
 
 .bar-group__labels {
@@ -224,6 +229,12 @@
 
 .bar-group__name {
   font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.bar-group:hover .bar-group__name,
+.bar-group.active .bar-group__name {
   color: var(--text);
 }
 
@@ -380,5 +391,39 @@
 }
 
 .legend-item__desc--bold strong {
-  color: var(--text-color);
+  color: var(--text);
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.self-align-start {
+  align-self: flex-start;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.pipeline-stack-svg {
+  margin-top: 1.5rem;
+  overflow: visible;
+}
+
+.pipeline-stack-svg text {
+  font-family: var(--font-body);
+}
+
+.pipeline-stack-svg line {
+  transition: stroke 0.3s, stroke-width 0.3s;
+}
+
+.pipeline-stack-svg g {
+  transition: transform 0.2s ease;
+}
+
+.pipeline-stack-svg g:hover {
+  transform: translateY(-2px);
 }

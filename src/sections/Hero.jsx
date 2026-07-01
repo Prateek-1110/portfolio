@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import ParticleSphere from '../components/ParticleSphere';
+import HeroTerminal from '../components/HeroTerminal';
 import './Hero.css';
 
 export default function Hero() {
@@ -41,6 +42,8 @@ export default function Hero() {
             Get in touch
           </button>
         </div>
+
+        <HeroTerminal />
 
         <div className="hero__scroll">
           <div className="hero__scroll-line" />

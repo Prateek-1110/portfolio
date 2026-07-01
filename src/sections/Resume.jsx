@@ -109,7 +109,7 @@ const Resume = () => {
       </div>
 
       <p className="resume-note">
-        - Last updated April 2025
+        - Last updated June 2026
       </p>
     </section>
   );

@@ -39,73 +39,84 @@ const languageData = [
   }
 ];
 
-const workloadData = [
+const mlToolsData = [
   {
-    label: "Retrieval & RAG Systems",
-    percentage: 95,
-    color: "#8a2be2", // Purple
-    tools: ["Qdrant", "PostgreSQL", "AST Parsing", "Sentence-Transformers"],
-    description: "Expert-level design of multi-stage retrieval fusing BM25 lexical search with dense vector embeddings and cross-encoder re-ranking."
+    name: "RAG Architecture",
+    proficiency: 95,
+    color: "#8a2be2",
+    description: "Designing deterministic multi-stage retrieval-augmented generation systems.",
+    details: "Implements dense-sparse vector hybrid indexing, Reciprocal Rank Fusion (RRF), AST parsing, and cross-encoder reranking algorithms."
   },
   {
-    label: "Agentic AI Workflows",
-    percentage: 90,
-    color: "#00ffff", // Cyan
-    tools: ["LangGraph", "LangChain", "LLM Intent Classifier", "Tool-Calling Loops"],
-    description: "Production-grade stateful multi-agent architectures using cyclic graphs and deterministic router reasoning."
+    name: "LangChain / LangGraph",
+    proficiency: 92,
+    color: "#00ffff",
+    description: "Building production-grade stateful multi-agent orchestrations.",
+    details: "Utilizes cyclical graph states, conditional node routing, and parallel execution hierarchies for complex tool-calling loops."
   },
   {
-    label: "ETL & Data Pipelines",
-    percentage: 85,
-    color: "#10b981", // Emerald
-    tools: ["FastAPI", "PostgreSQL", "DBSCAN Clustering", "Django Background Tasks"],
-    description: "Robust high-throughput ingestion pipelines handling millions of geospatial and textual records."
+    name: "PyTorch & CV models",
+    proficiency: 85,
+    color: "#10b981",
+    description: "Building, training, and optimizing deep neural networks.",
+    details: "Expertise in model segmentation (DeepLabV3), tensor manipulation, training loops, and multimodal data fusion architectures."
   },
   {
-    label: "Deep Learning & Vision",
-    percentage: 75,
-    color: "#f97316", // Orange
-    tools: ["PyTorch", "DeepLabV3", "SAR AIS Data Fusion", "Semantic Segmentation"],
-    description: "Deep understanding of computer vision segmentation models and data fusion algorithms."
+    name: "Qdrant Vector DB",
+    proficiency: 88,
+    color: "#ec4899",
+    description: "Optimizing high-dimensional dense vector embeddings store.",
+    details: "Designed payload filtering strategies, payload indexes, HNSW configurations, and collection clustering layouts."
+  },
+  {
+    name: "HuggingFace Transformers",
+    proficiency: 80,
+    color: "#f97316",
+    description: "Fine-tuning and deploying large language and vision models.",
+    details: "Utilizes pipeline abstractions, tokenizer customizations, and parameter-efficient fine-tuning (PEFT/LoRA) modules."
   }
 ];
 
-const pipelineData = [
+const pipelineStackData = [
   {
-    dataset: "US Accident Records",
-    volume: "3.0M+ Rows",
-    scale: 100, // normalized percentage
-    color: "#10b981",
-    engine: "PostgreSQL / Django",
-    latency: "Batch ETL",
-    usecase: "Geospatial DBSCAN density clustering for traffic hotspot detection."
-  },
-  {
-    dataset: "News Aggregation Feeds",
-    volume: "150K+ Monthly",
-    scale: 65,
+    stage: "Source",
+    label: "Data Sources",
     color: "#8a2be2",
-    engine: "Python Ingestion Engine",
-    latency: "< 2 mins",
-    usecase: "LLM-based deduplication, text categorization, and auto-publishing pipelines."
+    tools: "CSV, RSS Feeds, SAR Imagery, APIs",
+    desc: "Raw unstructured and structured inputs ingest pathways.",
+    details: "Consumes 3M+ traffic records, real-time RSS blog feeds, and satellite SAR imagery streams."
   },
   {
-    dataset: "Codebase Call Graphs",
-    volume: "85K+ Edges",
-    scale: 45,
+    stage: "Ingest",
+    label: "Ingestion Engine",
     color: "#00ffff",
-    engine: "PostgreSQL Graph Schema",
-    latency: "AST-parsed",
-    usecase: "Resolving caller-callee hierarchies for deterministic codebase RAG."
+    tools: "FastAPI, Python Streamers, AST",
+    desc: "Parsing, filtering, and sanitizing incoming streams.",
+    details: "Includes AST-based parser to break code repositories into syntax blocks and API stream endpoints with low latency."
   },
   {
-    dataset: "Satellite & SAR Frames",
-    volume: "12K+ Images",
-    scale: 25,
+    stage: "Store",
+    label: "Storage Layers",
+    color: "#10b981",
+    tools: "PostgreSQL, Qdrant Vector DB",
+    desc: "Indexing structured relational schemas and embeddings.",
+    details: "Leverages custom relational graphs in PG SQL and high-dimensional vector collection spaces in Qdrant."
+  },
+  {
+    stage: "Query",
+    label: "Query Pipeline",
     color: "#f97316",
-    engine: "PyTorch Segmenter",
-    latency: "Real-time stream",
-    usecase: "AI segmentation of oil spills fused with real-time AIS anomaly streams."
+    tools: "Hybrid RRF, Cross-Encoder",
+    desc: "Retrieval and search logic across indexes.",
+    details: "Combines lexical keyword matching (BM25) with semantic vector search, resolving results via reranking models."
+  },
+  {
+    stage: "Serve",
+    label: "Service Layer",
+    color: "#ec4899",
+    tools: "Llama 3 (Groq), Leaflet Maps UI",
+    desc: "Presenting insights and driving interactions.",
+    details: "Feeds context into LLM models for codebase intelligence, and renders spatial traffic clusters on custom interactive maps."
   }
 ];
 
@@ -116,8 +127,6 @@ export default function DataVisualizer() {
   // Math constants for SVG rendering
   const center = 100;
   const rMax = 70;
-  const strokeWidth = 10;
-  const gap = 16;
 
   // Radar chart coordinates calculator
   const getCoordinates = (data, scale = 1) => {
@@ -161,9 +170,9 @@ export default function DataVisualizer() {
           Languages
         </button>
         <button
-          className={`visualizer__tab ${activeTab === "workload" ? "active" : ""}`}
+          className={`visualizer__tab ${activeTab === "ml" ? "active" : ""}`}
           onClick={() => {
-            setActiveTab("workload");
+            setActiveTab("ml");
             setHoveredItem(null);
           }}
         >
@@ -191,7 +200,7 @@ export default function DataVisualizer() {
                     key={i}
                     d={getPentagonPath(rMax * scale)}
                     fill="transparent"
-                    stroke="var(--border-color)"
+                    stroke="var(--border)"
                     strokeWidth="0.8"
                     strokeOpacity="0.4"
                     strokeDasharray="2,2"
@@ -206,7 +215,7 @@ export default function DataVisualizer() {
                     y1={center}
                     x2={center + rMax * Math.cos(p.angle)}
                     y2={center + rMax * Math.sin(p.angle)}
-                    stroke="var(--border-color)"
+                    stroke="var(--border)"
                     strokeWidth="0.8"
                     strokeOpacity="0.4"
                   />
@@ -239,7 +248,7 @@ export default function DataVisualizer() {
                         cy={p.y}
                         r={isHovered ? 5 : 3.5}
                         fill={languageData[idx].color}
-                        stroke="var(--bg-card)"
+                        stroke="var(--bg)"
                         strokeWidth="1"
                         style={{
                           transition: "r 0.3s, filter 0.3s",
@@ -254,7 +263,6 @@ export default function DataVisualizer() {
 
                 {/* Labels around the radar */}
                 {getCoordinates(languageData, 1.22).map((p, idx) => {
-                  // align label dynamically
                   let anchor = "middle";
                   if (Math.abs(p.x - center) > 10) {
                     anchor = p.x > center ? "start" : "end";
@@ -266,7 +274,7 @@ export default function DataVisualizer() {
                       y={p.y + 3}
                       textAnchor={anchor}
                       className="radar-label"
-                      fill={hoveredItem === idx ? "var(--text-color)" : "var(--text-muted)"}
+                      fill={hoveredItem === idx ? "var(--text)" : "var(--text-muted)"}
                       style={{
                         fontFamily: "var(--font-display)",
                         fontSize: "8.5px",
@@ -309,130 +317,32 @@ export default function DataVisualizer() {
           </div>
         )}
 
-        {activeTab === "workload" && (
-          <div className="visualizer__grid">
-            <div className="visualizer__chart-wrap">
-              <svg className="radial-chart" viewBox="0 0 200 200">
-                {workloadData.map((item, idx) => {
-                  const radius = 80 - idx * gap;
-                  const circumference = 2 * Math.PI * radius;
-                  const strokeDashoffset = circumference - (item.percentage / 100) * circumference;
-                  const isHovered = hoveredItem === idx;
-
-                  return (
-                    <g
-                      key={idx}
-                      onMouseEnter={() => setHoveredItem(idx)}
-                      onMouseLeave={() => setHoveredItem(null)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {/* Background track */}
-                      <circle
-                        cx={center}
-                        cy={center}
-                        r={radius}
-                        fill="transparent"
-                        stroke="var(--bg-accent)"
-                        strokeWidth={strokeWidth}
-                        strokeOpacity="0.2"
-                      />
-                      {/* Glowing colored ring */}
-                      <circle
-                        cx={center}
-                        cy={center}
-                        r={radius}
-                        fill="transparent"
-                        stroke={item.color}
-                        strokeWidth={strokeWidth}
-                        strokeDasharray={circumference}
-                        strokeDashoffset={strokeDashoffset}
-                        strokeLinecap="round"
-                        transform={`rotate(-90 ${center} ${center})`}
-                        style={{
-                          transition: "stroke-width 0.3s, stroke-opacity 0.3s, filter 0.3s",
-                          filter: isHovered ? `drop-shadow(0 0 6px ${item.color})` : "none",
-                          strokeWidth: isHovered ? strokeWidth + 2 : strokeWidth,
-                        }}
-                      />
-                    </g>
-                  );
-                })}
-                {/* Center Label */}
-                <text
-                  x={center}
-                  y={center - 5}
-                  textAnchor="middle"
-                  className="radial-chart__center-title"
-                >
-                  {hoveredItem !== null ? `${workloadData[hoveredItem].percentage}%` : "ML / AI"}
-                </text>
-                <text
-                  x={center}
-                  y={center + 15}
-                  textAnchor="middle"
-                  className="radial-chart__center-sub"
-                >
-                  {hoveredItem !== null ? "Expertise" : "Proficiency"}
-                </text>
-              </svg>
-            </div>
-
-            <div className="visualizer__legend">
-              <h4 className="visualizer__subtitle">Interactive Competencies &amp; ML Architecture</h4>
-              <div className="legend-items">
-                {workloadData.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className={`legend-item ${hoveredItem === idx ? "active" : ""}`}
-                    onMouseEnter={() => setHoveredItem(idx)}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <div className="legend-item__header">
-                      <span className="legend-item__dot" style={{ backgroundColor: item.color }}></span>
-                      <span className="legend-item__name">{item.label}</span>
-                      <span className="legend-item__pct">{item.percentage}%</span>
-                    </div>
-                    <div className="legend-item__body">
-                      <p className="legend-item__desc">{item.description}</p>
-                      <div className="legend-item__tools">
-                        {item.tools.map((t, ti) => (
-                          <span key={ti} className="legend-item__tool-chip">{t}</span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "pipeline" && (
+        {activeTab === "ml" && (
           <div className="visualizer__grid">
             <div className="visualizer__bar-chart">
-              <h4 className="visualizer__subtitle">ETL Datasets &amp; Ingestion Throughput</h4>
+              <h4 className="visualizer__subtitle">ML / AI Core Competency Proficiency</h4>
               <div className="bar-groups">
-                {pipelineData.map((item, idx) => {
+                {mlToolsData.map((item, idx) => {
                   const isHovered = hoveredItem === idx;
                   return (
                     <div
                       key={idx}
-                      className="bar-group"
+                      className={`bar-group ${isHovered ? "active" : ""}`}
                       onMouseEnter={() => setHoveredItem(idx)}
                       onMouseLeave={() => setHoveredItem(null)}
                     >
                       <div className="bar-group__labels">
-                        <span className="bar-group__name">{item.dataset}</span>
-                        <span className="bar-group__volume">{item.volume}</span>
+                        <span className="bar-group__name">{item.name}</span>
+                        <span className="bar-group__volume">{item.proficiency}%</span>
                       </div>
                       <div className="bar-group__track">
                         <div
                           className="bar-group__fill"
                           style={{
-                            width: `${item.scale}%`,
+                            width: `${item.proficiency}%`,
                             backgroundColor: item.color,
                             boxShadow: isHovered ? `0 0 10px ${item.color}` : "none",
-                            transition: "width 0.5s ease-out, box-shadow 0.3s"
+                            transition: "width 0.6s cubic-bezier(0.1, 1, 0.1, 1), box-shadow 0.3s"
                           }}
                         ></div>
                       </div>
@@ -444,27 +354,155 @@ export default function DataVisualizer() {
 
             <div className="visualizer__details">
               {hoveredItem !== null ? (
-                <div className="details-card active" style={{ borderColor: pipelineData[hoveredItem].color }}>
+                <div className="details-card active" style={{ borderColor: mlToolsData[hoveredItem].color }}>
                   <div className="details-card__header">
-                    <span className="details-card__title">{pipelineData[hoveredItem].dataset}</span>
-                    <span className="details-card__badge" style={{ backgroundColor: `${pipelineData[hoveredItem].color}22`, color: pipelineData[hoveredItem].color }}>
-                      {pipelineData[hoveredItem].volume}
+                    <span className="details-card__title">{mlToolsData[hoveredItem].name}</span>
+                    <span className="details-card__badge" style={{ backgroundColor: `${mlToolsData[hoveredItem].color}22`, color: mlToolsData[hoveredItem].color }}>
+                      {mlToolsData[hoveredItem].proficiency}%
                     </span>
                   </div>
                   <div className="details-card__row">
-                    <span className="details-card__label">Pipeline Engine:</span>
-                    <span className="details-card__val">{pipelineData[hoveredItem].engine}</span>
+                    <span className="details-card__label">Role Focus:</span>
+                    <span className="details-card__val">{mlToolsData[hoveredItem].description}</span>
                   </div>
-                  <div className="details-card__row">
-                    <span className="details-card__label">Latency Class:</span>
-                    <span className="details-card__val">{pipelineData[hoveredItem].latency}</span>
-                  </div>
-                  <p className="details-card__desc">{pipelineData[hoveredItem].usecase}</p>
+                  <p className="details-card__desc">{mlToolsData[hoveredItem].details}</p>
                 </div>
               ) : (
                 <div className="details-card details-card--placeholder">
                   <div className="placeholder-pulsar"></div>
-                  <p>Hover over any dataset bar to inspect the custom pipeline engine details, latencies, and ingestion targets.</p>
+                  <p>Hover over any competency bar to inspect practical frameworks, implementation designs, and systems application context.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "pipeline" && (
+          <div className="visualizer__grid">
+            <div className="visualizer__chart-wrap flex-column">
+              <h4 className="visualizer__subtitle self-align-start w-100">Interactive Pipeline Topology</h4>
+              
+              <svg className="pipeline-stack-svg" viewBox="0 0 460 120" style={{ width: "100%", height: "auto" }}>
+                <defs>
+                  <marker id="arrow-pipeline" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="var(--text-faint)" />
+                  </marker>
+                </defs>
+
+                {/* Connection paths with flowing dot dash effect */}
+                {[0, 1, 2, 3].map((i) => {
+                  const x1 = 40 + i * 95 + 16;
+                  const x2 = 40 + (i + 1) * 95 - 16;
+                  const isConnectingHover = hoveredItem === i || hoveredItem === i + 1;
+                  return (
+                    <line
+                      key={i}
+                      x1={x1}
+                      y1={55}
+                      x2={x2}
+                      y2={55}
+                      stroke={isConnectingHover ? "var(--text)" : "var(--border)"}
+                      strokeWidth={isConnectingHover ? "1.5" : "1"}
+                      strokeDasharray={isConnectingHover ? "4,4" : "2,2"}
+                      markerEnd="url(#arrow-pipeline)"
+                      style={{
+                        transition: "stroke 0.3s ease, stroke-width 0.3s ease",
+                      }}
+                    />
+                  );
+                })}
+
+                {/* Nodes */}
+                {pipelineStackData.map((node, idx) => {
+                  const cx = 40 + idx * 95;
+                  const cy = 55;
+                  const isHovered = hoveredItem === idx;
+
+                  return (
+                    <g
+                      key={idx}
+                      onMouseEnter={() => setHoveredItem(idx)}
+                      onMouseLeave={() => setHoveredItem(null)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {/* Outer Ring */}
+                      <circle
+                        cx={cx}
+                        cy={cy}
+                        r={20}
+                        fill="var(--bg-alt)"
+                        stroke={isHovered ? node.color : "var(--border)"}
+                        strokeWidth={isHovered ? "2.5" : "1.2"}
+                        style={{
+                          transition: "stroke 0.3s ease, stroke-width 0.3s ease, filter 0.3s ease",
+                          filter: isHovered ? `drop-shadow(0 0 8px ${node.color})` : "none"
+                        }}
+                      />
+                      {/* Inner Core */}
+                      <circle
+                        cx={cx}
+                        cy={cy}
+                        r={6}
+                        fill={node.color}
+                      />
+                      {/* Label top */}
+                      <text
+                        x={cx}
+                        y={25}
+                        textAnchor="middle"
+                        fill={isHovered ? "var(--text)" : "var(--text-muted)"}
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontSize: "8.5px",
+                          fontWeight: isHovered ? "700" : "500",
+                          transition: "fill 0.3s ease"
+                        }}
+                      >
+                        {node.stage}
+                      </text>
+                      {/* Tool name bottom */}
+                      <text
+                        x={cx}
+                        y={90}
+                        textAnchor="middle"
+                        fill="var(--text-faint)"
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          fontSize: "7px",
+                          fontWeight: "500"
+                        }}
+                      >
+                        {node.label}
+                      </text>
+                    </g>
+                  );
+                })}
+              </svg>
+            </div>
+
+            <div className="visualizer__details">
+              {hoveredItem !== null ? (
+                <div className="details-card active" style={{ borderColor: pipelineStackData[hoveredItem].color }}>
+                  <div className="details-card__header">
+                    <span className="details-card__title">{pipelineStackData[hoveredItem].label} ({pipelineStackData[hoveredItem].stage})</span>
+                    <span className="details-card__badge" style={{ backgroundColor: `${pipelineStackData[hoveredItem].color}22`, color: pipelineStackData[hoveredItem].color }}>
+                      Active Node
+                    </span>
+                  </div>
+                  <div className="details-card__row">
+                    <span className="details-card__label">Tech Tools:</span>
+                    <span className="details-card__val">{pipelineStackData[hoveredItem].tools}</span>
+                  </div>
+                  <div className="details-card__row">
+                    <span className="details-card__label">Role Process:</span>
+                    <span className="details-card__val">{pipelineStackData[hoveredItem].desc}</span>
+                  </div>
+                  <p className="details-card__desc">{pipelineStackData[hoveredItem].details}</p>
+                </div>
+              ) : (
+                <div className="details-card details-card--placeholder">
+                  <div className="placeholder-pulsar"></div>
+                  <p>Hover over pipeline stages (Source → Ingest → Store → Query → Serve) in the topology stack map to explore concrete ingestion tools and querying strategies.</p>
                 </div>
               )}
             </div>

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import './Work.css';
 
 const GitHubIcon = ({ size = 14 }) => (
@@ -86,66 +87,230 @@ const projects = [
   },
 ];
 
+const renderArchitectureSVG = (index) => {
+  const arrowDef = (
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="var(--text-faint)" />
+      </marker>
+    </defs>
+  );
+
+  if (index === 0) {
+    return (
+      <svg viewBox="0 0 440 90" className="project-arch-svg">
+        {arrowDef}
+        <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
+        <text x="35" y="47" textAnchor="middle" className="arch-text">Codebase</text>
+        <path d="M 65,42.5 L 85,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="85" y="25" width="65" height="35" rx="6" className="arch-node" />
+        <text x="117.5" y="42" textAnchor="middle" className="arch-text">Tree-sitter</text>
+        <text x="117.5" y="52" textAnchor="middle" className="arch-subtext">AST Parser</text>
+        <path d="M 150,42.5 L 170,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="170" y="25" width="70" height="35" rx="6" className="arch-node arch-node--db" />
+        <text x="205" y="42" textAnchor="middle" className="arch-text">Qdrant / PG</text>
+        <text x="205" y="52" textAnchor="middle" className="arch-subtext">Vector+Graph</text>
+        <path d="M 240,42.5 L 260,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="260" y="25" width="65" height="35" rx="6" className="arch-node" />
+        <text x="292.5" y="42" textAnchor="middle" className="arch-text">BM25+Dense</text>
+        <text x="292.5" y="52" textAnchor="middle" className="arch-subtext">RRF Hybrid</text>
+        <path d="M 325,42.5 L 345,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="345" y="25" width="55" height="35" rx="6" className="arch-node" />
+        <text x="372.5" y="42" textAnchor="middle" className="arch-text">Cross-Encoder</text>
+        <text x="372.5" y="52" textAnchor="middle" className="arch-subtext">Re-ranking</text>
+        <path d="M 400,42.5 L 412,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="412" y="25" width="23" height="35" rx="4" className="arch-node arch-node--llm" />
+        <text x="423.5" y="46" textAnchor="middle" className="arch-text">LLM</text>
+      </svg>
+    );
+  }
+  if (index === 1) {
+    return (
+      <svg viewBox="0 0 440 90" className="project-arch-svg">
+        {arrowDef}
+        <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
+        <text x="35" y="42" textAnchor="middle" className="arch-text">3M+ US</text>
+        <text x="35" y="52" textAnchor="middle" className="arch-subtext">Accident CSV</text>
+        <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
+        <text x="125" y="42" textAnchor="middle" className="arch-text">ETL Clean</text>
+        <text x="125" y="52" textAnchor="middle" className="arch-subtext">Processing</text>
+        <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
+        <text x="222.5" y="42" textAnchor="middle" className="arch-text">DBSCAN</text>
+        <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Geospatial Cluster</text>
+        <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
+        <text x="320" y="42" textAnchor="middle" className="arch-text">Random Forest</text>
+        <text x="320" y="52" textAnchor="middle" className="arch-subtext">Risk Prediction</text>
+        <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
+        <text x="407.5" y="42" textAnchor="middle" className="arch-text">Django</text>
+        <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Leaflet Map</text>
+      </svg>
+    );
+  }
+  if (index === 2) {
+    return (
+      <svg viewBox="0 0 440 90" className="project-arch-svg">
+        {arrowDef}
+        <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
+        <text x="35" y="42" textAnchor="middle" className="arch-text">20+ RSS</text>
+        <text x="35" y="52" textAnchor="middle" className="arch-subtext">News Feeds</text>
+        <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
+        <text x="125" y="42" textAnchor="middle" className="arch-text">Python Ingest</text>
+        <text x="125" y="52" textAnchor="middle" className="arch-subtext">Request Streams</text>
+        <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
+        <text x="222.5" y="42" textAnchor="middle" className="arch-text">Cosine Similarity</text>
+        <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Deduplication</text>
+        <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
+        <text x="320" y="42" textAnchor="middle" className="arch-text">LLM Engine</text>
+        <text x="320" y="52" textAnchor="middle" className="arch-subtext">Summary/Tags</text>
+        <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
+        <text x="407.5" y="42" textAnchor="middle" className="arch-text">Automated</text>
+        <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Publishing</text>
+      </svg>
+    );
+  }
+  if (index === 3) {
+    return (
+      <svg viewBox="0 0 440 90" className="project-arch-svg">
+        {arrowDef}
+        <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
+        <text x="35" y="42" textAnchor="middle" className="arch-text">Satellite SAR</text>
+        <text x="35" y="52" textAnchor="middle" className="arch-subtext">+ AIS Data</text>
+        <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
+        <text x="125" y="42" textAnchor="middle" className="arch-text">SAR Filter</text>
+        <text x="125" y="52" textAnchor="middle" className="arch-subtext">Preprocessing</text>
+        <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
+        <text x="222.5" y="42" textAnchor="middle" className="arch-text">DeepLabV3</text>
+        <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Segmentation</text>
+        <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
+        <text x="320" y="42" textAnchor="middle" className="arch-text">SAR-AIS</text>
+        <text x="320" y="52" textAnchor="middle" className="arch-subtext">Fusion</text>
+        <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
+        
+        <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
+        <text x="407.5" y="42" textAnchor="middle" className="arch-text">Anomaly</text>
+        <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Alert Output</text>
+      </svg>
+    );
+  }
+  return null;
+};
+
 export default function Work() {
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
+  const toggleExpand = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
     <section className="work" id="work">
       <div className="work__header">
         <div className="section-label">03 — Work</div>
         <h2 className="section-title">Selected projects</h2>
         <p className="work__subtitle">
-          A curated set of things I've built , ranging from creative experiments to production systems.
+          A curated set of things I've built, ranging from creative experiments to production systems. Click a project to explore its architecture.
         </p>
       </div>
 
       <div className="work__list">
-        {projects.map((p, i) => (
-          <div className="project-row" key={i}>
-            <div className="project-row__num">{p.num}</div>
-
-            <div className="project-row__main">
-              <div className="project-row__top">
-                <h3 className="project-row__title">{p.title}</h3>
-                <span className="project-row__year">{p.year}</span>
+        {projects.map((p, i) => {
+          const isExpanded = expandedIndex === i;
+          return (
+            <div
+              className={`project-row ${isExpanded ? 'project-row--expanded' : ''}`}
+              key={i}
+              onClick={() => toggleExpand(i)}
+              style={{ cursor: 'pointer' }}
+            >
+              <div className="project-row__summary">
+                <div className="project-row__num">{p.num}</div>
+                <div className="project-row__title-wrap">
+                  <h3 className="project-row__title">{p.title}</h3>
+                  <span className="project-row__year">{p.year}</span>
+                </div>
+                <div className={`project-row__arrow ${isExpanded ? 'project-row__arrow--expanded' : ''}`}>
+                  ↓
+                </div>
               </div>
 
-              <p className="project-row__desc">{p.desc}</p>
+              <div className={`project-row__drawer ${isExpanded ? 'project-row__drawer--active' : ''}`}>
+                {isExpanded && (
+                  <div className="project-row__drawer-content" onClick={(e) => e.stopPropagation()}>
+                    <p className="project-row__desc">{p.desc}</p>
+                    
+                    <div className="project-row__arch-section">
+                      <h4 className="project-row__arch-title">Data Ingest &amp; Systems Architecture</h4>
+                      <div className="project-row__arch-svg-container">
+                        {renderArchitectureSVG(i)}
+                      </div>
+                    </div>
 
-              <div className="project-row__tags">
-                {p.tags.map((t, j) => (
-                  <span className="project-tag" key={j}>{t}</span>
-                ))}
-              </div>
+                    <div className="project-row__footer-meta">
+                      <div className="project-row__tags">
+                        {p.tags.map((t, j) => (
+                          <span className="project-tag" key={j}>{t}</span>
+                        ))}
+                      </div>
 
-              <div className="project-row__links">
-                {p.live && p.live !== p.github && (
-                  <>
-                    <a
-                      href={p.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link"
-                    >
-                      <ExternalIcon />
-                      Live
-                    </a>
-                    <span className="link-divider" />
-                  </>
+                      <div className="project-row__links">
+                        {p.live && p.live !== p.github && (
+                          <>
+                            <a
+                              href={p.live}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="project-link"
+                            >
+                              <ExternalIcon />
+                              Live Demo
+                            </a>
+                            <span className="link-divider" />
+                          </>
+                        )}
+                        <a
+                          href={p.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-link"
+                        >
+                          <GitHubIcon />
+                          Source Code
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 )}
-                <a
-                  href={p.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-link"
-                >
-                  <GitHubIcon />
-                  GitHub
-                </a>
               </div>
             </div>
-
-            <div className="project-row__arrow">↗</div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="work__footer">

@@ -1,0 +1,101 @@
+.hero-terminal {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(19, 18, 17, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin: 3rem auto 0;
+  text-align: left;
+  overflow: hidden;
+  font-family: 'Courier New', Courier, monospace;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-terminal:hover {
+  border-color: rgba(138, 43, 226, 0.3);
+  box-shadow: 0 16px 48px rgba(138, 43, 226, 0.1);
+}
+
+.hero-terminal__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot--red { background: #ff5f56; }
+.dot--yellow { background: #ffbd2e; }
+.dot--green { background: #27c93f; }
+
+.hero-terminal__title {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  margin-left: auto;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.hero-terminal__body {
+  padding: 1.25rem;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.terminal-line {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.terminal-line--command {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.terminal-line--output {
+  color: var(--text-muted);
+  font-weight: 500;
+  padding-left: 0.8rem;
+  animation: slideIn 0.25s ease-out forwards;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: bold;
+  color: #00ffff;
+  animation: blink 0.8s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  .hero-terminal {
+    max-width: 90%;
+    margin-top: 2rem;
+  }
+  .terminal-line {
+    font-size: 0.75rem;
+  }
+}
