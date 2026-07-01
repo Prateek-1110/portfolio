@@ -1,6 +1,6 @@
 .skills {
   padding: 6rem 4rem 8rem;
-  background: var(--bg-alt);
+  background: transparent;
   border-top: 0.5px solid var(--border);
   border-bottom: 0.5px solid var(--border);
 }
