@@ -3,23 +3,19 @@ import './Skills.css';
 const categories = [
   {
     label: 'Languages',
-    skills: ['C++', 'Python', 'SQL', 'JavaScript'],
+    skills: ['C++', 'Python', 'SQL', 'JavaScript', 'TypeScript'],
   },
   {
-    label: 'Machine Learning / AI',
-    skills: ['PyTorch', 'scikit-learn', 'Transformers', 'NLP', 'RAG', 'Computer Vision'],
+    label: 'Machine Learning & Agentic AI',
+    skills: ['PyTorch', 'scikit-learn', 'Transformers', 'LangChain', 'LangGraph', 'MCP', 'RAG', 'NLP', 'Computer Vision'],
   },
   {
     label: 'Data Engineering',
-    skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Qdrant', 'Docker', 'Kubernetes'],
+    skills: ['PostgreSQL', 'Qdrant', 'Redis', 'MongoDB', 'Docker', 'Kubernetes'],
   },
   {
-    label: 'Backend',
-    skills: ['FastAPI', 'Django', 'Node.js'],
-  },
-  {
-    label: 'Frontend (Supporting)',
-    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    label: 'Software Engineering (Unified Stack)',
+    skills: ['FastAPI', 'Django', 'Node.js', 'React', 'Next.js', 'Tailwind CSS'],
   },
 ];
 
