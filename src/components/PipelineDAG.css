@@ -7,12 +7,12 @@
   overflow: hidden;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.22; /* Subtle background layer */
+  opacity: 0.30; /* Subtle background layer */
   transition: opacity 0.3s ease;
 }
 
 [data-theme='dark'] .pipeline-dag-container {
-  opacity: 0.08;
+  opacity: 0.15;
 }
 
 .pipeline-dag-svg {

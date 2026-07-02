@@ -90,7 +90,7 @@ export default function About() {
 
           <div className="about__text-block">
             <p>
-              I'm a B.Tech Bioscience &amp; Bioengineering student (Minor in Artificial Intelligence) at IIT Jodhpur building systems that sit at the boundary of raw data and intelligent reasoning — retrieval pipelines, NLP models, and agentic AI workflows.
+              I'm a B.Tech student (Minor in AI) at IIT Jodhpur building systems that sit at the boundary of raw data and intelligent reasoning — retrieval pipelines, NLP models, and agentic AI workflows.
             </p>
             <p>
               My edge: I approach ML from a systems lens. I care about latency, data quality, pipeline reproducibility, and evaluation harnesses — not just training accuracy. Every project I ship is end-to-end and measurable.

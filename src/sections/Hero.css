@@ -289,3 +289,14 @@
     margin-top: 3.5rem;
   }
 }
+
+.particle-sphere-canvas {
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme='dark'] .particle-sphere-canvas {
+  opacity: 0.90;
+}

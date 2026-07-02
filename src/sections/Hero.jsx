@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ParticleSphere from '../components/ParticleSphere';
 import PipelineDAG from '../components/PipelineDAG';
 import './Hero.css';
 
@@ -75,6 +76,7 @@ export default function Hero() {
 
   return (
     <section className="hero" id="hero" ref={heroRef}>
+      <ParticleSphere heroRef={heroRef} />
       <PipelineDAG />
 
       <div className="hero__inner hero__inner--centered">

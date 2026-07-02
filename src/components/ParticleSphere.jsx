@@ -2,18 +2,24 @@ import { useEffect, useRef } from 'react';
 
 const PARTICLE_COUNT = 320;
 
-const COLORS = [
-  [180, 160, 120],
-  [110, 190, 130],
-  [140, 160, 180],
-  [190, 130, 110],
-  [130, 155, 135],
-  [160, 140, 190],
-  [200, 170, 110],
-  [110, 150, 170],
+const DARK_COLORS = [
+  [0, 217, 255],   // Electric Cyan
+  [124, 58, 237],  // Violet
+  [236, 72, 153],  // Hot Pink
+  [16, 185, 129],  // Emerald
+  [0, 191, 255],   // Deep Sky Blue
+  [224, 242, 254],  // Light Slate/Blue-White
 ];
 
-const CONNECTION_DIST_PX_FACTOR = 0.65; // fraction of R
+const LIGHT_COLORS = [
+  [0, 102, 204],   // Deep Blue
+  [109, 40, 217],  // Violet
+  [15, 118, 110],  // Teal
+  [219, 39, 119],  // Saturated Pink
+  [30, 41, 59],    // Slate-800
+];
+
+const CONNECTION_DIST_PX_FACTOR = 0.72; // fraction of R
 
 function lerp(a, b, t) { return a + (b - a) * t; }
 
@@ -64,14 +70,18 @@ export default function ParticleSphere({ heroRef }) {
       canvas.style.height = rect.height + 'px';
       ctx.scale(dpr, dpr);
       s.cx = rect.width / 2;
-      s.cy = rect.height / 2;
-      s.R = Math.min(rect.width, rect.height) * 0.38;
+      s.cy = rect.height * 0.31; // Shifted up to align with text/CTA buttons and keep the stats card clear
+      s.R = Math.min(rect.width, rect.height) * 0.35;
       s.mouse.x = s.cx; s.mouse.y = s.cy;
       s.smoothMouse.x = s.cx; s.smoothMouse.y = s.cy;
     }
 
     syncSize();
     window.addEventListener('resize', syncSize);
+
+    // Theme detection and observer
+    let currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const initialPalette = currentTheme === 'light' ? LIGHT_COLORS : DARK_COLORS;
 
     // Fibonacci sphere for even surface distribution
     s.particles = [];
@@ -80,12 +90,14 @@ export default function ParticleSphere({ heroRef }) {
       const t = i / (PARTICLE_COUNT - 1);
       const phi = Math.acos(1 - 2 * t);
       const theta = goldenAngle * i;
+      const col = initialPalette[Math.floor(Math.random() * initialPalette.length)];
       s.particles.push({
         phi,
         theta,
-        col: COLORS[Math.floor(Math.random() * COLORS.length)],
-        size: 0.9 + Math.random() * 1.2,
-        alpha: 0.3 + Math.random() * 0.5,
+        col: [...col],
+        targetCol: [...col],
+        size: 1.2 + Math.random() * 1.8,
+        alpha: 0.5 + Math.random() * 0.5,
         thetaSpeed: (Math.random() - 0.5) * 0.003,
         phiSpeed: (Math.random() - 0.5) * 0.0015,
         breatheAmp: 0.012 + Math.random() * 0.025,
@@ -93,6 +105,22 @@ export default function ParticleSphere({ heroRef }) {
         breatheOffset: Math.random() * Math.PI * 2,
       });
     }
+
+    function updateColorsForTheme(theme) {
+      const palette = theme === 'light' ? LIGHT_COLORS : DARK_COLORS;
+      s.particles.forEach(p => {
+        p.targetCol = palette[Math.floor(Math.random() * palette.length)];
+      });
+    }
+
+    const themeObserver = new MutationObserver(() => {
+      const nextTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      if (nextTheme !== currentTheme) {
+        currentTheme = nextTheme;
+        updateColorsForTheme(nextTheme);
+      }
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     function onMouseMove(e) {
       if (!s.heroRect) return;
@@ -126,7 +154,7 @@ export default function ParticleSphere({ heroRef }) {
           if (dist > maxDist) continue;
           const t = 1 - dist / maxDist;
           const depthFade = Math.max(0, (a.z + b.z) / (2 * R) + 0.5);
-          const alpha = t * t * depthFade * 0.18;
+          const alpha = t * t * depthFade * 0.35; // Increased connection alpha
           if (alpha < 0.01) continue;
           const [r, g, b2] = s.particles[a.idx].col;
           ctx.beginPath();
@@ -154,6 +182,12 @@ export default function ParticleSphere({ heroRef }) {
       const projected = s.particles.map((p, i) => {
         p.theta += p.thetaSpeed;
         p.phi = Math.max(0.05, Math.min(Math.PI - 0.05, p.phi + p.phiSpeed));
+
+        // Smoothly lerp active color to target theme color
+        p.col[0] = lerp(p.col[0], p.targetCol[0], 0.05);
+        p.col[1] = lerp(p.col[1], p.targetCol[1], 0.05);
+        p.col[2] = lerp(p.col[2], p.targetCol[2], 0.05);
+
         return { ...projectParticle(p, s.R, s.cx, s.cy, s.autoRotX, s.autoRotY, s.tiltX, s.tiltY), idx: i };
       });
 
@@ -164,7 +198,7 @@ export default function ParticleSphere({ heroRef }) {
       for (const pt of projected) {
         const p = s.particles[pt.idx];
         const depthT = (pt.z / s.R + 1) / 2; // 0=back, 1=front
-        const depthAlpha = p.alpha * (0.10 + 0.90 * depthT);
+        const depthAlpha = p.alpha * (0.25 + 0.75 * depthT); // Increased base depth alpha
         const depthSize = Math.max(0.3, p.size * (0.35 + 0.65 * depthT) * pt.persp);
         const [r, g, b] = p.col;
         ctx.beginPath();
@@ -178,6 +212,7 @@ export default function ParticleSphere({ heroRef }) {
 
     return () => {
       cancelAnimationFrame(s.animId);
+      themeObserver.disconnect(); // Clean up mutation observer
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('resize', syncSize);
     };
@@ -186,6 +221,7 @@ export default function ParticleSphere({ heroRef }) {
   return (
     <canvas
       ref={canvasRef}
+      className="particle-sphere-canvas"
       style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', zIndex: 0 }}
     />
   );
