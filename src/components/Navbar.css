@@ -274,4 +274,12 @@
     visibility: hidden !important;
     pointer-events: none !important;
   }
+
+  /* Disable backdrop-filter containing block behavior on mobile when open */
+  .navbar--open {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
 }
