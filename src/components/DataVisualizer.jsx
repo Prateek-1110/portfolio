@@ -7,7 +7,7 @@ const languageData = [
     score: 95,
     color: "#8a2be2", // Purple
     description: "Primary choice for performance-critical systems, low-level optimizations, and advanced data structures. 500+ questions solved.",
-    usecase: "Competitive Programming (Knight rating on LeetCode) and custom low-level algorithmic logic."
+    usecase: "Algorithmic Problem Solving (Knight rating on LeetCode) and custom low-level logic."
   },
   {
     subject: "SQL",

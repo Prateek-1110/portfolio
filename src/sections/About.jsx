@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './About.css';
-import photo from './WhatsApp Image 2026-04-11 at 15.53.26.jpeg';
+import photo from './image.png';
 import DataVisualizer from '../components/DataVisualizer';
 
 // ── Smooth CountUp Counter with Intersection Observer ─────

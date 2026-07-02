@@ -1,5 +1,4 @@
 // src/sections/Contact.jsx
-// Change from original: Medium social pill added after LinkedIn
 import { useState } from 'react';
 import './Contact.css';
 

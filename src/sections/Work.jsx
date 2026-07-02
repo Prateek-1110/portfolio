@@ -81,19 +81,8 @@ const allProjects = [
 ];
 
 export default function Work() {
-  const [filter, setFilter] = useState('All');
-  const [showExtended, setShowExtended] = useState(false);
-
-  // Filter categories
-  const categories = ['All', 'ML/AI', 'Data Engineering', 'NLP', 'Computer Vision'];
-
   // Base projects showing in Bento Grid initially (all 5)
   const baseProjects = allProjects;
-  
-  // Extended list including all projects
-  const filteredProjects = filter === 'All' 
-    ? allProjects 
-    : allProjects.filter(p => p.category === filter);
 
   const drawFlowchart = (nodes) => {
     return (
@@ -200,52 +189,17 @@ export default function Work() {
         })}
       </div>
 
-      {/* Toggle Extended Filterable Overlay */}
+      {/* External GitHub CTA */}
       <div className="work__browse-cta">
-        <button 
+        <a 
           className="btn btn--ghost-animated"
-          onClick={() => setShowExtended(!showExtended)}
+          href="https://github.com/prateek-1110"
+          target="_blank"
+          rel="noreferrer"
         >
-          {showExtended ? "Hide Project Explorer" : "Browse All Projects"}
-        </button>
+          Browse All Projects
+        </a>
       </div>
-
-      {showExtended && (
-        <div className="work__extended-panel">
-          <div className="work__filter-tabs">
-            {categories.map((c) => (
-              <button
-                key={c}
-                className={`work__filter-tab ${filter === c ? 'active' : ''}`}
-                onClick={() => setFilter(c)}
-              >
-                {c}
-              </button>
-            ))}
-          </div>
-
-          <div className="work__extended-grid">
-            {filteredProjects.map((p) => (
-              <a key={p.num} href={p.github} className="extended-card" target="_blank" rel="noreferrer">
-                <div className="extended-card__header">
-                  <span className="extended-card__num">{p.num}</span>
-                  <span className="extended-card__category">{p.category}</span>
-                </div>
-                <h3 className="extended-card__title">{p.title}</h3>
-                <p className="extended-card__desc">{p.desc}</p>
-                <div className="extended-card__footer">
-                  <div className="extended-card__tags">
-                    {p.tags.slice(0, 3).map((t, i) => (
-                      <span key={i} className="bento-card__tag-pill">{t}</span>
-                    ))}
-                  </div>
-                  <span className="extended-card__metric">{p.metric}</span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
     </section>
   );
 }

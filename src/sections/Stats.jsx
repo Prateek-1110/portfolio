@@ -224,10 +224,27 @@ export default function Stats() {
   }, []);
 
   const codingStats = [
-    { name: "GeeksforGeeks", count: 650, color: "var(--accent-secondary)", profile: "https://www.geeksforgeeks.org/user/prateekagr1110/" },
-    { name: "LeetCode", count: 500, color: "var(--accent)", profile: "https://leetcode.com/prateekagr-1110/" },
-    { name: "Codeforces", count: 175, color: "#F59E0B", profile: "https://codeforces.com/profile/prateek_1110" },
-    { name: "CodeChef", count: 170, color: "var(--accent-tertiary)", profile: "https://www.codechef.com/users/prateek11_10" }
+    { 
+      name: "GeeksforGeeks", 
+      count: 650, 
+      color: "var(--accent-secondary)", 
+      profiles: [{ label: "GFG Profile", url: "https://www.geeksforgeeks.org/user/prateekagr1110/" }] 
+    },
+    { 
+      name: "LeetCode", 
+      count: 500, 
+      color: "var(--accent)", 
+      profiles: [{ label: "LeetCode Profile", url: "https://leetcode.com/prateekagr-1110/" }] 
+    },
+    { 
+      name: " Competitive Programming (CP)", 
+      count: 300, 
+      color: "#F59E0B", 
+      profiles: [
+        { label: "Codeforces", url: "https://codeforces.com/profile/prateek_1110" },
+        { label: "CodeChef", url: "https://www.codechef.com/users/prateek11_10" }
+      ] 
+    }
   ];
 
   return (
@@ -237,7 +254,7 @@ export default function Stats() {
 
       <div className="stats-header">
         <div className="section-label">07 — Stats</div>
-        <h2 className="stats-title">Competitive Problem Solving</h2>
+        <h2 className="stats-title">Problem Solving Stats</h2>
         <p className="stats-subtitle">
           Over 1,300+ problems solved across major algorithmic programming environments.
         </p>
@@ -246,7 +263,7 @@ export default function Stats() {
       <div className="stats-dashboard">
         {/* ONE grouped horizontal bar chart comparing problems solved */}
         <div className="stats-chart-card">
-          <h4 className="stats-chart-title">Competitive Problem Solving — 1300+ Problems Total</h4>
+          <h4 className="stats-chart-title">Solved Problem Stats — 1,300+ Total</h4>
 
           <div className="horizontal-bar-chart">
             {codingStats.map((stat, idx) => {
@@ -254,7 +271,7 @@ export default function Stats() {
               const widthPct = (stat.count / maxScale) * 100;
 
               return (
-                <a key={idx} href={stat.profile} target="_blank" rel="noreferrer" className="bar-row-link">
+                <div key={idx} className="stats-row-card">
                   <div className="bar-row">
                     <div className="bar-label">{stat.name}</div>
                     <div className="bar-track-container">
@@ -272,7 +289,25 @@ export default function Stats() {
                       {stat.count}+
                     </div>
                   </div>
-                </a>
+                  <div className="stats-profiles-actions">
+                    {stat.profiles.map((p, pIdx) => (
+                      <a 
+                        key={pIdx} 
+                        href={p.url} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="btn-profile-action"
+                        style={{ '--btn-accent-color': stat.color }}
+                      >
+                        {p.label}
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="profile-arrow-icon">
+                          <line x1="7" y1="17" x2="17" y2="7" />
+                          <polyline points="7 7 17 7 17 17" />
+                        </svg>
+                      </a>
+                    ))}
+                  </div>
+                </div>
               );
             })}
           </div>

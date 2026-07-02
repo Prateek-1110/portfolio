@@ -4,8 +4,8 @@ import "./Resume.css";
 const resumes = [
   {
     role: "ML / AI Engineer Resume",
-    description:
-      "Tailored for deep learning positions, highlighting neural architectures, RAG systems, NLP model evaluations, and Vector Database indexing strategies.",
+    // description:
+    //   "Tailored for deep learning positions, highlighting neural architectures, RAG systems, NLP model evaluations, and Vector Database indexing strategies.",
     tags: ["PyTorch", "NLP", "RAG", "LLMs", "Transformers"],
     viewUrl: "https://drive.google.com/file/d/1BbKTVsQgwGILnEgUbazcPGd4VBw1xIRl/view?usp=sharing",
     downloadUrl: "https://drive.google.com/file/d/1BbKTVsQgwGILnEgUbazcPGd4VBw1xIRl/view?usp=sharing",
@@ -15,8 +15,8 @@ const resumes = [
   },
   {
     role: "Data Engineer Resume",
-    description:
-      "Focused on database schema designs, automated ETL pipelines, distributed processing engines, and reproducible data workflows.",
+    // description:
+    //   "Focused on database schema designs, automated ETL pipelines, distributed processing engines, and reproducible data workflows.",
     tags: ["SQL", "ETL Pipelines", "PostgreSQL", "Qdrant", "Docker"],
     viewUrl: "https://drive.google.com/file/d/1qU5S9AB01A3N2Aqh0z1TpuRnrLhGxcjW/view?usp=sharing",
     downloadUrl: "https://drive.google.com/file/d/1qU5S9AB01A3N2Aqh0z1TpuRnrLhGxcjW/view?usp=sharing",
@@ -36,7 +36,7 @@ export default function Resume() {
 
       <div className="resume-header">
         <div className="section-label">08 — Resume</div>
-        <h2 className="resume-title">Tailored Professional Resumes</h2>
+        <h2 className="resume-title">Resumes</h2>
         
         {/* Pulsing maintained badge */}
         <div className="resume-status-badge">
