@@ -3,11 +3,11 @@ import "./DataVisualizer.css";
 
 const languageData = [
   {
-    subject: "C++",
+    subject: "Python",
     score: 95,
-    color: "#8a2be2", // Purple
-    description: "Primary choice for performance-critical systems, low-level optimizations, and advanced data structures. 500+ questions solved.",
-    usecase: "Algorithmic Problem Solving (Knight rating on LeetCode) and custom low-level logic."
+    color: "#00ffff", // Cyan
+    description: "Core language for ML modeling, deep learning workflows, backend services (FastAPI/Django), and scripting automation.",
+    usecase: "FastAPI REST API design, PyTorch model pipelines, and automated news parsing scripts."
   },
   {
     subject: "SQL",
@@ -17,11 +17,11 @@ const languageData = [
     usecase: "Call-graph indexing structures for codebase RAG and geo-spatial query processing."
   },
   {
-    subject: "Python",
-    score: 85,
-    color: "#00ffff", // Cyan
-    description: "Core language for ML modeling, deep learning workflows, backend services (FastAPI/Django), and scripting automation.",
-    usecase: "FastAPI REST API design, PyTorch model pipelines, and automated news parsing scripts."
+    subject: "C++",
+    score: 90,
+    color: "#8a2be2", // Purple
+    description: "Primary choice for performance-critical systems, low-level optimizations, and advanced data structures. 500+ questions solved.",
+    usecase: "Algorithmic Problem Solving (Knight rating on LeetCode) and custom low-level logic."
   },
   {
     subject: "JavaScript",

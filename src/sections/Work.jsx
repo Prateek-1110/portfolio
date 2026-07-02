@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Work.css';
 
 const GitHubIcon = ({ size = 16 }) => (
@@ -20,6 +20,7 @@ const allProjects = [
     num: '01',
     title: 'Codebase Intelligence Engine (Advanced RAG)',
     desc: 'Engineered a production-grade codebase RAG system using AST parsing, call-graph database stores, and multi-stage hybrid retrieval pipelines with rerankers.',
+    details: 'A production-ready engine designed to ingest entire codebases, generate abstract syntax trees (ASTs), and map out complex dependency call graphs. It optimizes developer query answering using hybrid vector-lexical search (Qdrant & BM25), dense-sparse embeddings, and cross-encoder rerankers, reducing retrieval hallucinations by 45%.',
     tags: ['Python', 'FastAPI', 'Qdrant', 'PostgreSQL', 'RAG', 'NLP'],
     year: '2026',
     live: 'https://github.com/Prateek-1110/Rag_Codebase',
@@ -33,6 +34,7 @@ const allProjects = [
     num: '02',
     title: 'Traffic Accident Hotspot Analyzer',
     desc: 'Ingested and processed 3M+ geospatial records with an ETL pipeline to detect accident hotspots via density clustering and predict risk levels.',
+    details: 'An automated geospatial data pipeline parsing over 3 million historical accident reports. Implements DBSCAN density clustering to identify collision hotspots, coupled with Django-based map visualization and Scikit-Learn risk level prediction engines to aid urban traffic safety planners.',
     tags: ['Python', 'Django', 'PostgreSQL', 'ETL', 'DBSCAN', 'Scikit-Learn'],
     year: '2026',
     live: 'https://traffic-analyser.streamlit.app/',
@@ -45,6 +47,7 @@ const allProjects = [
     num: '03',
     title: 'AI-Powered Autonomous News Agent',
     desc: 'Designed a scalable NLP data ingestion pipeline deduplicating feed articles and auto-publishing extracted summaries under a 2-minute latency budget.',
+    details: 'A stateful automated NLP system that monitors RSS feeds, scrapes web article contents, deduplicates them using cosine similarity matrix matching, and summarizes key insights. Low latency streaming publishes articles dynamically to the site within 120 seconds of sourcing.',
     tags: ['Python', 'Django', 'Data Pipeline', 'NLP', 'LLMs', 'Vector Match'],
     year: '2026',
     live: 'https://prateektech.vercel.app/',
@@ -57,6 +60,7 @@ const allProjects = [
     num: '04',
     title: 'Oil Spill Detection System',
     desc: 'Developed an AI maritime monitoring system combining AIS anomaly trackers, DeepLabV3 segmentation, and SAR-AIS satellite data fusion model layers.',
+    details: 'An AI-powered maritime safety dashboard utilizing PyTorch and DeepLabV3 segmentation. Fuses SAR satellite radar imagery with real-time AIS telemetry streams, achieving a 92% pixel-level accuracy in delineating oil spills and generating immediate alerts for maritime responders.',
     tags: ['DeepLabV3', 'PyTorch', 'SAR Imaging', 'Computer Vision'],
     year: '2024',
     live: 'https://github.com/Prateek-1110/SIH_2024-Oil-Spill-Detection/',
@@ -70,6 +74,7 @@ const allProjects = [
     num: '05',
     title: 'Agentic ArXiv Research Assistant',
     desc: 'Developed a stateful multi-agent system utilizing LangGraph to search, retrieve, filter, and summarize ArXiv research papers with dynamic state routing.',
+    details: 'A multi-agent autonomous system built on LangGraph. Uses dynamic state-based routing to filter, retrieve, and critique research papers from ArXiv. Orchestrates search queries, relevance verification loops, and critique agents to produce clean markdown literature reviews.',
     tags: ['LangGraph', 'LangChain', 'Python', 'ArXiv API', 'LLMs'],
     year: '2026',
     live: 'https://github.com/Prateek-1110/agentic_arxiv',
@@ -81,6 +86,31 @@ const allProjects = [
 ];
 
 export default function Work() {
+  const [activeProject, setActiveProject] = useState(null);
+
+  useEffect(() => {
+    if (activeProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeProject]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveProject(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   // Base projects showing in Bento Grid initially (all 5)
   const baseProjects = allProjects;
 
@@ -148,7 +178,18 @@ export default function Work() {
             : "bento-card";
 
           return (
-            <a key={p.num} href={p.github} className={cardClass} target="_blank" rel="noreferrer">
+            <div 
+              key={p.num} 
+              className={cardClass} 
+              role="button"
+              tabIndex={0}
+              onClick={() => setActiveProject(p)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setActiveProject(p);
+                }
+              }}
+            >
               <div className="bento-card__header">
                 <span className="bento-card__num">{p.num}</span>
                 <span className="bento-card__year">{p.year}</span>
@@ -172,19 +213,33 @@ export default function Work() {
                   </div>
 
                   <div className="bento-card__links">
-                    <button className="bento-icon-btn" aria-label="Github repository">
+                    <a 
+                      href={p.github} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="bento-icon-btn" 
+                      aria-label="Github repository"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <GitHubIcon />
-                    </button>
-                    <button className="bento-icon-btn" aria-label="Live Demo">
+                    </a>
+                    <a 
+                      href={p.live} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="bento-icon-btn" 
+                      aria-label="Live Demo"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <ExternalIcon />
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
 
               {/* Metric Callout Badge */}
               <div className="bento-card__metric">{p.metric}</div>
-            </a>
+            </div>
           );
         })}
       </div>
@@ -200,6 +255,87 @@ export default function Work() {
           Browse All Projects
         </a>
       </div>
+
+      {/* Details Modal */}
+      {activeProject && (
+        <div className="project-modal" role="dialog" aria-modal="true">
+          <div className="project-modal__backdrop" onClick={() => setActiveProject(null)} />
+          <div className="project-modal__content">
+            <button 
+              className="project-modal__close" 
+              onClick={() => setActiveProject(null)}
+              aria-label="Close modal"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+
+            <div className="project-modal__header">
+              <div className="project-modal__meta">
+                <span className="project-modal__num">{activeProject.num}</span>
+                <span className="project-modal__divider">•</span>
+                <span className="project-modal__category">{activeProject.category}</span>
+                <span className="project-modal__divider">•</span>
+                <span className="project-modal__year">{activeProject.year}</span>
+              </div>
+              <h3 className="project-modal__title">{activeProject.title}</h3>
+            </div>
+
+            <div className="project-modal__body">
+              {/* Metric Banner */}
+              <div className="project-modal__metric-card">
+                <span className="metric-card__label">Scale &amp; Output Focus</span>
+                <span className="metric-card__value">{activeProject.metric}</span>
+              </div>
+
+              {/* Description */}
+              <div className="project-modal__section">
+                <h4 className="project-modal__section-title">Overview &amp; Implementation</h4>
+                <p className="project-modal__desc">{activeProject.details}</p>
+              </div>
+
+              {/* Flowchart architecture (hidden on mobile via CSS) */}
+              <div className="project-modal__section project-modal__flowchart-section">
+                <h4 className="project-modal__section-title">System Pipeline &amp; Data Flow</h4>
+                <div className="project-modal__flowchart">
+                  {drawFlowchart(activeProject.nodes)}
+                </div>
+              </div>
+
+              {/* Technology Stack */}
+              <div className="project-modal__section">
+                <h4 className="project-modal__section-title">Tech Stack</h4>
+                <div className="project-modal__tags">
+                  {activeProject.tags.map((t, i) => (
+                    <span key={i} className="bento-card__tag-pill">{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="project-modal__footer">
+              <a 
+                href={activeProject.github} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="btn btn--filled-gradient project-modal__btn"
+              >
+                <GitHubIcon /> GitHub Codebase
+              </a>
+              <a 
+                href={activeProject.live} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="btn btn--ghost-animated project-modal__btn"
+              >
+                <ExternalIcon /> Live Demonstration
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

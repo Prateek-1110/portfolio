@@ -45,6 +45,7 @@
   -webkit-backdrop-filter: blur(16px);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .bento-card--featured {
@@ -355,5 +356,244 @@
   }
   .bento-card__arch {
     display: none; /* Hide SVGs on mobile as requested */
+  }
+}
+
+/* ── Project Details Modal ── */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.project-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+[data-theme='light'] .project-modal__backdrop {
+  background: rgba(240, 244, 255, 0.75);
+}
+
+.project-modal__content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 680px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  max-height: 90vh;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+  animation: modalSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+}
+
+[data-theme='light'] .project-modal__content {
+  box-shadow: 0 30px 60px rgba(0, 102, 204, 0.1);
+}
+
+.project-modal__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+  z-index: 20;
+}
+
+.project-modal__close:hover {
+  background: var(--hover-bg);
+  color: var(--accent);
+  transform: rotate(90deg);
+  border-color: var(--accent);
+}
+
+.project-modal__header {
+  margin-bottom: 2rem;
+}
+
+.project-modal__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-modal__num {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.project-modal__divider {
+  color: var(--text-faint);
+  font-size: 0.8rem;
+}
+
+.project-modal__category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.project-modal__year {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-faint);
+}
+
+.project-modal__title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.project-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Metric Banner Card */
+.project-modal__metric-card {
+  background: var(--hover-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metric-card__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.metric-card__value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* Content Sections */
+.project-modal__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.project-modal__section-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.project-modal__desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* Flowchart placement in modal */
+.project-modal__flowchart {
+  background: var(--bg-solid);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  overflow-x: auto;
+}
+
+.project-modal__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-modal__footer {
+  display: flex;
+  gap: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+}
+
+.project-modal__btn {
+  flex: 1;
+  padding: 0.9rem 1.5rem;
+  font-weight: 600;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+  .project-modal {
+    padding: 1rem;
+  }
+  .project-modal__content {
+    padding: 2.25rem 1.5rem 2rem;
+    border-radius: 20px;
+  }
+  .project-modal__title {
+    font-size: 1.45rem;
+    padding-right: 1.5rem;
+  }
+  .project-modal__flowchart-section {
+    display: none !important; /* Hide flowchart on mobile */
+  }
+  .project-modal__footer {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 }

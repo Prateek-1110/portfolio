@@ -39,6 +39,7 @@
   color: var(--text);
   user-select: none;
   cursor: pointer;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 .navbar__logo span {
   color: var(--accent);
@@ -142,7 +143,7 @@
   justify-content: center;
   padding: 0.55rem;
   border-radius: 50%;
-  transition: color 0.2s, background-color 0.2s, transform 0.3s ease;
+  transition: opacity 0.25s ease, visibility 0.25s ease, color 0.2s, background-color 0.2s, transform 0.3s ease;
   z-index: 1001;
 }
 .theme-toggle:hover {
@@ -220,7 +221,7 @@
     z-index: 1000;
     flex-direction: column;
     justify-content: center;
-    background: var(--mobile-menu-bg);
+    align-items: center;
     gap: 2.25rem;
     opacity: 0;
     pointer-events: none;
@@ -234,9 +235,43 @@
 
   .navbar__link {
     font-size: 1.25rem;
-    color: var(--mobile-menu-text);
   }
   .navbar__link.active::after {
     display: none;
+  }
+
+  /* Solid Theme Background & Text colors for Full Page Mobile Menu */
+  [data-theme='dark'] .navbar__links {
+    background: #000000 !important;
+  }
+  [data-theme='dark'] .navbar__link {
+    color: #FFFFFF !important;
+  }
+  [data-theme='dark'] .navbar__link:hover {
+    color: var(--accent) !important;
+  }
+  [data-theme='dark'] .navbar__burger span {
+    background: #FFFFFF !important;
+  }
+
+  [data-theme='light'] .navbar__links {
+    background: #FFFFFF !important;
+  }
+  [data-theme='light'] .navbar__link {
+    color: #000000 !important;
+  }
+  [data-theme='light'] .navbar__link:hover {
+    color: var(--accent) !important;
+  }
+  [data-theme='light'] .navbar__burger span {
+    background: #000000 !important;
+  }
+
+  /* Hide Logo and Theme Toggle when mobile menu is open */
+  .navbar--open .navbar__logo,
+  .navbar--open .theme-toggle {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }

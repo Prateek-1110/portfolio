@@ -80,7 +80,7 @@ export default function Hero() {
       <div className="hero__inner hero__inner--centered">
         <div className="hero__tag">
           <span className="hero__tag-line" />
-          <span>IIT Jodhpur &nbsp;·&nbsp; B.Tech 2027</span>
+          <span>IIT Jodhpur &nbsp;·&nbsp; B.Tech: Minor in AI'2027</span>
         </div>
 
         <h1 className="hero__title">
@@ -126,17 +126,17 @@ export default function Hero() {
         <div className="hero__metrics">
           <div className="hero__metric-item">
             <CountUp end={3} suffix="M+" />
-            <span className="hero__metric-label">Records Processed</span>
+            <span className="hero__metric-label">Geospatial Records Ingested (Traffic Hotspots)</span>
           </div>
           <span className="hero__metric-divider">|</span>
           <div className="hero__metric-item">
             <CountUp end={92} suffix="%" />
-            <span className="hero__metric-label">Model Accuracy</span>
+            <span className="hero__metric-label">Pixel Accuracy (SAR Oil Spill Detection)</span>
           </div>
           <span className="hero__metric-divider">|</span>
           <div className="hero__metric-item">
             <CountUp end={5} suffix="+" />
-            <span className="hero__metric-label">Pipelines Built</span>
+            <span className="hero__metric-label">End-to-End AI/Data Pipelines Built</span>
           </div>
         </div>
 

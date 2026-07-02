@@ -324,9 +324,9 @@ export default function Stats() {
 
           {/* Card 2: IIT Jodhpur CGPA progress ring */}
           <div className="achievement-card">
-            <h5 className="achievement-title">IIT Jodhpur</h5>
+            <h5 className="achievement-title">IIT Jodhpur : B.Tech'27</h5>
             <CircularRing value={7.63} max={10} />
-            <p className="achievement-desc">B.Tech Computer Science (CGPA scale).</p>
+            <p className="achievement-desc">CGPA</p>
           </div>
         </div>
       </div>
