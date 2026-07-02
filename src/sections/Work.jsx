@@ -1,415 +1,251 @@
 import React, { useState } from 'react';
 import './Work.css';
 
-const GitHubIcon = ({ size = 14 }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width={size}
-    height={size}
-    fill="currentColor"
-  >
+const GitHubIcon = ({ size = 16 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill="currentColor">
     <path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.98 3.22 9.2 7.69 10.7.56.1.76-.24.76-.53v-1.85c-3.13.68-3.79-1.51-3.79-1.51-.51-1.3-1.24-1.65-1.24-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.66 2.56 2.04 2.56 2.04 1-.69 1.54-1.48 1.54-1.48-2.5-.28-5.13-1.25-5.13-5.55 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.4.11-2.92 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.64 0c2.15-1.45 3.1-1.15 3.1-1.15.61 1.52.23 2.64.11 2.92.72.79 1.16 1.79 1.16 3.02 0 4.31-2.64 5.26-5.15 5.54.4.35.76 1.04.76 2.1v3.11c0 .29.2.64.77.53 4.46-1.5 7.68-5.72 7.68-10.7C23.25 5.48 18.27.5 12 .5z" />
   </svg>
 );
 
-const ExternalIcon = ({ size = 12 }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width={size}
-    height={size}
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
+const ExternalIcon = ({ size = 14 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
     <polyline points="15 3 21 3 21 9" />
     <line x1="10" y1="14" x2="21" y2="3" />
   </svg>
 );
 
-const ArrowIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width={14}
-    height={14}
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="5" y1="12" x2="19" y2="12" />
-    <polyline points="12 5 19 12 12 19" />
-  </svg>
-);
-
-const projects = [
+const allProjects = [
   {
     num: '01',
-    title: 'Codebase Intelligence Engine (Advanced RAG System)',
-    desc: 'Engineered a production-grade Retrieval-Augmented Generation (RAG) system utilizing AST-based chunking, a custom call-graph PostgreSQL store, and a multi-stage hybrid retrieval pipeline (BM25 + Semantic Search + Cross-Encoder reranking) with Qdrant vector database for deterministic codebase intelligence.',
+    title: 'Codebase Intelligence Engine (Advanced RAG)',
+    desc: 'Engineered a production-grade codebase RAG system using AST parsing, call-graph database stores, and multi-stage hybrid retrieval pipelines with rerankers.',
     tags: ['Python', 'FastAPI', 'Qdrant', 'PostgreSQL', 'RAG', 'NLP'],
     year: '2026',
     live: 'https://github.com/Prateek-1110/Rag_Codebase',
     github: 'https://github.com/Prateek-1110/Rag_Codebase',
+    metric: '3M+ Vectors',
+    category: 'ML/AI',
+    featured: true,
+    nodes: ['Codebase', 'AST Chunking', 'Qdrant Store', 'RRF Ranker', 'Llama 3']
   },
   {
     num: '02',
     title: 'Traffic Accident Hotspot Analyzer',
-    desc: 'Ingested and processed 3M+ geospatial records using an ETL pipeline to detect hotspots via DBSCAN clustering. Engineered a Django dashboard with Leaflet maps and built a Random Forest classifier for real-time risk prediction.',
-    tags: ['Python', 'Django', 'PostgreSQL', 'ETL', 'DBSCAN', 'Random Forest'],
+    desc: 'Ingested and processed 3M+ geospatial records with an ETL pipeline to detect accident hotspots via density clustering and predict risk levels.',
+    tags: ['Python', 'Django', 'PostgreSQL', 'ETL', 'DBSCAN', 'Scikit-Learn'],
     year: '2026',
     live: 'https://traffic-analyser.streamlit.app/',
     github: 'https://github.com/Prateek-1110/traffic_analyser',
+    metric: '3M+ Rows',
+    category: 'Data Engineering',
+    nodes: ['CSV Ingestion', 'ETL Pandas', 'Postgres', 'DBSCAN', 'Django Map']
   },
   {
     num: '03',
+    title: 'AI-Powered Autonomous News Agent',
+    desc: 'Designed a scalable NLP data ingestion pipeline deduplicating feed articles and auto-publishing extracted summaries under a 2-minute latency budget.',
+    tags: ['Python', 'Django', 'Data Pipeline', 'NLP', 'LLMs', 'Vector Match'],
+    year: '2026',
+    live: 'https://prateektech.vercel.app/',
+    github: 'https://github.com/Prateek-1110/News_Automation/',
+    metric: '5k+ arts/day',
+    category: 'NLP',
+    nodes: ['RSS Feed', 'Scraping', 'Cosine Sim', 'LLM Summary', 'Publish']
+  },
+  {
+    num: '04',
+    title: 'Oil Spill Detection System',
+    desc: 'Developed an AI maritime monitoring system combining AIS anomaly trackers, DeepLabV3 segmentation, and SAR-AIS satellite data fusion model layers.',
+    tags: ['DeepLabV3', 'PyTorch', 'SAR Imaging', 'Computer Vision'],
+    year: '2024',
+    live: 'https://github.com/Prateek-1110/SIH_2024-Oil-Spill-Detection/',
+    github: 'https://github.com/Prateek-1110/SIH_2024-Oil-Spill-Detection/',
+    metric: '92% Acc',
+    category: 'Computer Vision',
+    featured: true,
+    nodes: ['SAR + AIS', 'DeepLabV3', 'Flipped Conv', 'Data Fusion', 'Spill Alert']
+  },
+  {
+    num: '05',
     title: 'Agentic ArXiv Research Assistant',
-    desc: 'Developed a stateful multi-agent system utilizing LangGraph to search, retrieve, categorize, and summarize ArXiv research papers. Implements state conditional routing to dynamically refine search terms, filter relevance, and compile clean Markdown reports.',
+    desc: 'Developed a stateful multi-agent system utilizing LangGraph to search, retrieve, filter, and summarize ArXiv research papers with dynamic state routing.',
     tags: ['LangGraph', 'LangChain', 'Python', 'ArXiv API', 'LLMs'],
     year: '2026',
     live: 'https://github.com/Prateek-1110/agentic_arxiv',
     github: 'https://github.com/Prateek-1110/agentic_arxiv',
-  },
-  {
-    num: '04',
-    title: 'AI-Powered Autonomous News Agent',
-    desc: 'Designed a scalable data ingestion and NLP pipeline processing 5000+ articles/day. Engineered deduplication, LLM-based summary extraction, classification, and automated media publishing under a 2-minute latency.',
-    tags: ['Python', 'Django', 'Data Pipeline', 'NLP', 'LLMs'],
-    year: '2026',
-    live: 'https://prateektech.vercel.app/',
-    github: 'https://github.com/Prateek-1110/News_Automation/',
-  },
-  {
-    num: '05',
-    title: 'Oil Spill Detection System using AIS Fusion',
-    desc: 'Developed an AI maritime monitoring system combining AIS anomaly detection, DeepLabV3 semantic segmentation, and SAR-AIS data fusion to segment oil spills with 92% accuracy across 1000+ km regions.',
-    tags: ['DeepLabV3', 'PyTorch', 'SAR Imaging', 'Computer Vision'],
-    year: '2024',
-    live: 'https://prateektech.vercel.app/',
-    github: 'https://github.com/Prateek-1110/SIH_2024-Oil-Spill-Detection/',
-  },
+    metric: 'Graph Routing',
+    category: 'ML/AI',
+    nodes: ['Search', 'Relevance Match', 'State Router', 'Summary Gen', 'Markdown Output']
+  }
 ];
 
-const renderArchitectureSVG = (index) => {
-  const arrowDef = (
-    <defs>
-      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="var(--text-faint)" />
-      </marker>
-    </defs>
-  );
-
-  if (index === 0) {
-    return (
-      <svg viewBox="0 0 440 90" className="project-arch-svg">
-        {arrowDef}
-        <g className="arch-group arch-group--0">
-          <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
-          <text x="35" y="47" textAnchor="middle" className="arch-text">Codebase</text>
-        </g>
-        <path d="M 65,42.5 L 85,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--1">
-          <rect x="85" y="25" width="65" height="35" rx="6" className="arch-node" />
-          <text x="117.5" y="42" textAnchor="middle" className="arch-text">Tree-sitter</text>
-          <text x="117.5" y="52" textAnchor="middle" className="arch-subtext">AST Parser</text>
-        </g>
-        <path d="M 150,42.5 L 170,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--2">
-          <rect x="170" y="25" width="70" height="35" rx="6" className="arch-node arch-node--db" />
-          <text x="205" y="42" textAnchor="middle" className="arch-text">Qdrant / PG</text>
-          <text x="205" y="52" textAnchor="middle" className="arch-subtext">Vector+Graph</text>
-        </g>
-        <path d="M 240,42.5 L 260,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--3">
-          <rect x="260" y="25" width="65" height="35" rx="6" className="arch-node" />
-          <text x="292.5" y="42" textAnchor="middle" className="arch-text">BM25+Dense</text>
-          <text x="292.5" y="52" textAnchor="middle" className="arch-subtext">RRF Hybrid</text>
-        </g>
-        <path d="M 325,42.5 L 345,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--4">
-          <rect x="345" y="25" width="55" height="35" rx="6" className="arch-node" />
-          <text x="372.5" y="42" textAnchor="middle" className="arch-text">Cross-Encoder</text>
-          <text x="372.5" y="52" textAnchor="middle" className="arch-subtext">Re-ranking</text>
-        </g>
-        <path d="M 400,42.5 L 412,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--4">
-          <rect x="412" y="25" width="23" height="35" rx="4" className="arch-node arch-node--llm" />
-          <text x="423.5" y="46" textAnchor="middle" className="arch-text">LLM</text>
-        </g>
-      </svg>
-    );
-  }
-  if (index === 1) {
-    return (
-      <svg viewBox="0 0 440 90" className="project-arch-svg">
-        {arrowDef}
-        <g className="arch-group arch-group--0">
-          <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
-          <text x="35" y="42" textAnchor="middle" className="arch-text">3M+ US</text>
-          <text x="35" y="52" textAnchor="middle" className="arch-subtext">Accident CSV</text>
-        </g>
-        <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--1">
-          <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
-          <text x="125" y="42" textAnchor="middle" className="arch-text">ETL Clean</text>
-          <text x="125" y="52" textAnchor="middle" className="arch-subtext">Processing</text>
-        </g>
-        <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--2">
-          <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
-          <text x="222.5" y="42" textAnchor="middle" className="arch-text">DBSCAN</text>
-          <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Geospatial Cluster</text>
-        </g>
-        <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--3">
-          <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
-          <text x="320" y="42" textAnchor="middle" className="arch-text">Random Forest</text>
-          <text x="320" y="52" textAnchor="middle" className="arch-subtext">Risk Prediction</text>
-        </g>
-        <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--4">
-          <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
-          <text x="407.5" y="42" textAnchor="middle" className="arch-text">Django</text>
-          <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Leaflet Map</text>
-        </g>
-      </svg>
-    );
-  }
-  if (index === 2) {
-    return (
-      <svg viewBox="0 0 440 90" className="project-arch-svg">
-        {arrowDef}
-        <g className="arch-group arch-group--0">
-          <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
-          <text x="35" y="42" textAnchor="middle" className="arch-text">User query</text>
-          <text x="35" y="52" textAnchor="middle" className="arch-subtext">Topic Search</text>
-        </g>
-        <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--1">
-          <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
-          <text x="125" y="42" textAnchor="middle" className="arch-text">Query Parser</text>
-          <text x="125" y="52" textAnchor="middle" className="arch-subtext">Intent Agent</text>
-        </g>
-        <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--2">
-          <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
-          <text x="222.5" y="42" textAnchor="middle" className="arch-text">ArXiv API</text>
-          <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Paper Fetcher</text>
-        </g>
-        <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--3">
-          <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
-          <text x="320" y="42" textAnchor="middle" className="arch-text">Filter Agent</text>
-          <text x="320" y="52" textAnchor="middle" className="arch-subtext">Relevance Match</text>
-        </g>
-        <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--4">
-          <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
-          <text x="407.5" y="42" textAnchor="middle" className="arch-text">LLM Gen</text>
-          <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Summary Report</text>
-        </g>
-      </svg>
-    );
-  }
-  if (index === 3) {
-    return (
-      <svg viewBox="0 0 440 90" className="project-arch-svg">
-        {arrowDef}
-        <g className="arch-group arch-group--0">
-          <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
-          <text x="35" y="42" textAnchor="middle" className="arch-text">20+ RSS</text>
-          <text x="35" y="52" textAnchor="middle" className="arch-subtext">News Feeds</text>
-        </g>
-        <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--1">
-          <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
-          <text x="125" y="42" textAnchor="middle" className="arch-text">Python Ingest</text>
-          <text x="125" y="52" textAnchor="middle" className="arch-subtext">Request Streams</text>
-        </g>
-        <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--2">
-          <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
-          <text x="222.5" y="42" textAnchor="middle" className="arch-text">Cosine Similarity</text>
-          <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Deduplication</text>
-        </g>
-        <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--3">
-          <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
-          <text x="320" y="42" textAnchor="middle" className="arch-text">LLM Engine</text>
-          <text x="320" y="52" textAnchor="middle" className="arch-subtext">Summary/Tags</text>
-        </g>
-        <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--4">
-          <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
-          <text x="407.5" y="42" textAnchor="middle" className="arch-text">Automated</text>
-          <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Publishing</text>
-        </g>
-      </svg>
-    );
-  }
-  if (index === 4) {
-    return (
-      <svg viewBox="0 0 440 90" className="project-arch-svg">
-        {arrowDef}
-        <g className="arch-group arch-group--0">
-          <rect x="5" y="25" width="60" height="35" rx="6" className="arch-node arch-node--source" />
-          <text x="35" y="42" textAnchor="middle" className="arch-text">Satellite SAR</text>
-          <text x="35" y="52" textAnchor="middle" className="arch-subtext">+ AIS Data</text>
-        </g>
-        <path d="M 65,42.5 L 90,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--1">
-          <rect x="90" y="25" width="70" height="35" rx="6" className="arch-node" />
-          <text x="125" y="42" textAnchor="middle" className="arch-text">SAR Filter</text>
-          <text x="125" y="52" textAnchor="middle" className="arch-subtext">Preprocessing</text>
-        </g>
-        <path d="M 160,42.5 L 185,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--2">
-          <rect x="185" y="25" width="75" height="35" rx="6" className="arch-node arch-node--db" />
-          <text x="222.5" y="42" textAnchor="middle" className="arch-text">DeepLabV3</text>
-          <text x="222.5" y="52" textAnchor="middle" className="arch-subtext">Segmentation</text>
-        </g>
-        <path d="M 260,42.5 L 285,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--3">
-          <rect x="285" y="25" width="70" height="35" rx="6" className="arch-node" />
-          <text x="320" y="42" textAnchor="middle" className="arch-text">SAR-AIS</text>
-          <text x="320" y="52" textAnchor="middle" className="arch-subtext">Fusion</text>
-        </g>
-        <path d="M 355,42.5 L 380,42.5" stroke="var(--text-faint)" strokeWidth="1" strokeDasharray="3,3" markerEnd="url(#arrow)" />
-        
-        <g className="arch-group arch-group--4">
-          <rect x="380" y="25" width="55" height="35" rx="6" className="arch-node arch-node--llm" />
-          <text x="407.5" y="42" textAnchor="middle" className="arch-text">Anomaly</text>
-          <text x="407.5" y="52" textAnchor="middle" className="arch-subtext">Alert Output</text>
-        </g>
-      </svg>
-    );
-  }
-  return null;
-};
-
 export default function Work() {
-  const handleClick = (url) => {
-    window.open(url, '_blank');
+  const [filter, setFilter] = useState('All');
+  const [showExtended, setShowExtended] = useState(false);
+
+  // Filter categories
+  const categories = ['All', 'ML/AI', 'Data Engineering', 'NLP', 'Computer Vision'];
+
+  // Base projects showing in Bento Grid initially (all 5)
+  const baseProjects = allProjects;
+  
+  // Extended list including all projects
+  const filteredProjects = filter === 'All' 
+    ? allProjects 
+    : allProjects.filter(p => p.category === filter);
+
+  const drawFlowchart = (nodes) => {
+    return (
+      <svg className="bento-arch-svg" viewBox="0 0 680 70">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="var(--text-faint)" />
+          </marker>
+        </defs>
+        
+        {nodes.map((node, idx) => {
+          const x = 15 + idx * 135;
+          const rectWidth = 100;
+          const rectHeight = 32;
+          
+          return (
+            <g key={idx}>
+              {/* Node rectangle */}
+              <rect
+                x={x}
+                y={15}
+                width={rectWidth}
+                height={rectHeight}
+                rx={6}
+                className={`bento-node ${idx === 0 ? 'node--source' : idx === nodes.length - 1 ? 'node--sink' : ''}`}
+              />
+              <text x={x + rectWidth / 2} y={35} textAnchor="middle" className="bento-node-text">
+                {node}
+              </text>
+              
+              {/* Connecting line */}
+              {idx < nodes.length - 1 && (
+                <path
+                  d={`M ${x + rectWidth} 31 L ${x + 135} 31`}
+                  className="bento-flow-edge"
+                  markerEnd="url(#arrow)"
+                />
+              )}
+            </g>
+          );
+        })}
+      </svg>
+    );
   };
 
   return (
     <section className="work" id="work">
+      {/* Background Index Watermark */}
+      <div className="section-watermark">03</div>
+
       <div className="work__header">
-        <div className="section-label">03 — Work</div>
-        <h2 className="section-title">Selected projects</h2>
-        <p className="work__subtitle">
-          A curated set of systems engineering and machine learning architectures I've built. Click any card to inspect the repository.
-        </p>
+        <span className="section-label">03 — Projects</span>
+        <h2 className="work__title">Featured Pipelines &amp; Codebases</h2>
       </div>
 
-      <div className="work__list">
-        {projects.map((p, i) => {
+      {/* Bento Grid */}
+      <div className="work__bento-grid">
+        {baseProjects.map((p, idx) => {
+          // Asymmetric mapping: 01 spans 2 cols, others span 1 col
+          const isFeaturedLayout = p.num === '01';
+          const cardClass = isFeaturedLayout 
+            ? "bento-card bento-card--featured" 
+            : "bento-card";
+
           return (
-            <div
-              className="project-row project-row--expanded"
-              key={i}
-              onClick={() => handleClick(p.github)}
-              style={{ cursor: 'pointer' }}
-            >
-              <div className="project-row__summary">
-                <div className="project-row__num">{p.num}</div>
-                <div className="project-row__title-wrap">
-                  <h3 className="project-row__title">{p.title} ↗</h3>
-                  <span className="project-row__year">{p.year}</span>
-                </div>
+            <a key={p.num} href={p.github} className={cardClass} target="_blank" rel="noreferrer">
+              <div className="bento-card__header">
+                <span className="bento-card__num">{p.num}</span>
+                <span className="bento-card__year">{p.year}</span>
               </div>
 
-              <div className="project-row__drawer-content" style={{ marginTop: '1rem' }}>
-                <p className="project-row__desc">{p.desc}</p>
+              <div className="bento-card__content">
+                <h3 className="bento-card__title">{p.title}</h3>
                 
-                <div className="project-row__arch-section">
-                  <h4 className="project-row__arch-title">Data Ingest &amp; Systems Architecture</h4>
-                  <div className="project-row__arch-svg-container" onClick={(e) => e.stopPropagation()}>
-                    {renderArchitectureSVG(i)}
-                  </div>
+                {/* SVG Architecture flowchart */}
+                <div className="bento-card__arch">
+                  {drawFlowchart(p.nodes)}
                 </div>
 
-                <div className="project-row__footer-meta" onClick={(e) => e.stopPropagation()}>
-                  <div className="project-row__tags">
-                    {p.tags.map((t, j) => (
-                      <span className="project-tag" key={j}>{t}</span>
+                <p className="bento-card__desc">{p.desc}</p>
+
+                <div className="bento-card__footer">
+                  <div className="bento-card__tags">
+                    {p.tags.map((t, i) => (
+                      <span key={i} className="bento-card__tag-pill">{t}</span>
                     ))}
                   </div>
 
-                  <div className="project-row__links">
-                    {p.live && p.live !== p.github && (
-                      <>
-                        <a
-                          href={p.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-link"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <ExternalIcon />
-                          Live Demo
-                        </a>
-                        <span className="link-divider" />
-                      </>
-                    )}
-                    <a
-                      href={p.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link"
-                      onClick={(e) => e.stopPropagation()}
-                    >
+                  <div className="bento-card__links">
+                    <button className="bento-icon-btn" aria-label="Github repository">
                       <GitHubIcon />
-                      Source Code
-                    </a>
+                    </button>
+                    <button className="bento-icon-btn" aria-label="Live Demo">
+                      <ExternalIcon />
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
+
+              {/* Metric Callout Badge */}
+              <div className="bento-card__metric">{p.metric}</div>
+            </a>
           );
         })}
       </div>
 
-      <div className="work__footer">
-        <span className="work__footer-text">
-          These are just a few highlights —
-        </span>
-        <a
-          href="https://github.com/Prateek-1110"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="work__all"
-          data-hover
+      {/* Toggle Extended Filterable Overlay */}
+      <div className="work__browse-cta">
+        <button 
+          className="btn btn--ghost-animated"
+          onClick={() => setShowExtended(!showExtended)}
         >
-          Browse all projects <ArrowIcon />
-        </a>
+          {showExtended ? "Hide Project Explorer" : "Browse All Projects"}
+        </button>
       </div>
+
+      {showExtended && (
+        <div className="work__extended-panel">
+          <div className="work__filter-tabs">
+            {categories.map((c) => (
+              <button
+                key={c}
+                className={`work__filter-tab ${filter === c ? 'active' : ''}`}
+                onClick={() => setFilter(c)}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+
+          <div className="work__extended-grid">
+            {filteredProjects.map((p) => (
+              <a key={p.num} href={p.github} className="extended-card" target="_blank" rel="noreferrer">
+                <div className="extended-card__header">
+                  <span className="extended-card__num">{p.num}</span>
+                  <span className="extended-card__category">{p.category}</span>
+                </div>
+                <h3 className="extended-card__title">{p.title}</h3>
+                <p className="extended-card__desc">{p.desc}</p>
+                <div className="extended-card__footer">
+                  <div className="extended-card__tags">
+                    {p.tags.slice(0, 3).map((t, i) => (
+                      <span key={i} className="bento-card__tag-pill">{t}</span>
+                    ))}
+                  </div>
+                  <span className="extended-card__metric">{p.metric}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

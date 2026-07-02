@@ -1,3 +1,4 @@
+import React from 'react';
 import './Skills.css';
 
 const categories = [
@@ -22,9 +23,12 @@ const categories = [
 export default function Skills() {
   return (
     <section className="skills" id="skills">
+      {/* Background Watermark */}
+      <div className="section-watermark">04</div>
+
       <div className="skills__header">
         <div className="section-label">04 — Skills</div>
-        <h2 className="section-title">Tech I work with</h2>
+        <h2 className="skills__title">Tech Stack &amp; Competencies</h2>
       </div>
 
       <div className="skills__grid">
@@ -33,7 +37,10 @@ export default function Skills() {
             <div className="skill-cat__label">{cat.label}</div>
             <div className="skill-cat__list">
               {cat.skills.map((s, j) => (
-                <span className="skill-chip" key={j}>{s}</span>
+                <span className="skill-chip" key={j}>
+                  <span className="skill-chip__dot" />
+                  {s}
+                </span>
               ))}
             </div>
           </div>

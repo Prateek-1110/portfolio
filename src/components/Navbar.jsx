@@ -4,6 +4,8 @@ import './Navbar.css';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState('hero');
   
   // Theme state
   const [theme, setTheme] = useState(() => {
@@ -11,9 +13,40 @@ export default function Navbar() {
   });
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress((window.scrollY / totalScroll) * 100);
+      }
+    };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // IntersectionObserver to highlight active nav link on scroll
+  useEffect(() => {
+    const sections = ['hero', 'about', 'work', 'skills', 'education', 'stats', 'resume', 'contact'];
+    const observers = [];
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          setActiveSection(id);
+        }
+      }, { rootMargin: '-45% 0px -45% 0px' });
+
+      observer.observe(el);
+      observers.push({ observer, el });
+    });
+
+    return () => {
+      observers.forEach(({ observer, el }) => observer.unobserve(el));
+    };
   }, []);
 
   useEffect(() => {
@@ -44,15 +77,25 @@ export default function Navbar() {
 
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+      {/* Scroll Progress Bar */}
+      <div 
+        className="navbar__progress-bar" 
+        style={{ width: `${scrollProgress}%` }} 
+      />
+
       <div className="navbar__logo" onClick={() => scrollTo('hero')}>
         PA<span>.</span>
       </div>
 
       <div className="navbar__right-container">
+
         <ul className={`navbar__links ${menuOpen ? 'open' : ''}`}>
           {['about', 'work', 'skills', 'education', 'stats', 'resume', 'contact'].map((id) => (
             <li key={id}>
-              <button onClick={() => scrollTo(id)} className="navbar__link">
+              <button 
+                onClick={() => scrollTo(id)} 
+                className={`navbar__link ${activeSection === id ? 'active' : ''}`}
+              >
                 {id}
               </button>
             </li>
@@ -94,4 +137,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
+}
