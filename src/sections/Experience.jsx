@@ -31,11 +31,8 @@ const experiences = [
     duration: "Jan 2025 - Apr 2025 · 4 mos",
     location: "Jodhpur, Rajasthan, India · On-site",
     bullets: [
-      "Developed a speaker-diarized NLP pipeline to process 40+ hours of raw field interviews from 30+ unique sources using PyTorch and pyannote.audio, enabling fully automated speaker segmentation and identification.",
-      "Engineered a GPU-accelerated inference workflow on Google Colab by managing 5+ critical dependencies (Torch 2.4.1, Pyannote 3.3.1), processing 1,500+ minutes of audio with zero environment conflicts.",
-      "Integrated an automated Neural Machine Translation (NMT) layer using deep-translator to generate a real-time Hindi-English parallel corpus, reducing qualitative analysis time by 60%.",
-      "Achieved 95% transcription accuracy through a hybrid preprocessing pipeline using Librosa, Noisereduce, and AI-driven dynamic slicing for multi-speaker overlap resolution.",
-      "Automated documentation and dataset preparation workflows using Pandas and Pydub, reducing manual transcription effort by 80% and delivering structured speaker-labeled datasets for downstream analysis."
+      "Developed a speaker-diarized NLP pipeline processing 40+ hours of raw audio (1,500+ minutes) across 30+ unique sources using PyTorch, pyannote.audio, and Librosa, achieving 95% transcription accuracy.",
+      "Engineered a GPU-accelerated inference workflow with an automated Neural Machine Translation (NMT) layer, reducing manual transcription effort by 80% and qualitative analysis time by 60%."
     ]
   }
 ];
