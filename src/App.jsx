@@ -10,6 +10,7 @@ import Contact from "./sections/Contact";
 import Education from "./sections/Education";
 import Stats from "./sections/Stats";
 import Resume from "./sections/Resume";
+import Experience from "./sections/Experience";
 import "./styles/global.css";
 
 // ── Main portfolio page ─────────────────────────────────────
@@ -26,6 +27,7 @@ function MainPage() {
       <main>
         <Hero />
         <About />
+        <Experience />
         <Work />
         <Skills />
         <Education />

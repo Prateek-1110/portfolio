@@ -233,10 +233,10 @@ export default function Stats() {
   return (
     <section className="stats-section" id="stats" ref={containerRef}>
       {/* Watermark head */}
-      <div className="section-watermark">06</div>
+      <div className="section-watermark">07</div>
 
       <div className="stats-header">
-        <div className="section-label">06 — Stats</div>
+        <div className="section-label">07 — Stats</div>
         <h2 className="stats-title">Competitive Problem Solving</h2>
         <p className="stats-subtitle">
           Over 1,300+ problems solved across major algorithmic programming environments.

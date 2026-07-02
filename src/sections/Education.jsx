@@ -31,10 +31,10 @@ const Education = () => {
   return (
     <section className="education-section" id="education">
       {/* Absolute watermark background */}
-      <div className="section-watermark">05</div>
+      <div className="section-watermark">06</div>
 
       <div className="edu-header">
-        <div className="section-label">05 — Education</div>
+        <div className="section-label">06 — Education</div>
         <h2 className="edu-title">Academic journey</h2>
         <p className="edu-subtitle">
           Foundations in engineering, computation, and problem-solving.

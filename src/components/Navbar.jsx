@@ -27,7 +27,7 @@ export default function Navbar() {
 
   // IntersectionObserver to highlight active nav link on scroll
   useEffect(() => {
-    const sections = ['hero', 'about', 'work', 'skills', 'education', 'stats', 'resume', 'contact'];
+    const sections = ['hero', 'about', 'experience', 'work', 'skills', 'education', 'stats', 'resume', 'contact'];
     const observers = [];
 
     sections.forEach(id => {
@@ -90,7 +90,7 @@ export default function Navbar() {
       <div className="navbar__right-container">
 
         <ul className={`navbar__links ${menuOpen ? 'open' : ''}`}>
-          {['about', 'work', 'skills', 'education', 'stats', 'resume', 'contact'].map((id) => (
+          {['about', 'experience', 'work', 'skills', 'education', 'stats', 'resume', 'contact'].map((id) => (
             <li key={id}>
               <button 
                 onClick={() => scrollTo(id)} 

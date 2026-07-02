@@ -32,10 +32,10 @@ export default function Resume() {
   return (
     <section className="resume-section" id="resume">
       {/* Absolute watermark index */}
-      <div className="section-watermark">07</div>
+      <div className="section-watermark">08</div>
 
       <div className="resume-header">
-        <div className="section-label">07 — Resume</div>
+        <div className="section-label">08 — Resume</div>
         <h2 className="resume-title">Tailored Professional Resumes</h2>
         
         {/* Pulsing maintained badge */}

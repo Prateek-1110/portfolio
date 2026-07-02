@@ -98,26 +98,8 @@ export default function About() {
           </div>
 
           {/* Stats Cards Grid */}
-          <div className="about__stats-cards">
-            <div className="about__stat-card card--cyan">
-              <div className="about__stat-num">
-                <Counter max={3} suffix="M+" />
-              </div>
-              <div className="about__stat-label">Records Processed</div>
-            </div>
-            <div className="about__stat-card card--violet">
-              <div className="about__stat-num">
-                <Counter max={5} suffix="+" />
-              </div>
-              <div className="about__stat-label">ML Pipelines Built</div>
-            </div>
-            <div className="about__stat-card card--cyan-alt">
-              <div className="about__stat-num">
-                <Counter max={92} suffix="%" />
-              </div>
-              <div className="about__stat-label">Best Model Accuracy</div>
-            </div>
-          </div>
+        
+          
 
           {/* Mini Skill Tags */}
           <div className="about__skill-pills">

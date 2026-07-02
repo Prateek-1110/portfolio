@@ -142,10 +142,10 @@ export default function Work() {
   return (
     <section className="work" id="work">
       {/* Background Index Watermark */}
-      <div className="section-watermark">03</div>
+      <div className="section-watermark">04</div>
 
       <div className="work__header">
-        <span className="section-label">03 — Projects</span>
+        <span className="section-label">04 — Projects</span>
         <h2 className="work__title">Featured Pipelines &amp; Codebases</h2>
       </div>
 

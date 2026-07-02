@@ -49,10 +49,10 @@ export default function Contact() {
   return (
     <section className="contact" id="contact">
       {/* Absolute watermark background */}
-      <div className="section-watermark">08</div>
+      <div className="section-watermark">09</div>
 
       <div className="contact__inner">
-        <div className="section-label">08 — Contact</div>
+        <div className="section-label">09 — Contact</div>
 
         <h2 className="contact__title">
           Let's build something <em>together</em>

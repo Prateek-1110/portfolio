@@ -24,10 +24,10 @@ export default function Skills() {
   return (
     <section className="skills" id="skills">
       {/* Background Watermark */}
-      <div className="section-watermark">04</div>
+      <div className="section-watermark">05</div>
 
       <div className="skills__header">
-        <div className="section-label">04 — Skills</div>
+        <div className="section-label">05 — Skills</div>
         <h2 className="skills__title">Tech Stack &amp; Competencies</h2>
       </div>
 
