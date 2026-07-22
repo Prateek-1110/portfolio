@@ -11,6 +11,29 @@ import {
 } from 'lucide-react';
 import './DynamicPortfolio.css';
 
+// ── Custom CountUp Sub-Component ───────────────────────────
+function CountUp({ end, duration = 1200, suffix = "" }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime = null;
+    const startValue = 0;
+
+    function run(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      setCount(Math.floor(progress * (end - startValue) + startValue));
+      if (progress < 1) {
+        requestAnimationFrame(run);
+      }
+    }
+
+    requestAnimationFrame(run);
+  }, [end, duration]);
+
+  return <span>{count.toLocaleString()}{suffix}</span>;
+}
+
 // ── Interactive AI Neural Core Canvas ────────────────────────
 function NeuralCore({ mouse }) {
   const canvasRef = useRef(null);
@@ -340,6 +363,20 @@ export default function DynamicPortfolioPage() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  // Scroll Progress State
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress((window.scrollY / totalScroll) * 100);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   // Scramble trigger
   const [decryptHeader, setDecryptHeader] = useState({});
 
@@ -472,6 +509,9 @@ export default function DynamicPortfolioPage() {
 
       {/* Navigation Header */}
       <header className="dynamic-header">
+        {/* Scroll progress indicator bar */}
+        <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
+
         <div 
           className="dynamic-logo font-display" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -583,39 +623,21 @@ export default function DynamicPortfolioPage() {
           </div>
         </div>
 
-        {/* Live API Stats Bar */}
-        <div className="live-api-stats">
-          <div className="live-stat-card">
-            <div className="live-stat-head">
-              <span className="pulse-dot bg-green" />
-              GITHUB METRICS
-            </div>
-            <div className="live-stat-num text-cyan font-num">
-              {liveStats?.github.publicRepos || stats.codingStats[1].count}+
-            </div>
-            <div className="live-stat-label">Public Repositories</div>
+        {/* Live Metrics Bar (Aligned with Static Version) */}
+        <div className="hero__metrics">
+          <div className="hero__metric-item">
+            <span className="hero__metric-num text-cyan font-num"><CountUp end={3} suffix="M+" /></span>
+            <span className="hero__metric-label">Geospatial Records Ingested (Traffic Hotspots)</span>
           </div>
-          
-          <div className="live-stat-card">
-            <div className="live-stat-head">
-              <span className="pulse-dot bg-green" />
-              LEETCODE KNIGHT
-            </div>
-            <div className="live-stat-num text-green font-num">
-              {liveStats?.leetcode.rating || stats.achievements.leetcodeKnight.value}
-            </div>
-            <div className="live-stat-label">Competitive Rating</div>
+          <span className="hero__metric-divider">|</span>
+          <div className="hero__metric-item">
+            <span className="hero__metric-num text-green font-num"><CountUp end={92} suffix="%" /></span>
+            <span className="hero__metric-label">Pixel Accuracy (SAR Oil Spill Detection)</span>
           </div>
-          
-          <div className="live-stat-card">
-            <div className="live-stat-head">
-              <span className="pulse-dot bg-green" />
-              GITHUB STARS
-            </div>
-            <div className="live-stat-num text-orange font-num">
-              {liveStats?.github.totalStars || 18} ★
-            </div>
-            <div className="live-stat-label">Total Stars</div>
+          <span className="hero__metric-divider">|</span>
+          <div className="hero__metric-item">
+            <span className="hero__metric-num text-orange font-num"><CountUp end={5} suffix="+" /></span>
+            <span className="hero__metric-label">End-to-End AI/Data Pipelines Built</span>
           </div>
         </div>
       </section>
@@ -674,7 +696,7 @@ export default function DynamicPortfolioPage() {
             className="section-title font-display"
             onMouseEnter={() => handleLinkHover('exp-h')}
           >
-            <DecryptedText text="JOURNEY & ARCHITECTURES" active={decryptHeader['exp-h']} />
+            <DecryptedText text="JOURNEY & EXPERIENCE" active={decryptHeader['exp-h']} />
           </h2>
         </div>
         
@@ -719,7 +741,7 @@ export default function DynamicPortfolioPage() {
             className="section-title font-display"
             onMouseEnter={() => handleLinkHover('proj-h')}
           >
-            <DecryptedText text="SELECTED MANIFESTATIONS" active={decryptHeader['proj-h']} />
+            <DecryptedText text="SELECTED PROJECTS" active={decryptHeader['proj-h']} />
           </h2>
         </div>
 
@@ -980,13 +1002,13 @@ export default function DynamicPortfolioPage() {
           <div className="achievements-panel">
             <div className="achieve-item-card">
               <h4 className="achieve-label text-cyan">LeetCode Rating:</h4>
-              <div className="achieve-numerical font-display text-green">1962 <span className="text-faint text-sm">/ 2500 max</span></div>
+              <div className="achieve-numerical font-display text-green">1962</div>
               <p className="achieve-note">{stats.achievements.leetcodeKnight.desc}</p>
             </div>
             
             <div className="achieve-item-card">
               <h4 className="achieve-label text-orange">Academic Performance (CGPA):</h4>
-              <div className="achieve-numerical font-display text-cyan">7.63 <span className="text-faint text-sm">/ 10.0 max</span></div>
+              <div className="achieve-numerical font-display text-cyan">7.63</div>
               <p className="achieve-note">{stats.achievements.cgpa.desc}</p>
             </div>
           </div>
