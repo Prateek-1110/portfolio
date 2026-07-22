@@ -7,7 +7,7 @@ import {
   Github, ExternalLink, Cpu, Layers, Mail, FileText, 
   Award, BookOpen, Send, CheckCircle, RefreshCw,
   Code, Database, Brain, ArrowUpRight, Check, MapPin, Calendar, 
-  Menu, X, Sun, Moon, ShieldAlert, CpuIcon
+  Menu, X, Sun, Moon, ShieldAlert, CpuIcon, Linkedin
 } from 'lucide-react';
 import './DynamicPortfolio.css';
 
@@ -572,11 +572,6 @@ export default function DynamicPortfolioPage() {
         <div className="hero-cyber-grid">
           {/* Left panel: Info */}
           <div className="hero-info-panel">
-            <div className="cyber-badge text-cyan">
-              <span className="pulse-dot bg-cyan" />
-              AVAILABLE FOR COLLABORATION // GLOBAL
-            </div>
-            
             <h1 className="hero-heading font-display">
               PRATEEK <span className="neon-text text-green">AGRAHARI</span>
             </h1>
@@ -650,7 +645,7 @@ export default function DynamicPortfolioPage() {
             className="section-title font-display" 
             onMouseEnter={() => handleLinkHover('about-h')}
           >
-            <DecryptedText text="CONTEXT & PHILOSOPHY" active={decryptHeader['about-h']} />
+            <DecryptedText text="CONTEXT ABOUT ME" active={decryptHeader['about-h']} />
           </h2>
         </div>
         <div className="about-grid">
@@ -1078,15 +1073,16 @@ export default function DynamicPortfolioPage() {
             <div className="contact-details-list">
               <div className="contact-detail-item">
                 <Mail size={16} className="text-green" />
-                <span>prateekagr.1110@gmail.com</span>
+                <a href="mailto:prateek.agengg1110@gmail.com" className="contact-link">prateek.agengg1110@gmail.com</a>
               </div>
               <div className="contact-detail-item">
-                <MapPin size={16} className="text-cyan" />
-                <span>IIT Jodhpur, Rajasthan, India</span>
+                <Linkedin size={16} className="text-cyan" />
+                <a href="https://www.linkedin.com/in/prateek1110/" target="_blank" rel="noreferrer" className="contact-link">LinkedIn Profile</a>
               </div>
-            </div>
-            <div className="sys-status mt-5 text-sm text-faint">
-              <span className="pulse-dot bg-green" /> API Gateway Endpoint: https://prateektech.vercel.app/api/contact
+              <div className="contact-detail-item">
+                <Github size={16} className="text-orange" />
+                <a href="https://github.com/prateek-1110" target="_blank" rel="noreferrer" className="contact-link">GitHub Profile</a>
+              </div>
             </div>
           </div>
 
