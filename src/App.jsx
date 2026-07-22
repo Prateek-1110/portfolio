@@ -11,6 +11,8 @@ import Education from "./sections/Education";
 import Stats from "./sections/Stats";
 import Resume from "./sections/Resume";
 import Experience from "./sections/Experience";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DynamicPortfolioPage from "./pages/DynamicPortfolio";
 import "./styles/global.css";
 
 // ── Main portfolio page ─────────────────────────────────────
@@ -42,7 +44,14 @@ function MainPage() {
 
 // ── App ─────────────────────────────────────────────────────
 function App() {
-  return <MainPage />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<DynamicPortfolioPage />} />
+        <Route path="/static" element={<MainPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

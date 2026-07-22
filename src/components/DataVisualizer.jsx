@@ -84,7 +84,7 @@ const pipelineStackData = [
     color: "#8a2be2",
     tools: "CSV, RSS Feeds, SAR Imagery, APIs",
     desc: "Raw unstructured and structured inputs ingest pathways.",
-    details: "Consumes 3M+ traffic records, real-time RSS blog feeds, and satellite SAR imagery streams."
+    details: "Consumes 3M+ traffic records, real-time RSS news feeds, and satellite SAR imagery streams."
   },
   {
     stage: "Ingest",

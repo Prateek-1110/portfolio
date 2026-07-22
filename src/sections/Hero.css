@@ -300,3 +300,17 @@
 [data-theme='dark'] .particle-sphere-canvas {
   opacity: 0.90;
 }
+
+.btn--dynamic-cta {
+  background: rgba(0, 217, 255, 0.05);
+  color: var(--accent) !important;
+  border: 1.5px solid var(--accent);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  font-weight: 600;
+}
+
+.btn--dynamic-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.45);
+}
+
