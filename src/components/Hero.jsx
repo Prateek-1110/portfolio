@@ -30,7 +30,7 @@ export default function Hero() {
         <div className="hero-avatar">
           {/* PA Text avatar. If a photo exists, user can uncomment the image below: */}
           <span style={{ fontSize: '3.5rem', fontWeight: '800' }}>PA</span>
-          {/* <img src="/profile.jpg" alt="Prateek Agrahari" /> */}
+          { <img src="src\image.png" alt="Prateek Agrahari" /> }
         </div>
       </div>
 

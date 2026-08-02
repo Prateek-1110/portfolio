@@ -11,26 +11,21 @@ import Contact from './components/Contact'
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('about')
-  const [visitCount, setVisitCount] = useState(1)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
-  // Track page visits locally in browser storage
-  useEffect(() => {
-    try {
-      const storedCount = localStorage.getItem('portfolio_visit_count')
-      let newCount = 1
-      if (storedCount) {
-        newCount = parseInt(storedCount, 10) + 1
-      }
-      localStorage.setItem('portfolio_visit_count', newCount.toString())
-      setVisitCount(newCount)
-    } catch (e) {
-      console.warn("Storage quota or accessibility error: ", e)
-    }
-  }, [])
-
-  // Highlight current active section in nav during scrolling
+  // Highlight current active section in nav & calculate scroll progress during scrolling
   useEffect(() => {
     const handleScroll = () => {
+      // 1. Calculate scroll progress
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
+      if (scrollHeight > 0) {
+        const percent = (window.scrollY / scrollHeight) * 100
+        setScrollProgress(percent)
+      } else {
+        setScrollProgress(0)
+      }
+
+      // 2. Active Section Highlight
       const sections = ['about', 'metrics', 'experience', 'projects', 'skills', 'profiles', 'contact']
       const scrollPosition = window.scrollY + 150
 
@@ -48,6 +43,7 @@ export default function App() {
     }
 
     window.addEventListener('scroll', handleScroll)
+    handleScroll() // Initialize on mount
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -71,29 +67,7 @@ export default function App() {
 
   return (
     <div className="app-layout">
-      {/* 1. Ticker Running Line (Top Header Banner) */}
-      <div className="ticker-bar">
-        <div className="ticker-wrap">
-          <div className="ticker-content">
-            <span className="ticker-item">📊 Welcome back! Local Visit Count: <span>{visitCount}</span> times</span>
-            <span className="ticker-item">💻 Principal Domain: Data & ML Pipeline Systems Engineering</span>
-            <span className="ticker-item">🎓 B.Tech Candidate · IIT Jodhpur</span>
-            <span className="ticker-item">🏆 Peak rating: 1962 (Knight Badge) on LeetCode</span>
-            <span className="ticker-item">⚡ 3M+ Geospatial Records Ingested & Processed</span>
-            <span className="ticker-item">🎯 92% SAR Oil Spill Semantic Segmentation Accuracy</span>
-            
-            {/* Duplicated content for seamless loops */}
-            <span className="ticker-item">📊 Welcome back! Local Visit Count: <span>{visitCount}</span> times</span>
-            <span className="ticker-item">💻 Principal Domain: Data & ML Pipeline Systems Engineering</span>
-            <span className="ticker-item">🎓 B.Tech Candidate · IIT Jodhpur</span>
-            <span className="ticker-item">🏆 Peak rating: 1962 (Knight Badge) on LeetCode</span>
-            <span className="ticker-item">⚡ 3M+ Geospatial Records Ingested & Processed</span>
-            <span className="ticker-item">🎯 92% SAR Oil Spill Semantic Segmentation Accuracy</span>
-          </div>
-        </div>
-      </div>
-
-      {/* 2. Responsive Navigation Bar */}
+      {/* 1. Responsive Fixed Navigation Bar with Scroll Progress Indicator */}
       <header className="navbar">
         <div className="nav-container">
           <a href="#about" className="nav-logo" onClick={(e) => { e.preventDefault(); handleLinkClick('about'); }}>
@@ -130,9 +104,13 @@ export default function App() {
             </button>
           </div>
         </div>
+        {/* Horizontal scroll progress bar */}
+        <div className="scroll-progress-container">
+          <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }}></div>
+        </div>
       </header>
 
-      {/* 3. Core Content Sections */}
+      {/* 2. Core Content Sections */}
       <main>
         <Hero />
         <Metrics />
@@ -143,7 +121,7 @@ export default function App() {
         <Contact />
       </main>
 
-      {/* 4. Footer */}
+      {/* 3. Footer */}
       <footer>
         <div className="footer-content">
           <div>
