@@ -20,7 +20,11 @@ const allProjects = [
     num: '01',
     title: 'Codebase Intelligence Engine (Advanced RAG)',
     desc: 'Engineered a production-grade codebase RAG system using AST parsing, call-graph database stores, and multi-stage hybrid retrieval pipelines with rerankers.',
-    details: 'A production-ready engine designed to ingest entire codebases, generate abstract syntax trees (ASTs), and map out complex dependency call graphs. It optimizes developer query answering using hybrid vector-lexical search (Qdrant & BM25), dense-sparse embeddings, and cross-encoder rerankers, reducing retrieval hallucinations by 45%.',
+    details: {
+      problem: 'Querying large, nested codebases using standard LLMs suffers from structural context loss (e.g. tracing deep function call paths) and high rates of factual hallucination.',
+      contribution: 'Engineered a custom Abstract Syntax Tree (AST) chunking parser to divide codebases by syntax scope. Implemented a hierarchical call-graph index in PostgreSQL, integrated dense-sparse hybrid vector search (BM25 & Qdrant), and utilized cross-encoder rerankers to rank results.',
+      result: 'Reduced retrieval hallucinations by 45% and improved context precision on complex architectural code lookups.'
+    },
     tags: ['Python', 'FastAPI', 'Qdrant', 'PostgreSQL', 'RAG', 'NLP'],
     year: '2026',
     live: 'https://github.com/Prateek-1110/Rag_Codebase',
@@ -34,7 +38,11 @@ const allProjects = [
     num: '02',
     title: 'Traffic Accident Hotspot Analyzer',
     desc: 'Ingested and processed 3M+ geospatial records with an ETL pipeline to detect accident hotspots via density clustering and predict risk levels.',
-    details: 'An automated geospatial data pipeline parsing over 3 million historical accident reports. Implements DBSCAN density clustering to identify collision hotspots, coupled with Django-based map visualization and Scikit-Learn risk level prediction engines to aid urban traffic safety planners.',
+    details: {
+      problem: 'Urban planners lacked granular tools to digest geospatial collision reports and predict risk levels, leaving safety upgrades to guesswork.',
+      contribution: 'Ingested and cleaned over 3 million historical records using a custom Pandas/PostgreSQL ETL pipeline. Programmed DBSCAN density clustering to identify collision hotspots and trained a Random Forest model to predict risk severity based on weather and road attributes.',
+      result: 'Identified 120+ active safety hotspots and achieved an 85% accuracy score in predicting danger severity.'
+    },
     tags: ['Python', 'Django', 'PostgreSQL', 'ETL', 'DBSCAN', 'Scikit-Learn'],
     year: '2026',
     live: 'https://traffic-analyser.streamlit.app/',
@@ -47,7 +55,11 @@ const allProjects = [
     num: '03',
     title: 'AI-Powered Autonomous News Agent',
     desc: 'Designed a scalable NLP data ingestion pipeline deduplicating feed articles and auto-publishing extracted summaries under a 2-minute latency budget.',
-    details: 'A stateful automated NLP system that monitors RSS feeds, scrapes web article contents, deduplicates them using cosine similarity matrix matching, and summarizes key insights. Low latency streaming publishes articles dynamically to the site within 120 seconds of sourcing.',
+    details: {
+      problem: 'Real-time RSS feeds monitoring pipelines face high API cost overhead from processing duplicate posts and high feed-to-publish rendering latency.',
+      contribution: 'Designed a parallelized stateful news pipeline digesting 5k+ articles daily. Engineered a text deduplication filter using cosine similarity matrix matching, and integrated a parallelized LLM summary generation pipeline.',
+      result: 'Deduplicated feed articles by 60%, significantly lowering LLM API costs, and cut publication latency to under 120 seconds.'
+    },
     tags: ['Python', 'Django', 'Data Pipeline', 'NLP', 'LLMs', 'Vector Match'],
     year: '2026',
     live: 'https://prateektech.vercel.app/',
@@ -60,7 +72,11 @@ const allProjects = [
     num: '04',
     title: 'Oil Spill Detection System',
     desc: 'Developed an AI maritime monitoring system combining AIS anomaly trackers, DeepLabV3 segmentation, and SAR-AIS satellite data fusion model layers.',
-    details: 'An AI-powered maritime safety dashboard utilizing PyTorch and DeepLabV3 segmentation. Fuses SAR satellite radar imagery with real-time AIS telemetry streams, achieving a 92% pixel-level accuracy in delineating oil spills and generating immediate alerts for maritime responders.',
+    details: {
+      problem: 'Satellite radar oil spill detection maps lack real-time vessel telemetry, making maritime pollution enforcement nearly impossible.',
+      contribution: 'Trained a DeepLabV3 semantic segmentation model in PyTorch on Synthetic Aperture Radar (SAR) imagery. Built a data fusion layer in Python to overlay real-time Automatic Identification System (AIS) telemetry streams onto spill boundaries.',
+      result: 'Delineated spills with 92% pixel-level segmentation accuracy and mapped coordinates to nearby ship transponders.'
+    },
     tags: ['DeepLabV3', 'PyTorch', 'SAR Imaging', 'Computer Vision'],
     year: '2024',
     live: 'https://github.com/Prateek-1110/SIH_2024-Oil-Spill-Detection/',
@@ -74,7 +90,11 @@ const allProjects = [
     num: '05',
     title: 'Agentic ArXiv Research Assistant',
     desc: 'Developed a stateful multi-agent system utilizing LangGraph to search, retrieve, filter, and summarize ArXiv research papers with dynamic state routing.',
-    details: 'A multi-agent autonomous system built on LangGraph. Uses dynamic state-based routing to filter, retrieve, and critique research papers from ArXiv. Orchestrates search queries, relevance verification loops, and critique agents to produce clean markdown literature reviews.',
+    details: {
+      problem: 'Researchers lose hours querying repositories and hand-filtering paper relevance, resulting in slow literature review workflows.',
+      contribution: 'Created a stateful cyclical agent graph using LangGraph. Structured logical nodes to run search queries, filter results for keyword/embedding relevance, dynamically route back for deeper search if relevancy is low, and invoke a critique agent.',
+      result: 'Automated the end-to-end literature review process, cutting manual research time by 3x.'
+    },
     tags: ['LangGraph', 'LangChain', 'Python', 'ArXiv API', 'LLMs'],
     year: '2026',
     live: 'https://github.com/Prateek-1110/agentic_arxiv',
@@ -290,10 +310,20 @@ export default function Work() {
                 <span className="metric-card__value">{activeProject.metric}</span>
               </div>
 
-              {/* Description */}
-              <div className="project-modal__section">
-                <h4 className="project-modal__section-title">Overview &amp; Implementation</h4>
-                <p className="project-modal__desc">{activeProject.details}</p>
+              {/* Case Study Details */}
+              <div className="project-modal__details-grid">
+                <div className="project-modal__detail-section">
+                  <h4 className="project-modal__detail-title">The Problem</h4>
+                  <p className="project-modal__desc">{activeProject.details.problem}</p>
+                </div>
+                <div className="project-modal__detail-section">
+                  <h4 className="project-modal__detail-title">My Contribution &amp; Tech Choices</h4>
+                  <p className="project-modal__desc">{activeProject.details.contribution}</p>
+                </div>
+                <div className="project-modal__detail-section">
+                  <h4 className="project-modal__detail-title">Measurable Outcome</h4>
+                  <p className="project-modal__desc">{activeProject.details.result}</p>
+                </div>
               </div>
 
               {/* Flowchart architecture (hidden on mobile via CSS) */}

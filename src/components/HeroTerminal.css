@@ -77,7 +77,7 @@
   display: inline-block;
   margin-left: 2px;
   font-weight: bold;
-  color: #00ffff;
+  color: var(--accent);
   animation: blink 0.8s steps(2, start) infinite;
 }
 

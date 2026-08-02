@@ -98,36 +98,25 @@
 }
 
 .btn--filled-gradient {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  background: var(--accent);
   color: #FFFFFF !important;
   font-weight: 600;
-  box-shadow: 0 4px 15px rgba(0, 217, 255, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .btn--filled-gradient:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 217, 255, 0.4);
-}
-
-[data-theme='light'] .btn--filled-gradient {
-  box-shadow: 0 4px 15px rgba(0, 102, 204, 0.15);
-}
-
-[data-theme='light'] .btn--filled-gradient:hover {
-  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+  background: var(--accent-secondary);
 }
 
 .btn--ghost-animated {
   background: transparent;
   color: var(--text);
   border: 1.5px solid var(--btn-outline-border);
-  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .btn--ghost-animated:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
   color: var(--accent);
 }
 

@@ -52,8 +52,8 @@
 }
 
 .visualizer__tab.active::after {
-  background: linear-gradient(90deg, #8a2be2, #00ffff);
-  box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+  background: linear-gradient(90deg, var(--accent-secondary), var(--accent));
+  box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.3);
 }
 
 .visualizer__content {

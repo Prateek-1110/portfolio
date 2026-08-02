@@ -5,35 +5,35 @@ const languageData = [
   {
     subject: "Python",
     score: 95,
-    color: "#00ffff", // Cyan
+    color: "#3b82f6", // Calm Steel Blue
     description: "Core language for ML modeling, deep learning workflows, backend services (FastAPI/Django), and scripting automation.",
     usecase: "FastAPI REST API design, PyTorch model pipelines, and automated news parsing scripts."
   },
   {
     subject: "SQL",
     score: 90,
-    color: "#10b981", // Emerald
+    color: "#059669", // Muted Forest Green
     description: "Expertise in PostgreSQL schema designs, complex recursive queries, indexing strategies, and transactional constraints.",
     usecase: "Call-graph indexing structures for codebase RAG and geo-spatial query processing."
   },
   {
     subject: "C++",
     score: 90,
-    color: "#8a2be2", // Purple
+    color: "#6366f1", // Soft Indigo
     description: "Primary choice for performance-critical systems, low-level optimizations, and advanced data structures. 500+ questions solved.",
     usecase: "Algorithmic Problem Solving (Knight rating on LeetCode) and custom low-level logic."
   },
   {
     subject: "JavaScript",
     score: 80,
-    color: "#f97316", // Orange
+    color: "#fb923c", // Soft Muted Orange
     description: "Modern ES6+ frontend development, React state management, and real-time client components.",
     usecase: "Interactive analytics dashboards, dynamic particle animations, and theme toggling."
   },
   {
     subject: "TypeScript",
     score: 75,
-    color: "#ec4899", // Glowing Pink
+    color: "#a78bfa", // Soft Lavender
     description: "Type-safe systems architectures, Next.js routing, database migrations, and modular API service layers.",
     usecase: "Building robust, self-documenting service modules and web apps."
   }
@@ -43,35 +43,35 @@ const mlToolsData = [
   {
     name: "RAG Architecture",
     proficiency: 95,
-    color: "#8a2be2",
+    color: "#6366f1", // Soft Indigo
     description: "Designing deterministic multi-stage retrieval-augmented generation systems.",
     details: "Implements dense-sparse vector hybrid indexing, Reciprocal Rank Fusion (RRF), AST parsing, and cross-encoder reranking algorithms."
   },
   {
     name: "LangChain / LangGraph",
     proficiency: 92,
-    color: "#00ffff",
+    color: "#60a5fa", // Calm Slate Blue
     description: "Building production-grade stateful multi-agent orchestrations.",
     details: "Utilizes cyclical graph states, conditional node routing, and parallel execution hierarchies for complex tool-calling loops."
   },
   {
     name: "PyTorch & CV models",
     proficiency: 85,
-    color: "#10b981",
+    color: "#059669", // Muted Forest Green
     description: "Building, training, and optimizing deep neural networks.",
     details: "Expertise in model segmentation (DeepLabV3), tensor manipulation, training loops, and multimodal data fusion architectures."
   },
   {
     name: "Qdrant Vector DB",
     proficiency: 88,
-    color: "#ec4899",
+    color: "#a78bfa", // Soft Lavender
     description: "Optimizing high-dimensional dense vector embeddings store.",
     details: "Designed payload filtering strategies, payload indexes, HNSW configurations, and collection clustering layouts."
   },
   {
     name: "HuggingFace Transformers",
     proficiency: 80,
-    color: "#f97316",
+    color: "#fb923c", // Soft Muted Orange
     description: "Fine-tuning and deploying large language and vision models.",
     details: "Utilizes pipeline abstractions, tokenizer customizations, and parameter-efficient fine-tuning (PEFT/LoRA) modules."
   }
@@ -81,7 +81,7 @@ const pipelineStackData = [
   {
     stage: "Source",
     label: "Data Sources",
-    color: "#8a2be2",
+    color: "#6366f1", // Soft Indigo
     tools: "CSV, RSS Feeds, SAR Imagery, APIs",
     desc: "Raw unstructured and structured inputs ingest pathways.",
     details: "Consumes 3M+ traffic records, real-time RSS news feeds, and satellite SAR imagery streams."
@@ -89,7 +89,7 @@ const pipelineStackData = [
   {
     stage: "Ingest",
     label: "Ingestion Engine",
-    color: "#00ffff",
+    color: "#60a5fa", // Calm Slate Blue
     tools: "FastAPI, Python Streamers, AST",
     desc: "Parsing, filtering, and sanitizing incoming streams.",
     details: "Includes AST-based parser to break code repositories into syntax blocks and API stream endpoints with low latency."
@@ -97,7 +97,7 @@ const pipelineStackData = [
   {
     stage: "Store",
     label: "Storage Layers",
-    color: "#10b981",
+    color: "#059669", // Muted Forest Green
     tools: "PostgreSQL, Qdrant Vector DB",
     desc: "Indexing structured relational schemas and embeddings.",
     details: "Leverages custom relational graphs in PG SQL and high-dimensional vector collection spaces in Qdrant."
@@ -105,7 +105,7 @@ const pipelineStackData = [
   {
     stage: "Query",
     label: "Query Pipeline",
-    color: "#f97316",
+    color: "#fb923c", // Soft Muted Orange
     tools: "Hybrid RRF, Cross-Encoder",
     desc: "Retrieval and search logic across indexes.",
     details: "Combines lexical keyword matching (BM25) with semantic vector search, resolving results via reranking models."
