@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -101,11 +100,6 @@ export default function Navbar() {
               </button>
             </li>
           ))}
-          <li>
-            <Link to="/" className="navbar__link navbar__link--dynamic-btn">
-              Dynamic Version
-            </Link>
-          </li>
         </ul>
 
         <button

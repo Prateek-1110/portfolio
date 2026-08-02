@@ -13,17 +13,6 @@ const resumes = [
     label: "MLE / AI / Deep Learning",
     themeColor: "cyan"
   },
-  {
-    role: "Data Engineer Resume",
-    // description:
-    //   "Focused on database schema designs, automated ETL pipelines, distributed processing engines, and reproducible data workflows.",
-    tags: ["SQL", "ETL Pipelines", "PostgreSQL", "Qdrant", "Docker"],
-    viewUrl: "https://drive.google.com/file/d/1qU5S9AB01A3N2Aqh0z1TpuRnrLhGxcjW/view?usp=sharing",
-    downloadUrl: "https://drive.google.com/file/d/1qU5S9AB01A3N2Aqh0z1TpuRnrLhGxcjW/view?usp=sharing",
-    icon: "DE",
-    label: "DE / Systems / Database",
-    themeColor: "violet"
-  }
 ];
 
 export default function Resume() {
@@ -56,20 +45,22 @@ export default function Resume() {
             {/* Colored top accent bar */}
             <div className="resume-card-accent-bar" />
 
-            <div className="resume-card-top">
-              <span className="resume-icon">{resume.icon}</span>
-              <span className="resume-badge">{resume.label}</span>
-            </div>
+            <div className="resume-card-info">
+              <div className="resume-card-top">
+                <span className="resume-icon">{resume.icon}</span>
+                <span className="resume-badge">{resume.label}</span>
+              </div>
 
-            <h3 className="resume-role">{resume.role}</h3>
-            <p className="resume-desc">{resume.description}</p>
+              <h3 className="resume-role">{resume.role}</h3>
+              {resume.description && <p className="resume-desc">{resume.description}</p>}
 
-            <div className="resume-tags">
-              {resume.tags.map((tag, i) => (
-                <span className="resume-tag-pill" key={i}>
-                  {tag}
-                </span>
-              ))}
+              <div className="resume-tags">
+                {resume.tags.map((tag, i) => (
+                  <span className="resume-tag-pill" key={i}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
             <div className="resume-actions">

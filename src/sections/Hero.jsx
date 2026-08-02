@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import ParticleSphere from '../components/ParticleSphere';
 import PipelineDAG from '../components/PipelineDAG';
 import './Hero.css';
@@ -120,9 +119,6 @@ export default function Hero() {
           <button className="btn btn--filled-gradient" onClick={scrollToWork}>
             View My Work
           </button>
-          <Link to="/" className="btn btn--dynamic-cta">
-            View Dynamic Portfolio →
-          </Link>
           <button className="btn btn--ghost-animated" onClick={scrollToContact}>
             Get in touch
           </button>

@@ -63,7 +63,7 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 2rem;
   margin-bottom: 3.5rem;
 }
@@ -73,12 +73,15 @@
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 2.5rem;
+  padding: 3rem;
   box-shadow: var(--card-shadow);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
 }
@@ -114,11 +117,17 @@
   box-shadow: 0 16px 36px rgba(124, 58, 237, 0.06);
 }
 
+.resume-card-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .resume-card-top {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .resume-icon {
@@ -149,25 +158,23 @@
 
 .resume-role {
   font-family: var(--font-display);
-  font-size: 1.45rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .resume-desc {
   font-size: 0.88rem;
   line-height: 1.6;
   color: var(--text-muted);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .resume-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 2.25rem;
-  margin-top: auto;
 }
 
 .resume-tag-pill {
@@ -183,6 +190,7 @@
 .resume-actions {
   display: flex;
   gap: 1rem;
+  min-width: 320px;
 }
 
 .resume-btn {
@@ -197,6 +205,7 @@
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
+  white-space: nowrap;
   transition: all 0.2s ease;
 }
 
@@ -248,5 +257,15 @@
   .resume-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  .resume-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2.25rem 1.75rem;
+  }
+  .resume-actions {
+    width: 100%;
+    min-width: 0;
   }
 }
