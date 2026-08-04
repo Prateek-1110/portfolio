@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Github, ExternalLink, ChevronDown, ChevronUp } from './Icons'
+import React, { useState, useEffect } from 'react'
+import { Github, ExternalLink } from './Icons'
 
 const PROJECTS = [
   {
@@ -83,17 +83,35 @@ const CATEGORIES = ["All", "ML/AI", "Data Engineering", "NLP / Pipelines", "Comp
 
 export default function Projects() {
   const [filter, setFilter] = useState("All")
-  const [expandedIndex, setExpandedIndex] = useState(null)
+  const [activeProject, setActiveProject] = useState(null)
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveProject(null)
+      }
+    }
+    if (activeProject) {
+      window.addEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = 'hidden'
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+    }
+  }, [activeProject])
 
   const filteredProjects = PROJECTS.filter(p => {
     if (filter === "All") return true
-    // Direct match or partial category check
     return p.category.toLowerCase().includes(filter.toLowerCase().replace(' ', '')) || 
            filter.toLowerCase().includes(p.category.toLowerCase())
   })
 
-  const toggleExpand = (index) => {
-    setExpandedIndex(expandedIndex === index ? null : index)
+  const handleCardClick = (e, proj) => {
+    if (e.target.closest('a') || e.target.closest('button')) {
+      return
+    }
+    setActiveProject(proj)
   }
 
   return (
@@ -107,7 +125,7 @@ export default function Projects() {
             className={`filter-btn ${filter === cat ? 'active' : ''}`}
             onClick={() => {
               setFilter(cat)
-              setExpandedIndex(null)
+              setActiveProject(null)
             }}
           >
             {cat}
@@ -117,82 +135,108 @@ export default function Projects() {
 
       <div className="projects-grid">
         {filteredProjects.map((proj, idx) => {
-          const isExpanded = expandedIndex === idx
+          const isCenterCircle = proj.title.includes("Codebase Intelligence Engine")
+          const cardClass = `project-card ${isCenterCircle ? 'center-circle' : ''}`
+          
           return (
-            <div className="project-card" key={idx}>
-              <div className="project-header">
-                <span className="project-category">{proj.category}</span>
-                <span className="project-status">{proj.status}</span>
-              </div>
-
-              <div>
+            <div 
+              className={cardClass} 
+              key={idx}
+              onClick={(e) => handleCardClick(e, proj)}
+            >
+              <div className="project-card-main">
                 <h3 className="project-title">{proj.title}</h3>
                 <div className="project-metric-pill" style={{ marginTop: '0.5rem' }}>
-                  Metric: <strong>{proj.keyMetric}</strong>
+                  <strong>{proj.keyMetric}</strong>
                 </div>
+                <p className="project-description-preview">{proj.caseStudy.problem}</p>
               </div>
 
-              {/* Styled CSS horizontal pipeline flow */}
-              <div className="pipeline-box">
-                <div className="pipeline-flow">
-                  {proj.pipeline.map((node, nodeIdx) => (
-                    <React.Fragment key={nodeIdx}>
-                      <span className="pipeline-node">{node}</span>
-                      {nodeIdx < proj.pipeline.length - 1 && (
-                        <span className="pipeline-arrow">➔</span>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
-
-              <div className="project-tags">
-                {proj.technologies.map((tech, techIdx) => (
-                  <span className="tag" key={techIdx}>{tech}</span>
-                ))}
-              </div>
-
-              <div className="project-links">
+              <div className="project-card-footer">
+                <span className="card-more-detail">More Detail ➔</span>
                 {proj.github && (
-                  <a href={proj.github} target="_blank" rel="noopener noreferrer" className="project-link">
-                    <Github size={16} /> GitHub
-                  </a>
-                )}
-                {proj.live && (
-                  <a href={proj.live} target="_blank" rel="noopener noreferrer" className="project-link">
-                    <ExternalLink size={16} /> Live App
+                  <a 
+                    href={proj.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="card-github-link"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Github size={14} /> GitHub
                   </a>
                 )}
               </div>
-
-              <button className="case-study-trigger" onClick={() => toggleExpand(idx)}>
-                {isExpanded ? (
-                  <>Hide Case Study <ChevronUp size={16} /></>
-                ) : (
-                  <>View Case Study Details <ChevronDown size={16} /></>
-                )}
-              </button>
-
-              {isExpanded && (
-                <div className="case-study-content">
-                  <div className="case-study-section">
-                    <h4>The Problem</h4>
-                    <p>{proj.caseStudy.problem}</p>
-                  </div>
-                  <div className="case-study-section">
-                    <h4>My Contribution</h4>
-                    <p>{proj.caseStudy.contribution}</p>
-                  </div>
-                  <div className="case-study-section">
-                    <h4>Measurable Outcome</h4>
-                    <p>{proj.caseStudy.outcome}</p>
-                  </div>
-                </div>
-              )}
             </div>
           )
         })}
       </div>
+
+      {activeProject && (
+        <div className="project-modal-overlay" onClick={() => setActiveProject(null)}>
+          <div className="project-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setActiveProject(null)} aria-label="Close modal">
+              &times;
+            </button>
+            
+            <div className="modal-header">
+              <span className="project-status">{activeProject.status}</span>
+            </div>
+
+            <h3 className="modal-title">{activeProject.title}</h3>
+            
+            <div className="project-metric-pill" style={{ marginTop: '0.5rem', marginBottom: '1.5rem' }}>
+              <strong>{activeProject.keyMetric}</strong>
+            </div>
+
+            <div className="modal-section-title">System Pipeline</div>
+            <div className="pipeline-flow-free">
+              {activeProject.pipeline.map((node, nodeIdx) => (
+                <React.Fragment key={nodeIdx}>
+                  <span className="pipeline-node">{node}</span>
+                  {nodeIdx < activeProject.pipeline.length - 1 && (
+                    <span className="pipeline-arrow">➔</span>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+
+            <div className="modal-section-title" style={{ marginTop: '1.5rem' }}>Technologies</div>
+            <div className="project-tags">
+              {activeProject.technologies.map((tech, techIdx) => (
+                <span className="tag" key={techIdx}>{tech}</span>
+              ))}
+            </div>
+
+            <div className="modal-case-study">
+              <div className="case-study-section">
+                <h4>The Problem</h4>
+                <p>{activeProject.caseStudy.problem}</p>
+              </div>
+              <div className="case-study-section">
+                <h4>My Contribution</h4>
+                <p>{activeProject.caseStudy.contribution}</p>
+              </div>
+              <div className="case-study-section">
+                <h4>Measurable Outcome</h4>
+                <p>{activeProject.caseStudy.outcome}</p>
+              </div>
+            </div>
+
+            <div className="modal-links" style={{ marginTop: '2rem' }}>
+              {activeProject.github && (
+                <a href={activeProject.github} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                  <Github size={18} /> View GitHub Code
+                </a>
+              )}
+              {activeProject.live && (
+                <a href={activeProject.live} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                  <ExternalLink size={18} /> Launch Live App
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
