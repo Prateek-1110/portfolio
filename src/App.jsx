@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ThemeToggle from './components/ThemeToggle'
-import Hero from './components/Hero'
-import Metrics from './components/Metrics'
+import Home from './components/Home'
+import About from './components/About'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
@@ -10,7 +10,7 @@ import Contact from './components/Contact'
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('about')
+  const [activeSection, setActiveSection] = useState('home')
   const [scrollProgress, setScrollProgress] = useState(0)
 
   // Highlight current active section in nav & calculate scroll progress during scrolling
@@ -26,7 +26,7 @@ export default function App() {
       }
 
       // 2. Active Section Highlight
-      const sections = ['about', 'metrics', 'experience', 'projects', 'skills', 'profiles', 'contact']
+      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'profiles', 'contact']
       const scrollPosition = window.scrollY + 150
 
       for (const section of sections) {
@@ -48,8 +48,8 @@ export default function App() {
   }, [])
 
   const navLinks = [
+    { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'metrics', label: 'Metrics' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
     { id: 'skills', label: 'Skills' },
@@ -70,8 +70,8 @@ export default function App() {
       {/* 1. Responsive Fixed Navigation Bar with Scroll Progress Indicator */}
       <header className="navbar">
         <div className="nav-container">
-          <a href="#about" className="nav-logo" onClick={(e) => { e.preventDefault(); handleLinkClick('about'); }}>
-            <span>Prateek</span>.Agrahari()
+          <a href="#home" className="nav-logo" onClick={(e) => { e.preventDefault(); handleLinkClick('home'); }}>
+            <span>P.A</span>
           </a>
 
           <div className="nav-controls">
@@ -81,8 +81,7 @@ export default function App() {
                 <button
                   key={link.id}
                   onClick={() => handleLinkClick(link.id)}
-                  className={`nav-link btn-secondary ${activeSection === link.id ? 'active' : ''}`}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+                  className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
                 >
                   {link.label}
                 </button>
@@ -112,8 +111,8 @@ export default function App() {
 
       {/* 2. Core Content Sections */}
       <main>
-        <Hero />
-        <Metrics />
+        <Home />
+        <About />
         <Experience />
         <Projects />
         <Skills />

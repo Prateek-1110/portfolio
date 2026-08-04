@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Github, Linkedin, Mail, FileText, MapPin } from './Icons'
+import { Github, Linkedin, Mail, FileText } from './Icons'
 
 const ROLES = [
   "Data & ML Engineer",
@@ -8,7 +8,25 @@ const ROLES = [
   "Agentic AI Developer"
 ]
 
-export default function Hero() {
+const METRICS = [
+  {
+    value: "3M+",
+    label: "Geospatial Records Ingested",
+    context: "Traffic Accident Hotspot Analyzer ETL pipeline"
+  },
+  {
+    value: "92%",
+    label: "Semantic Segmentation Accuracy",
+    context: "SAR Oil Spill Detection DeepLabV3 model"
+  },
+  {
+    value: "5+",
+    label: "End-to-End AI/Data Pipelines",
+    context: "Built for ingestion, deduplication, translation & evaluation"
+  }
+]
+
+export default function Home() {
   const [roleIndex, setRoleIndex] = useState(0)
   const [fade, setFade] = useState(true)
 
@@ -18,25 +36,19 @@ export default function Hero() {
       setTimeout(() => {
         setRoleIndex((prev) => (prev + 1) % ROLES.length)
         setFade(true)
-      }, 300) // Wait for fade-out to finish
+      }, 300)
     }, 3500)
     return () => clearInterval(interval)
   }, [])
 
   return (
-    <section id="about" className="hero-sec">
-      <div className="hero-avatar-container">
-        <div className="hero-avatar">
-          <img src="src/image.png" alt="Prateek Agrahari" />
-        </div>
-      </div>
-
-      <div className="hero-info">
-        <h1 className="hero-name">
+    <section id="home" className="home-sec">
+      <div className="home-content">
+        <h1 className="home-name">
           Hi, I'm <span>Prateek Agrahari</span>
         </h1>
 
-        <div className="hero-titles">
+        <div className="home-titles">
           <span 
             style={{
               transition: 'opacity 0.3s ease',
@@ -48,19 +60,11 @@ export default function Hero() {
           </span>
         </div>
 
-        <div className="hero-bio">
-          <p>
-            Building production-grade ML pipelines, retrieval systems, and agentic AI — from raw data ingestion to intelligent LLM-driven output.
-          </p>
-          <blockquote>
-            "My edge: I approach ML from a systems lens, focusing on latency, data quality, pipeline reproducibility, and evaluation harnesses — not just training accuracy. Every project I ship is end-to-end and measurable."
-          </blockquote>
-          <p style={{ marginTop: '0.75rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            <strong>Academic Tagline:</strong> IIT Jodhpur · B.Tech: Minor in AI '2027 (expected)
-          </p>
-        </div>
+        <p className="home-tagline">
+          Building production-grade ML pipelines, retrieval systems, and agentic AI — from raw data ingestion to intelligent LLM-driven output.
+        </p>
 
-        <div className="hero-ctas">
+        <div className="home-ctas">
           <a href="#contact" className="btn btn-primary">
             <Mail size={16} /> Contact Me
           </a>
@@ -74,7 +78,7 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="hero-socials">
+        <div className="home-socials">
           <a href="https://github.com/prateek-1110" target="_blank" rel="noopener noreferrer" className="social-link" title="GitHub">
             <Github size={20} />
           </a>
@@ -84,6 +88,18 @@ export default function Hero() {
           <a href="mailto:b23bb1033@iitj.ac.in" className="social-link" title="Email Direct">
             <Mail size={20} />
           </a>
+        </div>
+      </div>
+
+      <div className="home-metrics">
+        <div className="metrics-grid">
+          {METRICS.map((item, idx) => (
+            <div className="metric-card" key={idx}>
+              <div className="metric-value">{item.value}</div>
+              <div className="metric-label">{item.label}</div>
+              <div className="metric-context">{item.context}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
