@@ -5,7 +5,9 @@ import About from './components/About'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
+import Education from './components/Education'
 import CodingProfiles from './components/CodingProfiles'
+import Resume from './components/Resume'
 import Contact from './components/Contact'
 
 export default function App() {
@@ -26,7 +28,7 @@ export default function App() {
       }
 
       // 2. Active Section Highlight
-      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'profiles', 'contact']
+      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'education', 'profiles', 'resume', 'contact']
       const scrollPosition = window.scrollY + 150
 
       for (const section of sections) {
@@ -65,7 +67,9 @@ export default function App() {
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
     { id: 'skills', label: 'Skills' },
+    { id: 'education', label: 'Education' },
     { id: 'profiles', label: 'Coding' },
+    { id: 'resume', label: 'Resume' },
     { id: 'contact', label: 'Contact' }
   ]
 
@@ -128,7 +132,9 @@ export default function App() {
         <Experience />
         <Projects />
         <Skills />
+        <Education />
         <CodingProfiles />
+        <Resume />
         <Contact />
       </main>
 

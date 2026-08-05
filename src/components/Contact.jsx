@@ -62,18 +62,8 @@ export default function Contact() {
           <div className="contact-info-card">
             <Mail className="contact-info-icon" size={24} />
             <div className="contact-info-text">
-              <h4>Direct Email</h4>
+              <h4>Email</h4>
               <a href="mailto:b23bb1033@iitj.ac.in">b23bb1033@iitj.ac.in</a>
-              <div style={{ marginTop: '0.25rem' }}>
-                <a 
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=b23bb1033@iitj.ac.in" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  style={{ fontSize: '0.8rem', color: 'var(--accent)', textDecoration: 'underline' }}
-                >
-                  Quick Compose on Gmail
-                </a>
-              </div>
             </div>
           </div>
 
@@ -82,16 +72,15 @@ export default function Contact() {
             <div className="contact-info-text">
               <h4>LinkedIn</h4>
               <a href="https://linkedin.com/in/prateek1110/" target="_blank" rel="noopener noreferrer">
-                linkedin.com/in/prateek1110
+                prateek1110
               </a>
             </div>
           </div>
-
           <div className="contact-info-card">
-            <MapPin className="contact-info-icon" size={24} />
+            <Mail className="contact-info-icon" size={24} />
             <div className="contact-info-text">
-              <h4>Location</h4>
-              <p>IIT Jodhpur, Rajasthan, India</p>
+              <h4>Github</h4>
+              <a href="https://github.com/Prateek-1110/">prateek-1110</a>
             </div>
           </div>
         </div>

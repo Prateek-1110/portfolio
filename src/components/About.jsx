@@ -47,11 +47,11 @@ export default function About() {
 
           <div className="about-description">
             <p className="about-bio-lead">
-              I'm a B.Tech student (Minor in AI) at IIT Jodhpur building systems that sit at the boundary of raw data and intelligent reasoning — retrieval pipelines, NLP models, and agentic AI workflows.
+              I'm a B.Tech student (Minor in AI) at IIT Jodhpur building systems that sit at the boundary of raw data and intelligent reasoning, retrieval pipelines, NLP models, and agentic AI workflows.
             </p>
             
             <p className="about-bio-edge">
-              <strong>My edge:</strong> I approach ML from a systems lens. I care about latency, data quality, pipeline reproducibility, and evaluation harnesses — not just training accuracy. Every project I ship is end-to-end and measurable.
+              I approach ML from a systems lens. I care about latency, data quality, pipeline reproducibility, and evaluation harnesses, not just training accuracy. Every project I ship is end-to-end and measurable.
             </p>
           </div>
 
