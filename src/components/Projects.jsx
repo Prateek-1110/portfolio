@@ -3,78 +3,78 @@ import { Github, ExternalLink } from './Icons'
 
 const PROJECTS = [
   {
-    title: "Codebase Intelligence Engine (Advanced RAG)",
+    title: "Codebase Intelligence Engine",
     status: "Featured (2026)",
     category: "ML/AI",
-    keyMetric: "3M+ Vectors Indexed",
-    pipeline: ["Codebase", "AST Chunking", "Qdrant Store", "RRF Ranker", "Llama 3"],
-    technologies: ["Python", "FastAPI", "Qdrant Vector DB", "PostgreSQL", "RAG", "NLP"],
+    keyMetric: "92% File Hit Rate@3",
+    pipeline: ["AST Chunking", "Qdrant/BM25 Hybrid", "RRF / Cross-Encoder", "PostgreSQL Call Graph", "Groq Llama-3.3"],
+    technologies: ["Python", "FastAPI", "React", "Qdrant", "PostgreSQL", "Groq API / Ollama", "Sentence-Transformers"],
     github: "https://github.com/Prateek-1110/Rag_Codebase",
     live: "",
     caseStudy: {
-      problem: "Querying large, nested codebases using standard LLMs suffers from structural context loss (e.g. tracing deep function call paths) and high rates of factual hallucination.",
-      contribution: "Engineered a custom Abstract Syntax Tree (AST) chunking parser to divide codebases by syntax scope. Implemented a hierarchical call-graph index in PostgreSQL, integrated dense-sparse hybrid vector search (BM25 & Qdrant), and utilized cross-encoder rerankers to rank results.",
-      outcome: "Reduced retrieval hallucinations by 45% and improved context precision on complex architectural code lookups."
+      problem: "Traditional RAG systems fail on nested codebases because they treat code as plain text, resulting in a complete loss of structural hierarchy, function dependencies, and caller/callee metadata.",
+      contribution: "Designed a multi-stage retrieval pipeline combining semantic search (Qdrant) and lexical keyword search (BM25) via Reciprocal Rank Fusion (RRF) and Cross-Encoder reranking (ms-marco-MiniLM). Implemented an LLM intent classifier to route query types, bypassing vector search for deterministic dependency queries by traversing a PostgreSQL call graph.",
+      outcome: "Achieved a 92% File Hit Rate@3, deployed Groq with an automatic local Ollama fallback for rate-limit protection, and validated RAG metrics (Faithfulness: 0.91, Relevancy: 0.88) with under 1.2s p95 latency."
     }
   },
   {
     title: "Traffic Accident Hotspot Analyzer",
     status: "Active (2026)",
     category: "Data Engineering",
-    keyMetric: "3M+ Rows Ingested",
-    pipeline: ["CSV Ingestion", "ETL Pandas", "Postgres", "DBSCAN", "Django Map"],
-    technologies: ["Python", "Django", "PostgreSQL", "ETL", "DBSCAN Clustering", "Scikit-Learn"],
+    keyMetric: "3M+ Records Ingested",
+    pipeline: ["US Accidents Dataset", "Pandas ETL", "DBSCAN Clustering", "Random Forest Classifier", "Django Dashboard"],
+    technologies: ["Python", "Django", "Pandas", "Scikit-Learn", "Folium / Leaflet.js", "Chart.js"],
     github: "https://github.com/Prateek-1110/traffic_analyser",
     live: "https://traffic-analyser.streamlit.app/",
     caseStudy: {
-      problem: "Urban planners lacked granular tools to digest geospatial collision reports and predict risk levels, leaving safety upgrades to guesswork.",
-      contribution: "Ingested and cleaned over 3 million historical records using a custom Pandas/PostgreSQL ETL pipeline. Programmed DBSCAN density clustering to identify collision hotspots and trained a Random Forest model to predict risk severity based on weather and road attributes.",
-      outcome: "Identified 120+ active safety hotspots and achieved an 85% accuracy score in predicting danger severity."
+      problem: "Urban planners lacked interactive, granular tools to identify road accident clusters and predict real-time hazard severity based on temporal and environmental conditions.",
+      contribution: "Built an end-to-end data pipeline: cleaned 3M+ accident records in Pandas, engineered time-cyclical features, identified hotspots using DBSCAN clustering with haversine distance, trained a Random Forest classifier, and developed a Django app with Leaflet.js maps and Chart.js dashboards.",
+      outcome: "Successfully mapped collision hotspots with risk ratings and enabled live accident risk predictions on a responsive dashboard."
     }
   },
   {
-    title: "AI-Powered Autonomous News Agent",
+    title: "Autonomous News Aggregator & Summarization Agent",
     status: "Active (2026)",
     category: "NLP / Pipelines",
-    keyMetric: "5k+ articles / day",
-    pipeline: ["RSS Feed", "Scraping", "Cosine Sim Deduplication", "LLM Summary", "Publish"],
-    technologies: ["Python", "Django", "Data Pipeline", "NLP", "LLMs", "Vector Matching"],
-    github: "https://github.com/Prateek-1110/News_Automation/",
+    keyMetric: "40% Duplicates Filtered",
+    pipeline: ["SerpAPI Crawl", "BeautifulSoup Parser", "BERT Deduplication", "Groq Llama-3.3", "React Progressive Stream"],
+    technologies: ["Python", "Flask", "React", "Groq API (Llama 3.3)", "BERT / BART", "SerpAPI / BeautifulSoup"],
+    github: "https://github.com/Prateek-1110/News_Automation",
     live: "https://prateektech.vercel.app/",
     caseStudy: {
-      problem: "Real-time RSS feeds monitoring pipelines face high API cost overhead from processing duplicate posts and high feed-to-publish rendering latency.",
-      contribution: "Designed a parallelized stateful news pipeline digesting 5k+ articles daily. Engineered a text deduplication filter using cosine similarity matrix matching, and integrated a parallelized LLM summary generation pipeline.",
-      outcome: "Deduplicated feed articles by 60%, significantly lowering LLM API costs, and cut publication latency to under 120 seconds."
+      problem: "Real-time news monitoring pipelines faced high server startup latency due to local deep learning models, high duplicate content ratios, and page render lags.",
+      contribution: "Built an autonomous news agent crawling local news across 22 metro regions. Implemented a BERT-based embedding model with cosine similarity thresholds to filter duplicate content by 40%. Ported summary generation to cloud-based Groq APIs (Llama-3.3), reducing startup latency from minutes to <0.1s, and designed a Flask multi-threaded publisher to stream summaries progressively.",
+      outcome: "Achieved instantaneous server boot-up (<0.1s), cut duplicate content by 40%, and enabled real-time progressive news card rendering with authentic metadata-extracted images under 1 second of latency."
     }
   },
   {
-    title: "Oil Spill Detection System",
+    title: "AI-Powered Oil Spill Detection System",
     status: "Featured (2024)",
     category: "Computer Vision",
-    keyMetric: "92% Pixel Accuracy",
-    pipeline: ["SAR Imagery + AIS", "DeepLabV3 Segmentor", "Flipped Conv", "Data Fusion Layer", "Spill Alert"],
-    technologies: ["DeepLabV3", "PyTorch", "SAR Imaging", "Computer Vision"],
+    keyMetric: "92% Detection Accuracy",
+    pipeline: ["SAR Imagery", "DeepLabV3 Segmentor", "1M+ AIS Records", "AIS Anomaly Detection", "Telemetry Data Fusion"],
+    technologies: ["DeepLabV3", "PyTorch", "Python", "AIS Vessel Tracking", "SAR Imagery", "scikit-learn"],
     github: "https://github.com/Prateek-1110/SIH_2024-Oil-Spill-Detection/",
     live: "",
     caseStudy: {
-      problem: "Satellite radar oil spill detection maps lack real-time vessel telemetry, making maritime pollution enforcement nearly impossible.",
-      contribution: "Trained a DeepLabV3 semantic segmentation model in PyTorch on Synthetic Aperture Radar (SAR) imagery. Built a data fusion layer in Python to overlay real-time Automatic Identification System (AIS) telemetry streams onto spill boundaries.",
-      outcome: "Delineated spills with 92% pixel-level segmentation accuracy and mapped coordinates to nearby ship transponders."
+      problem: "Maritime pollution monitoring systems lacked integrated systems to cross-reference satellite radar oil spill boundaries with real-time vessel movement anomalies, hindering illegal discharge enforcement.",
+      contribution: "Trained a DeepLabV3 semantic segmentation model in PyTorch on Synthetic Aperture Radar (SAR) imagery to automate spill detection. Built a vessel behavior analysis model on 1M+ AIS records to detect irregular movements (abrupt speed/route changes). Integrated both signals into a Python data fusion layer.",
+      outcome: "Achieved a 92% detection accuracy and under 5-minute processing latency across 1,000+ km maritime regions, improving anomaly detection precision by 30% while cutting false alerts by 25%."
     }
   },
   {
     title: "Agentic ArXiv Research Assistant",
     status: "Active (2026)",
     category: "ML/AI",
-    keyMetric: "Stateful Graph Routing",
-    pipeline: ["Search Query", "Relevance Match", "State Router", "Summary Gen", "Markdown Output"],
-    technologies: ["LangGraph", "LangChain", "Python", "ArXiv API", "LLMs"],
+    keyMetric: "Autonomous Intent Routing",
+    pipeline: ["User Query", "Gemini Intent Router", "ArXiv Crawler & Parser", "ChromaDB Vector Store", "TinyBERT Reranking", "Cited Answer Gen"],
+    technologies: ["Python", "FastAPI", "Gemini 1.5 Flash", "ChromaDB", "TinyBERT Reranker", "Sentence-Transformers"],
     github: "https://github.com/Prateek-1110/agentic_arxiv",
     live: "",
     caseStudy: {
-      problem: "Researchers lose hours querying repositories and hand-filtering paper relevance, resulting in slow literature review workflows.",
-      contribution: "Created a stateful cyclical agent graph using LangGraph. Structured logical nodes to run search queries, filter results for keyword/embedding relevance, dynamically route back for deeper search if relevancy is low, and invoke a critique agent.",
-      outcome: "Automated the end-to-end literature review process, cutting manual research time by 3x."
+      problem: "Traditional RAG research tools require manual paper retrieval, chunk mapping, and ingestion, creating high friction for multi-paper academic workflows.",
+      contribution: "Built an agentic paper assistant from scratch (no LangChain or LangGraph) that routes queries dynamically using Gemini 1.5 Flash structured JSON. Programmed custom tools including an on-the-fly ArXiv PDF crawler/embedder, semantic search via ChromaDB (all-MiniLM-L6-v2), and reranking using ms-marco-TinyBERT.",
+      outcome: "Successfully created an autonomous research system delivering cited, paper-grounded answers with high-precision TinyBERT reranking and low-latency API generation."
     }
   }
 ]
