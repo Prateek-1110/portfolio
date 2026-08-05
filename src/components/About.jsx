@@ -1,4 +1,5 @@
 import React from 'react'
+import profileImg from '../image.png'
 
 export default function About() {
   const SKILLS = [
@@ -22,7 +23,7 @@ export default function About() {
           <div className="about-profile-card">
             <div className="hero-avatar-container">
               <div className="hero-avatar">
-                <img src="src/image.png" alt="Prateek Agrahari" />
+                <img src={profileImg} alt="Prateek Agrahari" />
               </div>
             </div>
             

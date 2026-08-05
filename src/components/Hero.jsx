@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Github, Linkedin, Mail, FileText, MapPin } from './Icons'
+import profileImg from '../image.png'
 
 const ROLES = [
   "Data & ML Engineer",
@@ -27,7 +28,7 @@ export default function Hero() {
     <section id="about" className="hero-sec">
       <div className="hero-avatar-container">
         <div className="hero-avatar">
-          <img src="src/image.png" alt="Prateek Agrahari" />
+          <img src={profileImg} alt="Prateek Agrahari" />
         </div>
       </div>
 
