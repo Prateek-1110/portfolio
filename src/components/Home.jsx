@@ -43,9 +43,20 @@ export default function Home() {
 
   return (
     <section id="home" className="home-sec">
+      {/* Background Cybernetic Geometry */}
+      <div className="home-bg-geometry">
+        <svg viewBox="0 0 800 800" className="bg-geometry-svg">
+          <circle cx="400" cy="400" r="320" fill="none" stroke="var(--border)" strokeWidth="1" strokeDasharray="6,12" className="rot-circle-1" />
+          <circle cx="400" cy="400" r="240" fill="none" stroke="var(--accent)" strokeWidth="1" strokeOpacity="0.25" strokeDasharray="30,8" className="rot-circle-2" />
+          <circle cx="400" cy="400" r="160" fill="none" stroke="var(--border)" strokeWidth="1" strokeDasharray="4,4" />
+          <line x1="400" y1="50" x2="400" y2="750" stroke="var(--border)" strokeWidth="1" strokeOpacity="0.1" />
+          <line x1="50" y1="400" x2="750" y2="400" stroke="var(--border)" strokeWidth="1" strokeOpacity="0.1" />
+        </svg>
+      </div>
+
       <div className="home-content">
         <h1 className="home-name">
-          Hi, I'm <span>Prateek Agrahari</span>
+          Hi, I'm <span className="name-glow-text">Prateek Agrahari</span>
         </h1>
 
         <div className="home-titles">
@@ -58,6 +69,7 @@ export default function Home() {
           >
             {ROLES[roleIndex]}
           </span>
+          <span className="typing-cursor">|</span>
         </div>
 
         <p className="home-tagline">
