@@ -91,6 +91,13 @@ export default function App() {
           </a>
 
           <div className="nav-controls">
+            {mobileMenuOpen && (
+              <div 
+                className="mobile-menu-backdrop" 
+                onClick={() => setMobileMenuOpen(false)}
+              ></div>
+            )}
+
             {/* Nav Menu Items */}
             <nav className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
               {navLinks.map((link) => (
@@ -143,10 +150,10 @@ export default function App() {
         <div className="footer-content">
           <div>
             <h3>Prateek Agrahari</h3>
-            <p style={{ fontSize: '0.85rem', marginTop: '0.25rem' }}>Data & ML Systems Engineer</p>
+            <p style={{ fontSize: '0.85rem', marginTop: '0.25rem', color: 'var(--text-secondary)' }}>Data & ML Systems Engineer</p>
           </div>
           <div className="footer-copy">
-            &copy; {new Date().getFullYear()} Prateek Agrahari. Built with React & custom CSS.
+            &copy; {new Date().getFullYear()} Prateek Agrahari.
           </div>
         </div>
       </footer>

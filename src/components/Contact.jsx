@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Mail, MapPin, Linkedin } from './Icons'
+import { Mail, Linkedin, Github } from './Icons'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -50,44 +50,17 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact">
+    <section id="contact" style={{ textAlign: 'center' }}>
       <h2 className="section-title">Get in Touch</h2>
       
+      <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '2rem', maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
+        Have an open role, research collaboration opportunity, or a complex ML pipeline problem that needs resolving? Drop a message using the form or reach out through my direct links.
+      </p>
+      
       <div className="contact-layout">
-        <div className="contact-info">
-          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1rem' }}>
-            Have an open role, research collaboration opportunity, or a complex ML pipeline problem that needs resolving? Drop a message using the form or reach out through my direct links.
-          </p>
-
-          <div className="contact-info-card">
-            <Mail className="contact-info-icon" size={24} />
-            <div className="contact-info-text">
-              <h4>Email</h4>
-              <a href="mailto:b23bb1033@iitj.ac.in">b23bb1033@iitj.ac.in</a>
-            </div>
-          </div>
-
-          <div className="contact-info-card">
-            <Linkedin className="contact-info-icon" size={24} />
-            <div className="contact-info-text">
-              <h4>LinkedIn</h4>
-              <a href="https://linkedin.com/in/prateek1110/" target="_blank" rel="noopener noreferrer">
-                prateek1110
-              </a>
-            </div>
-          </div>
-          <div className="contact-info-card">
-            <Mail className="contact-info-icon" size={24} />
-            <div className="contact-info-text">
-              <h4>Github</h4>
-              <a href="https://github.com/Prateek-1110/">prateek-1110</a>
-            </div>
-          </div>
-        </div>
-
         {/* Contact Form connected to Web3Forms */}
         <form className="contact-form" onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div className="form-group" style={{ textAlign: 'left' }}>
             <label htmlFor="name">Full Name</label>
             <input 
               type="text" 
@@ -101,7 +74,7 @@ export default function Contact() {
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group" style={{ textAlign: 'left' }}>
             <label htmlFor="email">Email Address</label>
             <input 
               type="email" 
@@ -115,7 +88,7 @@ export default function Contact() {
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group" style={{ textAlign: 'left' }}>
             <label htmlFor="message">Message</label>
             <textarea 
               name="message" 
@@ -150,11 +123,42 @@ export default function Contact() {
             type="submit" 
             className="btn btn-primary" 
             disabled={status === 'sending'}
-            style={{ width: 'fit-content' }}
+            style={{ width: 'fit-content', alignSelf: 'flex-start' }}
           >
             Send Message
           </button>
         </form>
+
+        {/* Contact Info (Direct Links Card Grid) */}
+        <div className="contact-info">
+          <div className="contact-info-card">
+            <Mail className="contact-info-icon" size={24} />
+            <div className="contact-info-text">
+              <h4>Email</h4>
+              <a href="mailto:b23bb1033@iitj.ac.in">b23bb1033@iitj.ac.in</a>
+            </div>
+          </div>
+
+          <div className="contact-info-card">
+            <Linkedin className="contact-info-icon" size={24} />
+            <div className="contact-info-text">
+              <h4>LinkedIn</h4>
+              <a href="https://linkedin.com/in/prateek1110/" target="_blank" rel="noopener noreferrer">
+                prateek1110
+              </a>
+            </div>
+          </div>
+
+          <div className="contact-info-card">
+            <Github className="contact-info-icon" size={24} />
+            <div className="contact-info-text">
+              <h4>GitHub</h4>
+              <a href="https://github.com/Prateek-1110/" target="_blank" rel="noopener noreferrer">
+                prateek-1110
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
