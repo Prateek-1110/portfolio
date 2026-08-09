@@ -147,13 +147,14 @@ export default function App() {
 
       {/* 3. Footer */}
       <footer>
-        <div className="footer-content">
-          <div>
-            <h3>Prateek Agrahari</h3>
-            <p style={{ fontSize: '0.85rem', marginTop: '0.25rem', color: 'var(--text-secondary)' }}>Data & ML Systems Engineer</p>
+        <div className="footer-container">
+          <div className="footer-name-brand">
+            <span className="footer-logo">P.A</span>
+            <span className="footer-name">Prateek Agrahari</span>
           </div>
-          <div className="footer-copy">
-            &copy; {new Date().getFullYear()} Prateek Agrahari.
+          <div className="footer-status">
+            <span className="footer-status-dot"></span>
+            <span className="footer-status-text">Last Updated in Aug 2026</span>
           </div>
         </div>
       </footer>
