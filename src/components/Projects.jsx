@@ -79,10 +79,7 @@ const PROJECTS = [
   }
 ]
 
-const CATEGORIES = ["All", "ML/AI", "Data Engineering", "NLP / Pipelines", "Computer Vision"]
-
 export default function Projects() {
-  const [filter, setFilter] = useState("All")
   const [activeProject, setActiveProject] = useState(null)
 
   useEffect(() => {
@@ -101,12 +98,6 @@ export default function Projects() {
     }
   }, [activeProject])
 
-  const filteredProjects = PROJECTS.filter(p => {
-    if (filter === "All") return true
-    return p.category.toLowerCase().includes(filter.toLowerCase().replace(' ', '')) || 
-           filter.toLowerCase().includes(p.category.toLowerCase())
-  })
-
   const handleCardClick = (e, proj) => {
     if (e.target.closest('a') || e.target.closest('button')) {
       return
@@ -117,24 +108,9 @@ export default function Projects() {
   return (
     <section id="projects">
       <h2 className="section-title">Projects & Case Studies</h2>
-      
-      <div className="projects-filter">
-        {CATEGORIES.map((cat, idx) => (
-          <button 
-            key={idx} 
-            className={`filter-btn ${filter === cat ? 'active' : ''}`}
-            onClick={() => {
-              setFilter(cat)
-              setActiveProject(null)
-            }}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
 
       <div className="projects-grid">
-        {filteredProjects.map((proj, idx) => {
+        {PROJECTS.map((proj, idx) => {
           const isCenterCircle = proj.title.includes("Codebase Intelligence Engine")
           const cardClass = `project-card ${isCenterCircle ? 'center-circle' : ''}`
           

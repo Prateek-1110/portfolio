@@ -1001,30 +1001,6 @@ section {
 }
 
 /* Projects Section */
-.projects-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.filter-btn {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  padding: 0.4rem 1rem;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.filter-btn.active, .filter-btn:hover {
-  background: var(--accent);
-  color: #ffffff;
-  border-color: var(--accent);
-}
 
 .projects-grid {
   display: flex;
@@ -1280,9 +1256,7 @@ section {
   transform: translateY(-1px);
 }
 
-.project-card.center-circle .card-github-link {
-  margin: 0.5rem auto 0 auto;
-}
+
 
 .project-tags {
   display: flex;
@@ -1902,9 +1876,7 @@ footer::before {
   .profiles-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .projects-filter {
-    display: none;
-  }
+
   .projects-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
